@@ -1,3 +1,6 @@
 [submodule "opt/antigen"]
 	path = opt/antigen
 	url = https://github.com/zsh-users/antigen.git
+[submodule "config/vim/bundle/Vundle.vim"]
+	path = config/vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
