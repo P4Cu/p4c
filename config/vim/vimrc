@@ -1,0 +1,356 @@
+" vim: nobuflisted foldmethod=marker
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+let mapleader = "\<space>"
+
+" PLUGINS #######################################################################################{{{
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"Alternative : call vundle#begin('~/some/path/here')
+Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
+Plugin 'ctrlpvim/ctrlp.vim' " fuzzy find files
+Plugin 'scrooloose/nerdtree'
+Plugin 'benmills/vimux'
+Plugin 'tpope/vim-fugitive' " the ultimate git helper
+Plugin 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
+Plugin 'vim-airline/vim-airline' " status line
+Plugin 'vim-airline/vim-airline-themes' " themes!
+Plugin 'ervandew/supertab' " requires some integration with YCM/UltiSnips
+Plugin 'valloric/youcompleteme'
+Plugin 'jeetsukumaran/vim-buffergator'
+" Plugin 'yggdroot/indentline'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'kana/vim-operator-user'
+" Plugin 'nelstrom/vim-visual-star-search' " allows to search for selected text
+" Plugin 'mhinz/vim-startify' " interferes with vim-session
+Plugin 'tpope/vim-unimpaired'
+" Plugin 'ryanoasis/nerd-fonts' " that's heavy and required only once,
+" download proper files guifont and only install this file. For cmd it
+" requires manual setting inside terminal
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'a.vim'
+Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'dyng/ctrlsf.vim' " requires ack2 already in system !!
+" Plugin 'terryma/vim-multiple-cursors'
+Plugin 'haya14busa/vim-easyoperator-line'
+" Plugin 'SearchComplete' " breaks a lot of stuff
+Plugin 'tpope/vim-abolish'
+" Plugin 'codeape2/vim-multiple-monitors'
+Plugin 'tpope/vim-repeat' " this is required by easyclip
+Plugin 'svermeulen/vim-easyclip'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-dispatch'
+Plugin 'lyuts/vim-rtags'
+Plugin 'majutsushi/tagbar'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'autoswap.vim'
+Plugin 'airblade/vim-gitgutter'
+" Plugin 'raimondi/delimitmate'
+Plugin 'tpope/vim-eunuch'
+Plugin 'gregsexton/gitv'
+Plugin 'moll/vim-bbye' " :Db
+Plugin 'libclang-vim/libclang-vim'
+Plugin 'kana/vim-textobj-user'
+Plugin 'libclang-vim/vim-textobj-clang'
+Plugin 'kana/vim-textobj-line'
+" Plugin 'm42e/vim-gcov-marker'
+Plugin 'dzeban/vim-log-syntax'
+Plugin 'CharTab' " <leader>ct  character tab
+" TODO: decide if it's worth to get rid of dispath.vim
+Plugin 'benekastah/neomake'
+" Plugin 'andviro/flake8-vim'
+Plugin 'mechatroner/rainbow_csv'
+Plugin 'embear/vim-foldsearch'
+Plugin 'terryma/vim-expand-region'
+" Plugin 'jrosiek/vim-mark'
+Plugin 'dimasg/vim-mark'
+Plugin 'davidhalter/jedi-vim'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" ###############################################################################################}}}
+
+
+" ##################################################################################################
+" Generic values
+" ##################################################################################################
+" highlight search
+set hlsearch incsearch ignorecase smartcase
+" bashlike vim completition + with addition of third tab for list select mode (zsh alike )
+set wildmode=longest,list,full
+set wildmenu
+set mouse=a
+set splitright splitbelow
+set scrolloff=10 " always show x lines from cursor
+set ttyfast " we're fast & local
+set undofile " keep history for each file (allows undo after close) file.un~
+set gdefault " rly mate, when i wanted to replace only the first occurence in line?
+set lazyredraw
+" Whitespace
+set tabstop=4 shiftwidth=4
+set expandtab
+set list lcs=trail:·,tab:»·
+" Numbering of lines
+set numberwidth=5
+" use <cor> <con> to enable dispalying
+set norelativenumber nonumber
+" use <cow>
+set nowrap
+set updatetime=1000 "this will update tagbar when idle for 1s | also writes swap after 1s
+set timeoutlen=1000 ttimeoutlen=0
+if has('nvim')
+"     set inccommand=nosplit " looks like this is causing a redraw issues
+endif
+set nowrapscan " do not wrap the search!
+" ##################################################################################################
+
+" ##################################################################################################
+" Give me these colors mate!
+if $COLORTERM == 'gnome-terminal'
+      set t_Co=256
+      set termguicolors
+endif
+set t_ut=
+colorscheme molokai
+autocmd ColorScheme *  :silent! highlight MatchParen cterm=reverse ctermfg=9 gui=bold guifg=#00000 guibg=#FD971F
+autocmd ColorScheme *  :silent! highlight CursorLine cterm=none ctermbg=52    ctermfg=white
+autocmd ColorScheme *  :silent! highlight! Visual ctermbg=202 ctermfg=black
+" highlight MatchParen cterm=none ctermbg=none ctermfg=red
+highlight MatchParen cterm=reverse ctermfg=9 gui=bold guifg=#00000 guibg=#FD971F
+highlight CursorLine cterm=none ctermbg=52    ctermfg=white
+highlight! Visual ctermbg=202 ctermfg=black
+
+" ##################################################################################################
+
+" ##################################################################################################
+noremap <C-_> :Commentary<CR>
+" tree control
+noremap <F1> :YcmCompleter FixIt<CR>
+noremap <F2> <c-c>:NERDTreeToggle<CR>
+noremap <F3> :BuffergatorToggle<CR>
+map <F4> :A<CR>
+nmap <F8> :TagbarToggle<CR>
+nnoremap <F10> :YcmDiags<CR>
+nnoremap <F11> :YcmForceCompileAndDiagnostics<CR>
+nnoremap <F12> :YcmToggleLogs<CR>
+" fuzzy finder
+let g:ctrlp_map = '<C-P>'
+let g:ctrlp_root_markers = ['.repo', '.git', '.hg', '.svn', '.bzr', '_darcs' ]
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_max_files = 400000
+let g:ctrlp_working_path_mode = 'wa'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  " see ~/.agignore for ignores
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+" youcompleteme mapping
+noremap <C-t> :YcmCompleter GoToDeclaration<CR>
+noremap <C-g> :YcmCompleter GoTo<CR>
+" Easy motion -- we want it back as one Leader not twice
+map <Leader> <Plug>(easymotion-prefix)
+nnoremap [g :GitGutterPrevHunk<CR>
+nnoremap ]g :GitGutterNextHunk<CR>
+nnoremap cog :GitGutterLineHighlightsToggle<CR>
+let g:gitgutter_sign_added = '🕂'
+
+nnoremap cogg :call P4C_GitGutterDiffHeadToggle()<CR>
+" This function toggles diff against HEAD
+function! P4C_GitGutterDiffHeadToggle()
+    if g:gitgutter_diff_base == ''
+        echom 'P4C_GitGutterDiffHeadToggle diff against HEAD'
+        let g:gitgutter_diff_base = 'HEAD'
+    else
+        echom 'P4C_GitGutterDiffHeadToggle diff against INDEX'
+        let g:gitgutter_diff_base = ''
+    endif
+    execute 'silent GitGutter'
+endfunction
+" ##################################################################################################
+
+" ##################################################################################################
+" vim-ariline
+set laststatus=2
+" let g:airline_theme='powerlineish'
+let g:airline_theme='molokai'
+set noshowmode
+" hi StatusLine 
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#show_splits = 0
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>[ <Plug>AirlineSelectPrevTab
+nmap <leader>] <Plug>AirlineSelectNextTab
+" ##################################################################################################
+
+" ##################################################################################################
+" NERDtree
+let g:NERDTreeWinSize = 100
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeQuitOnOpen=1
+" ##################################################################################################
+
+" ##################################################################################################
+" Buffergator
+set hidden
+let g:buffergator_suppress_keymaps=1
+let g:buffergator_split_size = 100
+let g:buffergator_sort_regime = "basename"
+let g:buffergator_show_full_directory_path = 0
+" map <Leader>[ :BuffergatorMruCyclePrev<CR>
+" map <Leader>] :BuffergatorMruCycleNext<CR>
+" ##################################################################################################
+
+" ##################################################################################################
+" MISC
+set colorcolumn=101
+" ##################################################################################################
+
+" ##################################################################################################
+" GVim deditacted settings
+set guioptions-=T " no toolbar!
+" ##################################################################################################
+
+" ##################################################################################################
+" Project specific
+" ##################################################################################################
+if filereadable(glob("~/.vimrc_custom"))
+    source ~/.vimrc_custom
+endif
+" ##################################################################################################
+
+" Vim session
+let g:session_autoload = 'no'
+let g:session_autosave = 'yes'
+let g:session_command_aliases = 1
+
+" vim-devicons
+set guifont=DroidSansMonoForPowerline\ Nerd\ Font\ 11
+set encoding=utf-8
+let g:airline_powerline_fonts=1
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" bug with UltiSnips+YCM+SuperTab
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+
+" CtrlSF
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+" Multiple-Cursors
+let g:multi_cursor_quit_key='<C-c>'
+
+" EasyClip options
+" let g:EasyClipUseSubstituteDefaults=1 " disable as it's annoying
+let g:EasyClipAlwaysMoveCursorToEndOfPaste=1
+set clipboard=unnamed,unnamedplus
+let g:EasyClipShareYanks=1
+let g:EasyClipShowYanksWidth=1
+" nmap ]y <plug>EasyClipSwapPasteForward
+" nmap [y <plug>EasyClipSwapPasteBackwards
+nmap <c-n> <Plug>EasyClipSwapPasteBackwards
+nmap <c-b> <Plug>EasyClipSwapPasteForward
+" let g:EasyClipSwapPasteForwardFallback='execute "normal \<Plug>(ctrlp)"'
+" let g:EasyClipSwapPasteBackwardsFallback=''
+
+" No backup files
+" set nobackup
+
+" No write backup
+" set nowritebackup
+
+" No swap file
+" set noswapfile
+
+" This will automatically read changed file. It will ask if we have unsaved
+" changes.
+set autoread
+
+let g:textobj_clang_more_mappings=1
+
+" always use buffer delete map
+" cmap bd Bd
+cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR>
+
+let g:tagbar_width = 80
+let g:tagbar_autofocus = 1
+
+let g:Gitv_DoNotMapCtrlKey = 1
+
+" working with filepaths/numbers
+nnoremap cp :let @+ = expand("%:p")<cr><bar>:echo "Copied full file path"<cr>
+nnoremap cpl :let @+ = expand("%:p") . ":" . line(".")<cr><bar>:echo "Copied full file path with line number"<cr>
+
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <C-h> <C-\><C-n><C-w>h
+    tnoremap <C-j> <C-\><C-n><C-w>j
+    tnoremap <C-k> <C-\><C-n><C-w>k
+    tnoremap <C-l> <C-\><C-n><C-w>l
+endif
+
+let g:PyFlakeCheckers = 'pep8'
+let g:autoswap_detect_tmux = 1
+
+" Do not jump on pressing star
+" noremap <silent> * :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" missing toggle paste
+nmap cop :setlocal <C-R>=<SNR>61_toggle("paste")<CR><CR>
+
+" rtags configuration
+let g:rtagsMinCharsForCommandCompletion=2
+
+" a.vim settings
+let g:alternateNoDefaultAlternate = 1
+
+" thats the default
+let g:alternateSearchPath = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc'
+let g:alternateSearchPath .= ',sfr:../../include,sfr:../../inc'
+let g:alternateSearchPath .= ',sfr:../../source,sfr:../../src'
+let g:alternateSearchPath .= ',reg:/include/src/g/'
+let g:alternateSearchPath .= ',reg:/src/include/g/'
+"            EXAMPLE: 'reg:/inc/src/g/' will replace every instance 
+"            of 'inc' with 'src' in the source file path. It is possible
+"            to use match variables so you could do something like:
+"            'reg:|src/\([^/]*\)|inc/\1||' (see 'help :substitute', 
+"            'help pattern' and 'help sub-replace-special' for more details
+" https://superuser.com/questions/313064/switching-between-src-and-include-files-in-vim/313113#313113
+" let g:alternateSearchPath = 'reg:#\<src\>$#include#,reg:#\<include\>$#src#'

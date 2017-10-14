@@ -1,0 +1,32 @@
+# This file have to use only features common to BASH/ZSH
+
+# export TERM=screen-256color # no <S-Fx> keys
+# export TERM=xterm-256color
+export EDITOR='nvim'
+export DEFAULT_USER='p4c'
+
+## ----------------------------------------------------------------------------
+## ALIASES
+## ----------------------------------------------------------------------------
+alias nvimo="nvim +OpenSession"
+alias gnp='git --no-pager'
+alias cdg='cd-gitroot'
+alias cdr='cd-reporoot'
+
+# --------------------------------------------------------------------------------------------------
+# PATHS
+export PATH="${PATH}:${P4C}/bin"
+# Append ~/bin
+if [[ -z $TMUX ]]; then
+    export PATH="${PATH}:${HOME}/bin"
+fi
+# --------------------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------
+## completition
+## ----------------------------------------------------------------------------
+## custom commands
+complete -c command type which-edit
+
+## requires source-higlight
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" ; export LESS=' -R '

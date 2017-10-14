@@ -1,0 +1,70 @@
+# mandatory export
+# TODO: make it depend on variable
+export P4C=${HOME}/p4c
+# enable bash completition
+autoload bashcompinit
+bashcompinit
+# source common part
+source ${P4C}/etc/commonrc
+
+# --------------------------------------------------------------------------------------------------
+# ANTIGEN
+source ${P4C}/opt/antigen/antigen.zsh
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+# Bundles
+antigen bundle git
+antigen bundle pip
+antigen bundle Vifon/deer
+antigen bundle djui/alias-tips
+antigen bundle fancy-ctrl-z
+antigen bundle catimg
+antigen bundle colored-man-pages
+antigen bundle repo
+antigen bundle z
+antigen bundle mollifier/cd-gitroot
+antigen bundle P4Cu/cd-reporoot
+# antigen bundle sharat87/zsh-vim-mode
+# Syntax
+antigen bundle zsh-users/zsh-syntax-highlighting
+# reminders
+antigen bundle AlexisBRENON/oh-my-zsh-reminder
+# unstable completition
+antigen bundle zsh-users/zsh-completions
+# completition generator
+antigen bundle RobSis/zsh-completion-generator
+# Theme
+antigen theme agnoster
+# Tell antigen that you're done.
+antigen apply
+# --------------------------------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------------------------------
+# additional completitions
+fpath=(~/workspace $fpath)
+autoload -U compinit && compinit
+# --------------------------------------------------------------------------------------------------
+
+# 10ms for key sequences (default 40)
+KEYTIMEOUT=1
+
+# --------------------------------------------------------------------------------------------------
+# KEYBINDINGS
+# deer
+autoload -U deer
+zle -N deer
+bindkey '\ek' deer
+# --------------------------------------------------------------------------------------------------
+
+alias http="python3 -m http.server"
+
+if [ -n "$TMUX" ]; then
+    alias clear="command clear && tmux clear"
+fi
+
+# make ctrl-n ctrl-p behave exacltly like up/down arrows
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+
+setopt histignorespace
+setopt extended_glob

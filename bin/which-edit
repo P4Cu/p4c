@@ -1,0 +1,18 @@
+#!/bin/bash
+
+EDITOR=nvim
+FILES=
+
+while [ $# -gt 0 ]; do
+    OUT="$(which $1)"
+    if [[ ! -z "${OUT// }" ]]; then
+        FILES="${FILES} ${OUT}"
+    fi
+    shift
+done
+
+if [[ ! -z "${FILES// }" ]]; then
+    $EDITOR $FILES
+else
+    echo 'Not found'
+fi
