@@ -33,9 +33,11 @@ antigen bundle AlexisBRENON/oh-my-zsh-reminder
 antigen bundle zsh-users/zsh-completions
 # completition generator
 antigen bundle RobSis/zsh-completion-generator
+# awesome ls
+antigen bundle supercrabtree/k
 # Theme
 antigen theme agnoster
-# Tell antigen that you're done.
+# Tell antigen that you're done
 antigen apply
 # --------------------------------------------------------------------------------------------------
 
@@ -68,3 +70,9 @@ bindkey "^N" down-line-or-search
 
 setopt histignorespace
 setopt extended_glob
+
+# ag with fast jumps = tag
+# requires prebuild tag binary
+if (( $+commands[tag] )); then
+  tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
+fi
