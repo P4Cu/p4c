@@ -22,6 +22,7 @@ antigen bundle catimg
 antigen bundle colored-man-pages
 antigen bundle repo
 antigen bundle z
+antigen bundle extract
 antigen bundle mollifier/cd-gitroot
 antigen bundle P4Cu/cd-reporoot
 # antigen bundle sharat87/zsh-vim-mode
