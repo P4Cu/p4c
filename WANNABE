@@ -2,6 +2,8 @@
 +1 GROUP	https://github.com/stevemao/awesome-git-addons
 -1 ZSH		https://github.com/tj/git-extras
 
-https://github.com/tmux-plugins/tmux-open
-add info about tmux install https://github.com/tmux-plugins/tpm <prefix+I>
++2 TMUX		https://github.com/tmux-plugins/tmux-open
+ 0 TMUX		https://github.com/tmux-plugins/tmux-copycat
++2 TMUX		add info about tmux install https://github.com/tmux-plugins/tpm <prefix+I>
 
++1 VIM		https://github.com/LucHermitte/local_vimrc
