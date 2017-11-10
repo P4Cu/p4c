@@ -1,5 +1,6 @@
 "3.16.0 (created: 2017/09/13 16:03:43)
 
 set "editor=gvim -u ~/p4c/config/vim/vimrc_vimperator --noplugin"
+colorscheme indigo
 
 " vim: set ft=vimperator:
