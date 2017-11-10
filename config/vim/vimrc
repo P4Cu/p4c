@@ -131,6 +131,8 @@ highlight! Visual ctermbg=202 ctermfg=black
 " ##################################################################################################
 
 " ##################################################################################################
+nnoremap gb :bnext<CR>
+nnoremap gB :bprevious<CR>
 noremap <C-_> :Commentary<CR>
 " tree control
 noremap <F1> :YcmCompleter FixIt<CR>
