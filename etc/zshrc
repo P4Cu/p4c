@@ -53,10 +53,25 @@ KEYTIMEOUT=1
 
 # --------------------------------------------------------------------------------------------------
 # KEYBINDINGS
+# vi mode
+bindkey -v
+
 # deer
 autoload -U deer
 zle -N deer
 bindkey '\ek' deer
+
+# make ctrl-n ctrl-p behave exacltly like up/down arrows
+# bindkey "^P" up-line-or-search
+# bindkey "^N" down-line-or-search
+bindkey "^P" history-beginning-search-backward
+bindkey "^N" history-beginning-search-forward
+# history-beginning-search-backward
+#
+# allow ctrl-a and ctrl-e to move to beginning/end of line
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^r' history-incremental-search-backward
 # --------------------------------------------------------------------------------------------------
 
 alias http="python3 -m http.server"
@@ -65,15 +80,32 @@ if [ -n "$TMUX" ]; then
     alias clear="command clear && tmux clear"
 fi
 
-# make ctrl-n ctrl-p behave exacltly like up/down arrows
-bindkey "^P" up-line-or-search
-bindkey "^N" down-line-or-search
 
 setopt histignorespace
 setopt extended_glob
+setopt transientrprompt
 
 # ag with fast jumps = tag
 # requires prebuild tag binary
 if (( $+commands[tag] )); then
   tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
 fi
+
+vim_ins_mode="%{$FG[045]%}%{$FG[000]$BG[045]%} INSERT %{$reset_color%}"
+vim_cmd_mode="%{$fg[green]%}%{$FG[000]$bg[green]%} COMMAND %{$reset_color%}"
+# vim_ins_mode="%{$fg[blue]%}%{$fg_bold[black]$bg[blue]%} INSERT %{$reset_color%}"
+# vim_cmd_mode="%{$fg[green]%}%{$fg_bold[black]$bg[green]%} COMMAND %{$reset_color%}"
+vim_mode=$vim_ins_mode
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
+    RPS2=$RPS1
+    zle reset-prompt
+
+# cursor did not work so far
+#   case $KEYMAP in
+#     vicmd) print -rn -- $terminfo[cvvis];; # block cursor
+#     viins|main) print -rn -- $terminfo[cnorm];; # less visible cursor
+#   esac
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
