@@ -91,21 +91,29 @@ if (( $+commands[tag] )); then
   tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
 fi
 
-vim_ins_mode="%{$FG[045]%}%{$FG[000]$BG[045]%} INSERT %{$reset_color%}"
-vim_cmd_mode="%{$fg[green]%}%{$FG[000]$bg[green]%} COMMAND %{$reset_color%}"
-# vim_ins_mode="%{$fg[blue]%}%{$fg_bold[black]$bg[blue]%} INSERT %{$reset_color%}"
-# vim_cmd_mode="%{$fg[green]%}%{$fg_bold[black]$bg[green]%} COMMAND %{$reset_color%}"
-vim_mode=$vim_ins_mode
+# required to properly draw vi-mode
 function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
-    RPS2=$RPS1
     zle reset-prompt
-
-# cursor did not work so far
-#   case $KEYMAP in
-#     vicmd) print -rn -- $terminfo[cvvis];; # block cursor
-#     viins|main) print -rn -- $terminfo[cnorm];; # less visible cursor
-#   esac
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+
+## built on agnoster theme
+build_custom_prompt() {
+  RETVAL=$?
+  case $KEYMAP in
+      vicmd) prompt_segment yellow default "CMD" ;;
+      main|viins) prompt_segment black default "INS" ;;
+  esac
+  prompt_status
+  prompt_virtualenv
+  prompt_context
+  prompt_dir
+  prompt_git
+  prompt_bzr
+  prompt_hg
+  prompt_end
+}
+
+PROMPT='%{%f%b%k%}$(build_custom_prompt) '
