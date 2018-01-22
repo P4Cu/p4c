@@ -72,6 +72,9 @@ Plugin 'terryma/vim-expand-region'
 " Plugin 'jrosiek/vim-mark'
 Plugin 'dimasg/vim-mark'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'dhruvasagar/vim-table-mode'
+" Open file:line
+Plugin 'bogado/file-line'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
