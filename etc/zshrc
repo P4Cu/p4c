@@ -36,6 +36,7 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle RobSis/zsh-completion-generator
 # awesome ls
 antigen bundle supercrabtree/k
+antigen bundle bil-elmoussaoui/flatpak-zsh-completion
 # Theme
 antigen theme agnoster
 # Tell antigen that you're done
