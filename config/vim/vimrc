@@ -162,8 +162,11 @@ noremap <C-t> :YcmCompleter GoToDeclaration<CR>
 noremap <C-g> :YcmCompleter GoTo<CR>
 " Easy motion -- we want it back as one Leader not twice
 map <Leader> <Plug>(easymotion-prefix)
-nnoremap [g :GitGutterPrevHunk<CR>
-nnoremap ]g :GitGutterNextHunk<CR>
+
+nnoremap [g :echo "use [c"<CR>
+nnoremap ]g :echo "use ]c"<CR>
+" nnoremap [g :GitGutterPrevHunk<CR>
+" nnoremap ]g :GitGutterNextHunk<CR>
 nnoremap cog :GitGutterLineHighlightsToggle<CR>
 let g:gitgutter_sign_added = '🕂'
 
