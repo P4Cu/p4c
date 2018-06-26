@@ -31,6 +31,7 @@ install_file ${HOME}/p4c/etc/zshrc ${HOME}/.zshrc
 install_file ${HOME}/p4c/config/tmux ${HOME}/.tmux
 install_file ${HOME}/p4c/config/vim ${HOME}/.config/nvim
 install_file ${HOME}/p4c/config/alacritty ${HOME}/.config/alacritty
+install_file ${HOME}/p4c/config/tridactylrc ${HOME}/.tridactylrc
 install_file ${HOME}/.config/nvim ${HOME}/.vim
 
 echo "now inside of vim/nvim call :InstallPlugins"
