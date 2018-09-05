@@ -28,8 +28,6 @@ antigen bundle P4Cu/cd-reporoot
 # antigen bundle sharat87/zsh-vim-mode
 # Syntax
 antigen bundle zsh-users/zsh-syntax-highlighting
-# reminders
-antigen bundle AlexisBRENON/oh-my-zsh-reminder
 # unstable completition
 antigen bundle zsh-users/zsh-completions
 # completition generator

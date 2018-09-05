@@ -11,8 +11,9 @@ call vundle#begin()
 "Alternative : call vundle#begin('~/some/path/here')
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 Plugin 'ctrlpvim/ctrlp.vim' " fuzzy find files
-Plugin 'scrooloose/nerdtree'
-Plugin 'benmills/vimux'
+" Plugin 'fisadev/vim-ctrlp-cmdpalette'
+Plugin 'scrooloose/nerdtree' " TODO: remove?
+Plugin 'benmills/vimux' " running command in tmux
 Plugin 'tpope/vim-fugitive' " the ultimate git helper
 Plugin 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
 Plugin 'vim-airline/vim-airline' " status line
@@ -20,28 +21,24 @@ Plugin 'vim-airline/vim-airline-themes' " themes!
 Plugin 'ervandew/supertab' " requires some integration with YCM/UltiSnips
 Plugin 'valloric/youcompleteme'
 Plugin 'jeetsukumaran/vim-buffergator'
-" Plugin 'yggdroot/indentline'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'kana/vim-operator-user'
-" Plugin 'nelstrom/vim-visual-star-search' " allows to search for selected text
-" Plugin 'mhinz/vim-startify' " interferes with vim-session
 Plugin 'tpope/vim-unimpaired'
 " Plugin 'ryanoasis/nerd-fonts' " that's heavy and required only once,
 " download proper files guifont and only install this file. For cmd it
 " requires manual setting inside terminal
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'a.vim'
-Plugin 'sirver/ultisnips'
-Plugin 'honza/vim-snippets'
+Plugin 'sirver/ultisnips' " TODO: maybe remove?
+Plugin 'honza/vim-snippets' " TODO: maybe remove?
+" TODO: start using this!
 Plugin 'dyng/ctrlsf.vim' " requires ack2 already in system !!
 " Plugin 'terryma/vim-multiple-cursors'
 Plugin 'haya14busa/vim-easyoperator-line'
-" Plugin 'SearchComplete' " breaks a lot of stuff
 Plugin 'tpope/vim-abolish'
-" Plugin 'codeape2/vim-multiple-monitors'
 Plugin 'tpope/vim-repeat' " this is required by easyclip
 Plugin 'svermeulen/vim-easyclip'
 Plugin 'edkolev/tmuxline.vim'
@@ -65,7 +62,6 @@ Plugin 'dzeban/vim-log-syntax'
 Plugin 'CharTab' " <leader>ct  character tab
 " TODO: decide if it's worth to get rid of dispath.vim
 Plugin 'benekastah/neomake'
-" Plugin 'andviro/flake8-vim'
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'embear/vim-foldsearch'
 Plugin 'terryma/vim-expand-region'
@@ -362,3 +358,5 @@ let g:alternateSearchPath .= ',reg:/src/include/g/'
 "            'help pattern' and 'help sub-replace-special' for more details
 " https://superuser.com/questions/313064/switching-between-src-and-include-files-in-vim/313113#313113
 " let g:alternateSearchPath = 'reg:#\<src\>$#include#,reg:#\<include\>$#src#'
+
+let g:gitgutter_terminal_reports_focus = 0 " or autocmd BufReadPost * :GitGutterAll
