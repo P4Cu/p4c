@@ -45,8 +45,7 @@ This function should only modify configuration layer settings."
      emacs-lisp
      games
      git
-     c-c++
-     ;; c++-rtags
+     (c-c++ :variables c-c++-enable-rtags-support t c-c++-default-mode-for-headers 'c++-mode)
      (java :variables java-backend 'eclim eclim-executable "/opt/eclipse/plugins/org.eclim_2.8.0/bin/eclim" eclim-eclipse-dirs '("/opt/eclipse/"))
      markdown
      html
@@ -459,14 +458,6 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (setq-default dotspacemacs-configuration-layers
-                '(
-                  (c-c++ :variables
-                         c-c++-enable-rtags-support t
-                         c-c++-default-mode-for-headers 'c++-mode
-                         )
-                  )
-                )
   (define-key evil-insert-state-map (kbd "C-SPC") 'company-manual-begin)
 
   (require 'flycheck-rtags)
