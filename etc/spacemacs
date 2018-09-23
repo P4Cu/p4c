@@ -467,6 +467,7 @@ before packages are loaded."
 
   ;; bring rtags under "SPC r"
   (rtags-enable-standard-keybindings c-mode-base-map "SPC r")
+  (rtags-enable-standard-keybindings spacemacs-c++-mode-map "r")
 
   ;; add edit-org binding
   (defun edit-org () "edit default org file" (interactive) (find-file-existing "~/org/TODO.org"))
