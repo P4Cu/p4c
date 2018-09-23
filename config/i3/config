@@ -205,3 +205,6 @@ bindsym shift+$mod+Return exec lock.sh
 bindsym $mod+z exec lock.sh
 bindsym $mod+x exec nautilus
 bindsym $mod+c exec shutter
+
+# start network manager
+exec nm-applet
