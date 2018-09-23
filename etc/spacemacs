@@ -473,6 +473,7 @@ before packages are loaded."
   (defun edit-org () "edit default org file" (interactive) (find-file-existing "~/org/TODO.org"))
   (spacemacs/set-leader-keys "f e o" 'edit-org)
 
+  (set-variable 'org-agenda-files (list "~/org/"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
