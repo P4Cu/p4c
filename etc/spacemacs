@@ -46,6 +46,7 @@ This function should only modify configuration layer settings."
      games
      git
      (c-c++ :variables c-c++-enable-rtags-support t c-c++-default-mode-for-headers 'c++-mode)
+     cmake
      (java :variables java-backend 'eclim eclim-executable "/opt/eclipse/plugins/org.eclim_2.8.0/bin/eclim" eclim-eclipse-dirs '("/opt/eclipse/"))
      markdown
      html
@@ -460,13 +461,14 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (define-key evil-insert-state-map (kbd "C-SPC") 'company-manual-begin)
 
+  ;; TODO: dotespacemacs-additional-packages ?
   (require 'flycheck-rtags)
 
   ;; underscore is part of the word
-  (modify-syntax-entry ?_ "w")
+  (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 
   ;; bring rtags under "SPC r"
-  (rtags-enable-standard-keybindings c-mode-base-map "SPC r")
+  ;; (rtags-enable-standard-keybindings c-mode-base-map "SPC r")
   (rtags-enable-standard-keybindings spacemacs-c++-mode-map "r")
 
   ;; add edit-org binding
