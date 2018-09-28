@@ -208,3 +208,5 @@ bindsym $mod+c exec shutter
 
 # start network manager
 exec nm-applet
+# hide cursor when you type
+exec xbanish
