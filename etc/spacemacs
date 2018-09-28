@@ -41,7 +41,6 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      helm
      auto-completion
-     ;; better-defaults
      emacs-lisp
      games
      git
@@ -58,6 +57,8 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      syntax-checking
      (version-control :variables version-control-global-margin t version-control-diff-side 'left)
+     debug
+     csv
      )
 
    ;; List of additional packages that will be installed without being
@@ -463,6 +464,7 @@ before packages are loaded."
 
   ;; TODO: dotespacemacs-additional-packages ?
   (require 'flycheck-rtags)
+  ;; (require 'helm-org-rifle)
 
   ;; underscore is part of the word
   (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
@@ -476,6 +478,7 @@ before packages are loaded."
   (spacemacs/set-leader-keys "f e o" 'edit-org)
 
   (set-variable 'org-agenda-files (list "~/org/"))
+  (setq scroll-margin 20)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
