@@ -1,0 +1,35 @@
+## Use include to get it
+## [include]
+##    path = ~/p4c/etc/gitconfig
+
+[merge]
+    tool = kdiff3
+[diff]
+    tool = kdiff3
+[alias]
+    st = status
+    lg = !"git lgg --branches='HEAD'"
+    lgmaster = !"git lgg origin/master.."
+    lgg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%<(103,trunc)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    lg-all = !"git lgg --all"
+    lg-all2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%<(103,trunc)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    lg-noremote = !"git lgg --branches='*'"
+    lg-remote = !"git lgg --remotes='*'"
+    lg-noarchive = !"git lgg --exclude='*archive/*' --branches='*'"
+    lg-archive = !"git lgg --branches='archive/*'"
+    amend = commit --amend
+    br = branch
+    a = add
+    cd = !cd .
+    cd = !cd `pwd`
+    cd = !pwd
+    cp = cherry-pick
+    dirdiff = difftool --dir-diff
+[color]
+    ui = auto
+[core]
+    editor = nvim
+[rerere]
+    enabled = true
+[color "diff"]
+    meta = blue
