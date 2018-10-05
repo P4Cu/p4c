@@ -59,6 +59,8 @@ This function should only modify configuration layer settings."
      (version-control :variables version-control-global-margin t version-control-diff-side 'left)
      debug
      csv
+     javascript
+     typescript
      )
 
    ;; List of additional packages that will be installed without being
