@@ -154,7 +154,7 @@ bar {
         # status_command i3status
         status_command i3blocks
         tray_output primary
-        font pango:FontAwesome 10
+        font pango:FontAwesome 10 # install fonts-font-awesome
 }
 
 # caps lock as ESC
