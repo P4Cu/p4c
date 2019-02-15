@@ -10,6 +10,7 @@ This function should only modify configuration layer settings."
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
+   ;; dotspacemacs-distribution 'spacemacs-base
 
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
@@ -42,9 +43,10 @@ This function should only modify configuration layer settings."
      helm
      auto-completion
      emacs-lisp
-     games
      git
-     (c-c++ :variables c-c++-enable-rtags-support t c-c++-default-mode-for-headers 'c++-mode)
+     (c-c++ :variables
+            c-c++-enable-rtags-support t
+            c-c++-default-mode-for-headers 'c++-mode)
      cmake
      (java :variables java-backend 'eclim eclim-executable "/opt/eclipse/plugins/org.eclim_2.8.0/bin/eclim" eclim-eclipse-dirs '("/opt/eclipse/"))
      markdown
@@ -53,14 +55,19 @@ This function should only modify configuration layer settings."
      org
      (shell :variables
             shell-default-height 30
-            shell-default-position 'bottom)
-     ;; spell-checking
+            shell-default-position 'bottom
+            shell-default-shell 'eshell)
+     spell-checking
      syntax-checking
      (version-control :variables version-control-global-margin t version-control-diff-side 'left)
      debug
      csv
      javascript
      typescript
+     python
+     sql
+     shell-scripts
+     ansible
      )
 
    ;; List of additional packages that will be installed without being
@@ -70,13 +77,30 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+    evil-textobj-line
+    google-translate
+    jedi
+    company-jedi
+    ;; sx ;; stack overflow! web-services layer
+    )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(
+      aggressive-indent
+      ws-butler
+      counsel
+      counsel-projectile
+      ivy
+      lorem-ipsum
+      clean-aindent-mode
+      fancy-battery
+      hungry-delete
+      symon
+   )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -474,6 +498,7 @@ before packages are loaded."
   ;; bring rtags under "SPC r"
   ;; (rtags-enable-standard-keybindings c-mode-base-map "SPC r")
   (rtags-enable-standard-keybindings spacemacs-c++-mode-map "r")
+  (setq rtags-display-result-backend 'helm)
 
   ;; add edit-org binding
   (defun edit-org () "edit default org file" (interactive) (find-file-existing "~/org/TODO.org"))
@@ -481,6 +506,29 @@ before packages are loaded."
 
   (set-variable 'org-agenda-files (list "~/org/"))
   (setq scroll-margin 20)
+
+  (put 'helm-make-build-dir 'safe-local-variable 'stringp)
+
+  (eval-after-load "company"
+    '(add-to-list 'company-backends 'company-anaconda))
+
+  (define-key spacemacs-c++-mode-map (kbd "ff") 'clang-format-region)
+  (define-key spacemacs-c++-mode-map (kbd "fb") 'clang-format-buffer)
+
+  ;; TODO: add to locals
+  (defun compile-abs() "" (interactive) (compile "make -j8 -C /home/meep_paca/repo/build all"))
+  (define-key spacemacs-c++-mode-map (kbd "c1") 'compile-abs )
+
+  ;; don't go through weird buffers
+  (push "\\*\.\+\\*" spacemacs-useless-buffers-regexp)
+  (push "magit\.\*" spacemacs-useless-buffers-regexp)
+
+  ;; black hole delete
+  (defun bb/evil-delete (orig-fn beg end &optional type _ &rest args)
+    (apply orig-fn beg end type ?_ args))
+  (advice-add 'evil-delete :around 'bb/evil-delete)
+
+  (spacemacs/set-leader-keys "\\" 'helm-resume)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -496,7 +544,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl browse-at-remote yasnippet-snippets xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typit toc-org tagedit symon sudoku string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el password-generator paradox pacmacs overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mvn multi-term move-text mmm-mode meghanada maven-test-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum link-hint indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-rtags flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish define-word counsel-projectile company-web company-statistics company-rtags company-emacs-eclim company-c-headers column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell 2048-game)))
+   '(yasnippet-snippets writeroom-mode visual-fill-column winum web-mode toc-org sql-indent realgud pyvenv paradox orgit org-projectile org-mime org-download org-brain neotree meghanada live-py-mode json-navigator json-mode hl-todo highlight-numbers highlight-indentation helm-xref helm-make groovy-mode google-translate git-timemachine git-link eyebrowse evil-visual-mark-mode evil-surround evil-nerd-commenter evil-matchit evil-magit evil-goggles eval-sexp-fu eshell-prompt-extras editorconfig dumb-jump doom-modeline eldoc-eval diff-hl define-word cython-mode counsel-projectile counsel swiper ivy cmake-ide centered-cursor-mode browse-at-remote auto-yasnippet auto-compile aggressive-indent ace-window ace-link anaconda-mode eclim tern iedit smartparens flycheck flyspell-correct company request projectile window-purpose imenu-list rtags helm helm-core yasnippet avy magit magit-popup git-commit with-editor markdown-mode alert pythonic f simple-httpd spaceline powerline dash which-key use-package hydra async evil goto-chg org-plus-contrib yapfify yaml-mode xterm-color ws-butler web-beautify volatile-highlights vi-tilde-fringe uuidgen undo-tree treepy test-simple tagedit symon string-inflection spinner spaceline-all-the-icons smeargle slim-mode shrink-path shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator parent-mode packed overseer org-present org-pomodoro org-category-capture org-bullets open-junk-file nameless mvn multi-term move-text mmm-mode maven-test-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum log4e loc-changes load-relative livid-mode link-hint levenshtein json-snatcher json-reformat js2-refactor js-doc jinja2-mode jedi insert-shebang indent-guide importmagic impatient-mode hungry-delete highlight-parentheses highlight hierarchy helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-gitignore helm-git-grep helm-flx helm-descbinds helm-ctest helm-css-scss helm-company helm-c-yasnippet helm-ag groovy-imports graphql gradle-mode google-c-style golden-ratio gnuplot gntp gitignore-templates gitconfig-mode gitattributes-mode git-messenger git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery expand-region evil-visualstar evil-unimpaired evil-tutor evil-textobj-line evil-org evil-numbers evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eshell-z esh-help ensime emmet-mode elisp-slime-nav dotenv-mode disaster diminish csv-mode company-web company-tern company-statistics company-shell company-rtags company-jedi company-emacs-eclim company-c-headers company-ansible company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format bind-key auto-highlight-symbol auto-dictionary ansible-doc ansible ace-jump-helm-line ac-ispell)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

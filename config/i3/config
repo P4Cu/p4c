@@ -169,7 +169,7 @@ for_window [class="Yad"] floating enable
 for_window [class="Spotify"] move window to workspace 9
 
 workspace 1 output DP-0
-workspace 2 output DP-1
+workspace 4 output HDMI-1-1
 workspace 8 output eDP-1-1
 
 # bind shutdown menu
@@ -205,8 +205,12 @@ bindsym shift+$mod+Return exec lock.sh
 bindsym $mod+z exec lock.sh
 bindsym $mod+x exec nautilus
 bindsym $mod+c exec shutter
+bindsym $mod+F12 exec autorandr -l common --force
+bindsym $mod+F11 exec autorandr -c
 
 # start network manager
 exec nm-applet
 # hide cursor when you type
 exec xbanish
+
+for_window [class="start_tests"] floating enable

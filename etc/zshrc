@@ -2,8 +2,9 @@
 # TODO: make it depend on variable
 export P4C=${HOME}/p4c
 # enable bash completition
-autoload bashcompinit
-bashcompinit
+autoload -Uz compinit && compinit
+autoload -Uz bashcompinit
+bashcompinit -i
 # source common part
 source ${P4C}/etc/commonrc
 
@@ -39,11 +40,6 @@ antigen bundle bil-elmoussaoui/flatpak-zsh-completion
 antigen theme agnoster
 # Tell antigen that you're done
 antigen apply
-# --------------------------------------------------------------------------------------------------
-
-# --------------------------------------------------------------------------------------------------
-# additional completitions
-autoload -U compinit && compinit
 # --------------------------------------------------------------------------------------------------
 
 # 10ms for key sequences (default 40)

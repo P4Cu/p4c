@@ -15,6 +15,7 @@ alias cdg='cd-gitroot'
 alias cdr='cd-reporoot'
 alias o='xdg-open'
 # alias rm='/bin/safe-rm'
+lt='ls -laht'
 
 # --------------------------------------------------------------------------------------------------
 # PATHS
@@ -31,3 +32,13 @@ complete -c command type which-edit
 
 ## requires source-higlight
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" ; export LESS=' -R '
+
+patchset() { (
+        set -e
+        if [[ -z $1 ]]; then echo "gerrit id needed" ; exit 0 ; fi
+        remotes=$(git ls-remote origin "refs/changes/*/$1/*")
+        latest_patchset=$(echo $remotes | cut -f2 | rev | cut -d'/' -f1 | rev | sort -n | tail -1)
+        as_ref=$(echo $remotes | grep -e "/$latest_patchset$" | cut -f2)
+        echo "$as_ref" | xsel -bi || true
+        echo $as_ref
+) }
