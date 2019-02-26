@@ -64,7 +64,7 @@ This function should only modify configuration layer settings."
      csv
      javascript
      typescript
-     python
+     (python :variable python-backend 'anaconda)
      sql
      shell-scripts
      ansible
@@ -82,6 +82,7 @@ This function should only modify configuration layer settings."
     google-translate
     jedi
     company-jedi
+    company-flx
     ;; sx ;; stack overflow! web-services layer
     )
 
@@ -490,7 +491,19 @@ before packages are loaded."
 
   ;; TODO: dotespacemacs-additional-packages ?
   (require 'flycheck-rtags)
+  (use-package evil-textobj-line)
   ;; (require 'helm-org-rifle)
+
+  ;; (setq completion-styles '(initials basic partial-completion))
+
+  ;; (require 'company-flx)
+  ;; (require 'company-capf)
+  ;; ;; (with-eval-after-load 'company
+  ;; ;;   (company-flx-mode +1))
+  ;; (with-eval-after-load 'company
+  ;;   (add-hook 'company-mode-hook (lambda ()
+  ;;                                  (add-to-list 'company-backends 'company-capf)))
+  ;;   (company-flx-mode +1))
 
   ;; underscore is part of the word
   (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
@@ -524,9 +537,11 @@ before packages are loaded."
   (push "magit\.\*" spacemacs-useless-buffers-regexp)
 
   ;; black hole delete
-  (defun bb/evil-delete (orig-fn beg end &optional type _ &rest args)
-    (apply orig-fn beg end type ?_ args))
-  (advice-add 'evil-delete :around 'bb/evil-delete)
+  ;; (defun bb/evil-delete (orig-fn beg end &optional type _ &rest args)
+  ;;   (apply orig-fn beg end type ?_ args))
+  ;; (advice-add 'evil-delete :around 'bb/evil-delete)
+  ;; blackhole DELETE button
+  (define-key evil-visual-state-map [delete] #'delete-region)
 
   (spacemacs/set-leader-keys "\\" 'helm-resume)
   )
