@@ -3,27 +3,24 @@
 ##    path = ~/p4c/etc/gitconfig
 
 [merge]
-    tool = kdiff3
+    tool = meld
 [diff]
-    tool = kdiff3
+    tool = meld
 [alias]
     st = status
-    lg = !"git lgg --branches='HEAD'"
+    lg = !"git lgg"
     lgmaster = !"git lgg origin/master.."
-    lgg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%<(103,trunc)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    lgdevel = !"git lgg origin/devel.."
     lg-all = !"git lgg --all"
-    lg-all2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%<(103,trunc)%s%C(reset) %C(dim white)- %an%C(reset)' --all
     lg-noremote = !"git lgg --branches='*'"
     lg-remote = !"git lgg --remotes='*'"
-    lg-noarchive = !"git lgg --exclude='*archive/*' --branches='*'"
-    lg-archive = !"git lgg --branches='archive/*'"
+    lgg = !"git lgg2"
+    lgg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%<(103,trunc)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    lgg2 = log --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%aN, %ar)'
+    lgg3 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
     amend = commit --amend
     br = branch
     a = add
-    cd = !cd .
-    cd = !cd `pwd`
-    cd = !pwd
-    cp = cherry-pick
     dirdiff = difftool --dir-diff
 [color]
     ui = auto
