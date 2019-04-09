@@ -46,7 +46,10 @@ This function should only modify configuration layer settings."
      git
      (c-c++ :variables
             c-c++-enable-rtags-support t
-            c-c++-default-mode-for-headers 'c++-mode)
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-google-style t
+            c-c++-enable-google-newline t
+            )
      cmake
      (java :variables java-backend 'eclim eclim-executable "/opt/eclipse/plugins/org.eclim_2.8.0/bin/eclim" eclim-eclipse-dirs '("/opt/eclipse/"))
      markdown
