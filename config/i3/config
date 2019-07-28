@@ -67,9 +67,13 @@ bindsym $mod+Shift+Right move right
 
 # move focused workspace to other monitor
 bindsym $mod+Shift+Ctrl+h move workspace to output left
+bindsym $mod+Shift+Ctrl+Left move workspace to output left
 bindsym $mod+Shift+Ctrl+j move workspace to output down
+bindsym $mod+Shift+Ctrl+Down move workspace to output down
 bindsym $mod+Shift+Ctrl+k move workspace to output up
+bindsym $mod+Shift+Ctrl+Up move workspace to output up
 bindsym $mod+Shift+Ctrl+l move workspace to output right
+bindsym $mod+Shift+Ctrl+Right move workspace to output right
 
 # split in horizontal orientation
 # bindsym $mod+h split h # TODO: fixme
@@ -198,9 +202,8 @@ bindsym XF86AudioPrev exec playerctl previous
 # bindsym XF86Tools exec playerctl play-pause # bind spotify ?
 bindsym Scroll_Lock exec mic_toggle.sh
 
-
-bindsym $mod+t exec thunderbird ; workspace 5
-assign [class="Thunderbird"] 5
+bindsym $mod+t exec evolution ; workspace 5
+assign [class="Evolution"] 5
 
 bindsym Print exec shutter -f -e
 bindsym shift+Print exec shutter -s -e
@@ -220,3 +223,6 @@ exec nm-applet
 exec xbanish
 
 for_window [class="start_tests"] floating enable
+assign [class="start_tests"] 8
+no_focus [class="start_tests"]
+
