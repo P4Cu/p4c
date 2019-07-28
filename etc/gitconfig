@@ -3,7 +3,9 @@
 ##    path = ~/p4c/etc/gitconfig
 
 [merge]
-    tool = meld
+    tool = mymeld
+[mergetool "mymeld"]
+    cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $MERGED $REMOTE
 [diff]
     tool = meld
 [alias]
