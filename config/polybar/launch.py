@@ -5,7 +5,7 @@ from subprocess import check_output, check_call
 # TODO: redirect output to journalctl
 # TODO: use this by default
 # TODO: add 'default' setup in case of failure
-# TODO: remove window decoration but maybe increase the border to 2px
+# TODO: xwindow (name) by desktop (monitor bind)
 
 output = check_output(['/usr/bin/xrandr', '--listactivemonitors'], universal_newlines=True)
 output = output.splitlines()
