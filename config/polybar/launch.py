@@ -7,6 +7,8 @@ from subprocess import check_output, check_call
 # TODO: add 'default' setup in case of failure
 # TODO: xwindow (name) by desktop (monitor bind)
 
+check_call('killall polybar', shell=True, executable='/bin/bash')
+
 output = check_output(['/usr/bin/xrandr', '--listactivemonitors'], universal_newlines=True)
 output = output.splitlines()
 assert(len(output))
