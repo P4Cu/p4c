@@ -231,3 +231,5 @@ for_window [class="start_tests"] floating enable
 assign [class="start_tests"] 8
 no_focus [class="start_tests"]
 
+# numlock have to be disabled
+bindsym --release Mod2+button2 kill
