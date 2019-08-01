@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
-from subprocess import check_output, check_call
+from subprocess import check_output, check_call, CalledProcessError
 
 # TODO: redirect output to journalctl
-# TODO: use this by default
 # TODO: add 'default' setup in case of failure
 # TODO: xwindow (name) by desktop (monitor bind)
 
-check_call('killall polybar', shell=True, executable='/bin/bash')
+try:
+    check_call('killall polybar', shell=True, executable='/bin/bash')
+except CalledProcessError:
+    pass
 
 output = check_output(['/usr/bin/xrandr', '--listactivemonitors'], universal_newlines=True)
 output = output.splitlines()
