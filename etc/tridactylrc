@@ -1,2 +1,3 @@
 set hintfiltermode vimperator
 set hintnames numeric
+bind gb tab #
