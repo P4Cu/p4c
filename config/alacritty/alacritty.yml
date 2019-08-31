@@ -46,7 +46,7 @@ window:
   decorations: full
 
   # When true, alacritty starts maximized.
-  start_maximized: false
+  startup_mode: Maximized
 
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
@@ -100,9 +100,6 @@ font:
   # for retina displays, but for non-retina you probably want this set to
   # false.
   use_thin_strokes: true
-
-# Should display the render timer
-render_timer: false
 
 # Colors (Tomorrow Night Bright)
 colors:
