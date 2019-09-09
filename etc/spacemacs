@@ -68,7 +68,7 @@ This function should only modify configuration layer settings."
      csv
      javascript
      typescript
-     (python :variable python-backend 'anaconda)
+     (python :variables python-backend 'lsp python-lsp-server 'pyls)
      sql
      shell-scripts
      ansible
@@ -548,6 +548,8 @@ before packages are loaded."
   (define-key evil-visual-state-map [delete] #'delete-region)
 
   (spacemacs/set-leader-keys "\\" 'helm-resume)
+
+  (setq flycheck-python-pycompile-executable "python3")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
