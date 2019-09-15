@@ -1,0 +1,8 @@
+#!/usr/bin/zsh -e
+
+if [[ -z $1 ]]; then echo "gerrit id needed" ; exit 0 ; fi
+remotes=$(git ls-remote origin "refs/changes/*/$1/*")
+latest_patchset=$(echo $remotes | cut -f2 | rev | cut -d'/' -f1 | rev | sort -n | tail -1)
+as_ref=$(echo $remotes | grep -e "/$latest_patchset$" | cut -f2)
+echo "$as_ref" | xsel -bi || true
+echo $as_ref
