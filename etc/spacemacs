@@ -72,6 +72,7 @@ This function should only modify configuration layer settings."
      sql
      shell-scripts
      ansible
+     lsp
      )
 
    ;; List of additional packages that will be installed without being
@@ -526,8 +527,8 @@ before packages are loaded."
 
   (put 'helm-make-build-dir 'safe-local-variable 'stringp)
 
-  (eval-after-load "company"
-    '(add-to-list 'company-backends 'company-anaconda))
+  ;; (eval-after-load "company"
+  ;;   '(add-to-list 'company-backends 'company-anaconda))
 
   (define-key spacemacs-c++-mode-map (kbd "ff") 'clang-format-region)
   (define-key spacemacs-c++-mode-map (kbd "fb") 'clang-format-buffer)
