@@ -14,8 +14,8 @@ alias gnp='git --no-pager'
 alias cdg='cd-gitroot'
 alias cdr='cd-reporoot'
 alias o='xdg-open'
-# alias rm='/bin/safe-rm'
 lt='ls -laht'
+alias ctag='clear ; tag'
 
 # --------------------------------------------------------------------------------------------------
 # PATHS
@@ -32,3 +32,5 @@ complete -c command type which-edit
 
 ## requires source-higlight
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" ; export LESS=' -R '
+
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
