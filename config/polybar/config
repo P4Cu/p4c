@@ -137,7 +137,7 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/filesystem2]
 type = internal/fs
 interval = 25
-mount-0 = /olympia
+mount-0 = /project
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}

@@ -26,6 +26,8 @@ antigen bundle z
 antigen bundle extract
 antigen bundle mollifier/cd-gitroot
 antigen bundle P4Cu/cd-reporoot
+antigen bundle docker
+antigen bundle docker-compose
 # antigen bundle sharat87/zsh-vim-mode
 # Syntax
 antigen bundle zsh-users/zsh-syntax-highlighting
