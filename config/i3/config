@@ -231,3 +231,6 @@ exec xbanish
 
 # numlock have to be disabled
 bindsym --release Mod2+button2 kill
+
+# requires: policykit-desktop-privileges policykit-1-gnome
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
