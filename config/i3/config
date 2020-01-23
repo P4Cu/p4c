@@ -177,10 +177,15 @@ exec xmodmap -e "keysym Caps_Lock = Escape"
 exec xmodmap -e "clear lock"
 # check status of lock with 'xmodmap -pm' or all keys with 'xmodmap -pmk'
 
-for_window [class="Yad"] floating enable
-
 # assign [class="Firefox"] 2
 for_window [class="Spotify"] move window to workspace 9
+
+# floating gardens
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="Yad"] floating enable
+for_window [title="Microsoft Teams Notification"] floating enable
+for_window [class="evolution-alarm-notify"] floating enable
 
 workspace 1 output DP-0
 workspace 4 output HDMI-1-1
@@ -206,9 +211,6 @@ bindsym XF86AudioPrev exec playerctl previous
 # bindsym XF86Tools exec playerctl play-pause # bind spotify ?
 bindsym Scroll_Lock exec mic_toggle.sh
 
-bindsym $mod+t exec evolution ; workspace 5
-assign [class="Evolution"] 5
-
 bindsym Print exec shutter -f -e
 bindsym shift+Print exec shutter -s -e
 bindsym ctrl+Print exec shutter -w -e
@@ -226,10 +228,6 @@ exec nm-applet
 # exec --no-startup-id nm-applet
 # hide cursor when you type
 exec xbanish
-
-for_window [class="start_tests"] floating enable
-assign [class="start_tests"] 8
-no_focus [class="start_tests"]
 
 # numlock have to be disabled
 bindsym --release Mod2+button2 kill
