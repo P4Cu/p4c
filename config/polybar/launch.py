@@ -5,9 +5,10 @@ from subprocess import check_output, check_call, CalledProcessError
 # TODO: redirect output to journalctl
 # TODO: add 'default' setup in case of failure
 # TODO: xwindow (name) by desktop (monitor bind)
+# TODO: fix check_call
 
 try:
-    check_call('killall polybar', shell=True, executable='/bin/bash')
+    check_call(['killall', 'polybar'])
 except CalledProcessError:
     pass
 
@@ -15,14 +16,14 @@ output = check_output(['/usr/bin/xrandr', '--listactivemonitors'], universal_new
 output = output.splitlines()
 assert(len(output))
 output[0].startswith("Monitors:")
-primary=None
-secondaries=[]
+primary = None
+secondaries = []
 for line in output[1:]:
     [counter, symbol, resolution, name] = line.split()
     if symbol.startswith('+*'):
-        primary=name
+        primary = name
     else:
-        secondaries += [name,]
+        secondaries += [name, ]
 
 if not primary:
     print('No primary window! taking first as primary')
