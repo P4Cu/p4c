@@ -1,0 +1,91 @@
+icons = "awesome"
+#icons = "material"
+
+[theme]
+name = "gruvbox-dark" # "slick" or "bad-wolf"
+[theme.overrides]
+#idle_bg = "#123456"
+# not required if using DroidSansMono NerdFont + theme slick
+#separator = ''
+#alternating_tint_bg = "#000084"
+#alternating_tint_fg = "#005500"
+
+[[block]]
+block = "focused_window"
+max_width = 81
+
+[[block]]
+block = "music"
+player = "spotify"
+buttons = ["play", "next"]
+
+[[block]]
+# requires lm-sensors
+block = "temperature"
+collapsed = true
+#interval = 10
+#good=50 idle=60
+#info=70
+#warning=80
+format = "{min}° min, {max}° max, {average}° avg"
+
+# This block lags
+#[[block]]
+#block = "xrandr"
+#icons = true
+#resolution = true
+#interval = 4
+
+[[block]]
+block = "nvidia_gpu"
+show_clocks = false
+#show_fan_speed = true
+
+#[[block]]
+#block = "disk_space"
+#path = "/"
+#alias = "/"
+#info_type = "available"
+#unit = "GB"
+#interval = 60
+#warning = 8.0
+#alert = 4.0
+#show_percentage = true
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 1
+format = "{utilization}% {frequency}GHz" # {barchart}
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}"
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+# First, check that your user is a member of the "video" group using the groups command. Then add a rule in the /etc/udev/rules.d/ directory containing the following, for example in backlight.rules:
+# ACTION=="add", SUBSYSTEM=="backlight", GROUP="video", MODE="0664"
+
+[[block]]
+block = "sound"
+# name = "@DEFAULT_SOURCE@"
+# see for MIC: https://github.com/greshake/i3status-rust/pull/371
+on_click = "pavucontrol" # make it only one instance
+
+[[block]]
+block = "battery"
+format = "{percentage}% {time}"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d/%m %R"
+on_click = "gnome-calendar" # TODO: some calendar
