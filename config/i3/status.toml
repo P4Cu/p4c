@@ -14,10 +14,10 @@ name = "gruvbox-dark" # "slick" or "bad-wolf"
 block = "focused_window"
 max_width = 81
 
-[[block]]
-block = "music"
-player = "spotify"
-buttons = ["play", "next"]
+# [[block]]
+# block = "music"
+# # player = "spotify"
+# buttons = ["prev", "play", "next"]
 
 [[block]]
 # requires lm-sensors
@@ -36,10 +36,11 @@ format = "{min}° min, {max}° max, {average}° avg"
 #resolution = true
 #interval = 4
 
-[[block]]
-block = "nvidia_gpu"
-show_clocks = false
-#show_fan_speed = true
+# TODO: does not work when using prime:intel
+# [[block]]
+# block = "nvidia_gpu"
+# show_clocks = false
+# show_fan_speed = true
 
 #[[block]]
 #block = "disk_space"
