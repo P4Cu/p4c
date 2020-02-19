@@ -1,0 +1,12 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "vim.enableNeovim": true,
+    "vim.highlightedyank.textColor": "yellow",
+    "vim.highlightedyank.enable": true,
+    "vim.history": 500,
+    "vim.hlsearch": true,
+    "vim.leader": "<space>",
+    "vim.neovimPath": "nvim",
+    "vim.useSystemClipboard": true,
+    "vim.foldfix": true
+}
