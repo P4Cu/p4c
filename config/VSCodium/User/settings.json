@@ -8,5 +8,6 @@
     "vim.leader": "<space>",
     "vim.neovimPath": "nvim",
     "vim.useSystemClipboard": true,
-    "vim.foldfix": true
+    "vim.foldfix": true,
+    "window.menuBarVisibility": "toggle"
 }
