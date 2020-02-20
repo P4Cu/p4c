@@ -11,9 +11,22 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "ctrl+w q",
-        "command": "workbench.action.terminal.kill",
-        "when": "terminalFocus"
+        "key": "ctrl+k shift+f1",
+        "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "key": "ctrl+k f1",
+        "command": "workbench.action.tasks.reRunTask"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenNavigatePrevious",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenNavigateNext",
+        "when": "inQuickOpen"
     },
     {
         "key": "ctrl+shift+w",
@@ -25,33 +38,29 @@
         "when": "!editorIsOpen && !multipleEditorGroups"
     },
     {
-        "key": "ctrl+k ctrl+shift+w",
-        "command": "-workbench.action.closeAllGroups"
-    },
-    {
-        "key": "ctrl+k ctrl+w",
-        "command": "-workbench.action.closeAllEditors"
+        "key": "ctrl+w",
+        "command": "-workbench.action.closeActiveEditor"
     },
     {
         "key": "ctrl+k w",
         "command": "-workbench.action.closeEditorsInGroup"
     },
     {
-        "key": "ctrl+w",
-        "command": "-workbench.action.closeActiveEditor"
+        "key": "ctrl+k ctrl+w",
+        "command": "-workbench.action.closeAllEditors"
     },
     {
-        "key": "ctrl+meta+w",
-        "command": "-workbench.action.toggleTabsVisibility"
+        "key": "ctrl+k ctrl+shift+w",
+        "command": "-workbench.action.closeAllGroups"
+    },
+    {  
+       "key": "ctrl+w k",          
+        "command": "workbench.action.focusActiveEditorGroup", 
+        "when": "terminalFocus" 
     },
     {
-        "key": "ctrl+w",
-        "command": "-workbench.action.closeGroup",
-        "when": "activeEditorGroupEmpty && multipleEditorGroups"
-    },
-    {
-        "key": "ctrl+w k",
-        "command": "workbench.action.focusLastEditorGroup",
+        "key": "ctrl+w q",
+        "command": "workbench.action.terminal.kill",
         "when": "terminalFocus"
     }
 ]

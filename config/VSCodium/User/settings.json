@@ -1,13 +1,37 @@
 {
-    "workbench.startupEditor": "newUntitledFile",
+    // settings for zen mode
+    "zenMode.centerLayout": false,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideStatusBar": false,
+
+    // vim settings
     "vim.enableNeovim": true,
     "vim.highlightedyank.textColor": "yellow",
     "vim.highlightedyank.enable": true,
     "vim.history": 500,
     "vim.hlsearch": true,
     "vim.leader": "<space>",
-    "vim.neovimPath": "nvim",
+    "vim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe",
     "vim.useSystemClipboard": true,
+    "vim.visualstar": true,
+    "vim.scroll": 10,
     "vim.foldfix": true,
-    "window.menuBarVisibility": "toggle"
+
+    // nice feature to not bloat tab bar
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.limit.value": 6,
+
+    // misc
+    "debug.console.closeOnEnd": true,
+    "terminal.integrated.rendererType": "experimentalWebgl",
+    "window.zoomLevel": 0,
+    "todo-tree.highlights.enabled": true,
+    "cmake.configureOnOpen": false,
+    "window.menuBarVisibility": "toggle",
+
+    // disable telemetry
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "code-runner.enableAppInsights": false,
+    "gitlens.advanced.telemetry.enabled": false
 }
