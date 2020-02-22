@@ -227,15 +227,15 @@ bindsym XF86AudioPrev exec playerctl previous
 # bindsym XF86Tools exec playerctl play-pause # bind spotify ?
 bindsym Scroll_Lock exec mic_toggle.sh
 
-bindsym Print exec shutter -f -e
-bindsym shift+Print exec shutter -s -e
-bindsym ctrl+Print exec shutter -w -e
+bindsym Print exec flameshot full -c -p ~/Pictures/screenshots
+bindsym shift+Print exec flameshot gui -p ~/Pictures/screenshots
+bindsym ctrl+Print exec flameshot gui -p ~/Pictures/screenshots
 
 bindsym shift+$mod+Return exec lock.sh
 
 bindsym $mod+z exec lock.sh
 bindsym $mod+x exec nautilus
-bindsym $mod+c exec shutter
+bindsym $mod+c exec nautilus ~/Pictures/screenshots
 bindsym $mod+F12 exec autorandr -l common --force
 bindsym $mod+F11 exec autorandr -c
 
