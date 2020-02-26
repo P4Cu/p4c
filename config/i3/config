@@ -243,12 +243,6 @@ bindsym $mod+c exec nautilus ~/Pictures/screenshots
 bindsym $mod+F12 exec autorandr -l common --force
 bindsym $mod+F11 exec autorandr -c
 
-# start network manager
-exec nm-applet
-# exec --no-startup-id nm-applet
-# hide cursor when you type
-exec xbanish
-
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^Steam$" title="^Friends$"] floating enable
 for_window [class="^Steam$" title="Steam - News"] floating enable
@@ -264,7 +258,16 @@ for_window [title="^Steam Keyboard$"] floating enable
 # numlock have to be disabled
 bindsym --release Mod2+button2 kill
 
+# start network manager
+exec --no-startup-id nm-applet
+# hide cursor when you type
+exec --no-startup-id xbanish
+# simple notification daemon
 exec --no-startup-id dunst
 # requires: policykit-desktop-privileges policykit-1-gnome
+# prompt for password in dialog
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+# Password manager
 exec --no-startup-id keepassxc
+# Simple yet awesome microphone tray icon
+exec --no-startup-id mictray
