@@ -19,6 +19,7 @@ block = "music"
 # player = "spotify"
 # buttons = ["prev", "play", "next"]
 buttons = ["play"]
+max_width = 26
 
 [[block]]
 # requires lm-sensors
