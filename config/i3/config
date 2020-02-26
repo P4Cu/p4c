@@ -169,8 +169,12 @@ bindsym $mod+r mode "resize"
 #         font pango:FontAwesome 10 # install fonts-font-awesome
 # }
 bar {
-    font pango:DroidSansMono Nerd Font, FontAwesome 12
+    # to get the fonts : https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/DroidSansMono/complete
+    # easiest way to install: download - open with gnome font viewer and click install
+    font pango:DroidSansMono Nerd Font, FontAwesome 9
+    # for this: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/DejaVuSansMono/Regular/complete
     # font pango:DejaVu Sans Mono, FontAwesome 12
+    # fc-cache for updating
     position top
     status_command i3status-rs ~/.config/i3/status.toml
     colors {
