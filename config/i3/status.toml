@@ -66,10 +66,10 @@ block = "cpu"
 interval = 1
 format = "{utilization}% {frequency}GHz" # {barchart}
 
-[[block]]
-block = "load"
-interval = 1
-format = "{1m}"
+# [[block]]
+# block = "load"
+# interval = 1
+# format = "{1m}"
 
 [[block]]
 block = "backlight"
