@@ -193,8 +193,8 @@ bar {
 exec --no-startup-id setxkbmap -layout pl
 # caps lock as ESC
 # https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3.1.html
-exec xmodmap -e "keysym Caps_Lock = Escape"
-exec xmodmap -e "clear lock"
+exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
+exec_always --no-startup-id xmodmap -e "clear lock"
 # check status of lock with 'xmodmap -pm' or all keys with 'xmodmap -pmk'
 
 # assign [class="Firefox"] 2
