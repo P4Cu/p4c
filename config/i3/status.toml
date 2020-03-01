@@ -22,6 +22,23 @@ buttons = ["play"]
 max_width = 26
 
 [[block]]
+block = "net"
+device = "enp2s0"
+ssid = true
+ip = true
+hide_inactive = true
+hide_missing = true
+
+[[block]]
+block = "net"
+device = "wlp3s0"
+ssid = true
+bitrate = true
+ip = true
+hide_inactive = true
+hide_missing = true
+
+[[block]]
 # requires lm-sensors
 block = "temperature"
 collapsed = true
