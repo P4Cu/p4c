@@ -9,7 +9,8 @@
 set $mod Mod4
 set $alt Mod1
 
-new_window pixel 4
+# Border is thicker because it can be used with mouse middle/right/additional_buttons
+new_window pixel 6
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -243,8 +244,21 @@ for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
 
-# numlock have to be disabled
-bindsym --release Mod2+button2 kill
+# -------------- MOUSE BINDINGS ------------------------------------------------
+# The middle button over a titlebar kills the window
+# titlebar/border bindings
+bindsym --release --border button2 kill
+bindsym --release --border button3 floating toggle
+# side-button move window around
+bindsym --release --border button9 move left
+bindsym --release --border button8 move right
+# ---- whole window binding - requires holding of modifier key --------
+bindsym --release --whole-window $mod+button2 kill
+bindsym --release --whole-window $mod+button3 floating toggle
+# side-button move window around
+bindsym --release --whole-window $mod+button9 move left
+bindsym --release --whole-window $mod+button8 move right
+# ------------------------------------------------------------------------------
 
 # start network manager
 exec --no-startup-id nm-applet
