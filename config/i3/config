@@ -25,7 +25,7 @@ set $nord15 #b48ead
 set $ignore #000000
 # ------------------------------------------------------------------------------
 # class                 border  backgr  text   indicator child_border
-client.focused          $nord07 $nord07 $nord00 $nord07 $nord07
+client.focused          $nord09 $nord09 $nord00 $nord09 $nord09
 client.focused_inactive $nord03 $nord01 $nord13 $nord01 $nord01
 client.unfocused        $nord03 $nord01 $nord07 $nord01 $nord01
 client.urgent           $nord11 $nord11 $nord04 $nord11 $nord11
@@ -197,14 +197,19 @@ bar {
     # fc-cache for updating
     position top
     status_command i3status-rs ~/.config/i3/status.toml
+    tray_padding 1 px
+
+    # mode hide
+    # hidden_state hide
+    # modifier $mod
+    
     colors {
-        separator #666666
-        background #333333
-        statusline #dddddd
-        focused_workspace #0088CC #0088CC #ffffff
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
+        background #2B3137 # darker nord00
+        # <colorclass>     <border> <bg>    <text>
+        focused_workspace  $nord12  $nord08 $nord00
+        active_workspace   $nord12  $nord00 $nord07
+        inactive_workspace $nord02  $nord00 $nord07
+        urgent_workspace $nord02  $nord11 $nord04
     }
 }
 
