@@ -32,6 +32,8 @@ client.urgent           $nord11 $nord11 $nord04 $nord11 $nord11
 client.placeholder      $ignore $nord00 $nord00 $ignore $nord00
 client.background       $nord00
 # ------------------------------------------------------------------------------
+exec --no-startup-id feh --no-fehbg --bg-scale "${P4C}/share/wallpapers/nord.jpg
+# ------------------------------------------------------------------------------
 
 ## TODO manually
 ## gsettings set org.gnome.desktop.background show-desktop-icons false
