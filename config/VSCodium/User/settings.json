@@ -34,5 +34,6 @@
     "telemetry.enableCrashReporter": false,
     "code-runner.enableAppInsights": false,
     "gitlens.advanced.telemetry.enabled": false,
+    "todo-tree.tree.showScanModeButton": false,
     "workbench.colorTheme": "Nord"
 }
