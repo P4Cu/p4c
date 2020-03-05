@@ -11,7 +11,7 @@
     "vim.history": 500,
     "vim.hlsearch": true,
     "vim.leader": "<space>",
-    "vim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe",
+    "vim.neovimPath": "nvim",
     "vim.useSystemClipboard": true,
     "vim.visualstar": true,
     "vim.scroll": 10,
