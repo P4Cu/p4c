@@ -360,3 +360,5 @@ let g:alternateSearchPath .= ',reg:/src/include/g/'
 " let g:alternateSearchPath = 'reg:#\<src\>$#include#,reg:#\<include\>$#src#'
 
 let g:gitgutter_terminal_reports_focus = 0 " or autocmd BufReadPost * :GitGutterAll
+
+let g:EasyClipEnableBlackHoleRedirect = 0 " no black hole
