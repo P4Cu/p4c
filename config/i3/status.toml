@@ -17,9 +17,9 @@ max_width = 81
 [[block]]
 block = "music"
 # player = "spotify"
-# buttons = ["prev", "play", "next"]
-buttons = ["play"]
-max_width = 26
+buttons = ["prev", "play", "next"]
+# buttons = ["play"]
+max_width = 36
 
 [[block]]
 block = "net"
@@ -27,6 +27,8 @@ device = "eno1"
 ip = true
 hide_inactive = true
 hide_missing = true
+speed_up = false
+graph_up = true
 
 [[block]]
 block = "net"
@@ -34,15 +36,17 @@ device = "enp2s0"
 ip = true
 hide_inactive = true
 hide_missing = true
+speed_up = false
+speed_down = false
 
 [[block]]
 block = "net"
 device = "wlp3s0"
 ssid = true
-bitrate = true
+# bitrate = true
 ip = true
-hide_inactive = true
-hide_missing = true
+speed_up = false
+speed_down = false
 
 [[block]]
 # requires lm-sensors
