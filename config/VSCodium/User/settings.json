@@ -24,7 +24,7 @@
     // misc
     "debug.console.closeOnEnd": true,
     "terminal.integrated.rendererType": "experimentalWebgl",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "todo-tree.highlights.enabled": true,
     "cmake.configureOnOpen": false,
     "window.menuBarVisibility": "toggle",
@@ -35,5 +35,6 @@
     "code-runner.enableAppInsights": false,
     "gitlens.advanced.telemetry.enabled": false,
     "todo-tree.tree.showScanModeButton": false,
-    "workbench.colorTheme": "Nord"
+    "workbench.colorTheme": "Nord",
+    "editor.minimap.enabled": false
 }
