@@ -311,3 +311,10 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec --no-startup-id keepassxc
 # Simple yet awesome microphone tray icon
 exec --no-startup-id mictray
+# Manage pulse from tray
+exec --no-startup-id pasystray
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
