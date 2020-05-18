@@ -318,7 +318,13 @@ exec --no-startup-id mictray
 # Manage pulse from tray
 exec --no-startup-id pasystray
 
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-# Show the first scratchpad window
-bindsym $mod+minus scratchpad show
+# # Make the currently focused window a scratchpad
+# bindsym $mod+Shift+minus move scratchpad
+# # Show the first scratchpad window
+# bindsym $mod+minus scratchpad show
+
+set $workspace_communication 
+bindsym $mod+Shift+minus move workspace $workspace_communication
+bindsym $mod+minus workspace $workspace_communication
+assign [class="^Telegram"] $workspace_communication
+assign [class="^Microsoft Teams"] $workspace_communication
