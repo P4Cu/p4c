@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=pulsemixer
+GenericName=Audio Mixer Volume Microphone
+Comment=Pulse audio mixer
+Icon=utilities-terminal
+Terminal=true
+Exec=pulsemixer
+Categories=ConsoleOnly;System;Audio
+MimeType=inode/directory;
+Keywords=Pulse;Audio;Mixer;Volume;Microphone;Vi;Vim;Python
