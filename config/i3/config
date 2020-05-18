@@ -244,6 +244,7 @@ workspace 0 output eDP-1-1
 
 # bind shutdown menu
 bindsym Control+$alt+Delete exec ~/.config/i3blocks/shutdown_menu/shutdown_menu
+bindsym $mod+Escape exec ~/.config/i3blocks/shutdown_menu/shutdown_menu
 
 # change volume or toggle mute
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+
