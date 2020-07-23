@@ -236,6 +236,7 @@ for_window [window_role="task_dialog"] floating enable
 for_window [class="Yad"] floating enable
 for_window [title="Microsoft Teams Notification"] floating enable
 for_window [class="evolution-alarm-notify"] floating enable
+for_window [class="*pavucontrol*" title="Volume Control"] floating enable, resize set 640 640, move position mouse
 
 workspace 1 output DP-0
 workspace 4 output HDMI-1-1

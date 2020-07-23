@@ -11,6 +11,7 @@
 export EDITOR='nvim'
 export DEFAULT_USER='p4c'
 export GOPATH=$HOME/apps/go
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 ## ----------------------------------------------------------------------------
 ## ALIASES
