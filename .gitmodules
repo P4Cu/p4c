@@ -7,9 +7,6 @@
 [submodule "config/tmux/plugins/tpm"]
 	path = config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "config/vimperator/colors"]
-	path = config/vimperator/colors
-	url = git@github.com:vimpr/vimperator-colors.git
 [submodule "config/i3blocks"]
 	path = config/i3blocks
 	url = git@github.com:P4Cu/i3blocks-contrib.git
