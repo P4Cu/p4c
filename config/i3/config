@@ -203,6 +203,7 @@ bar {
     position top
     status_command i3status-rs ~/.config/i3/status.toml
     tray_padding 1 px
+    tray_output primary
 
     # mode hide
     # hidden_state hide
