@@ -123,3 +123,15 @@ block = "time"
 interval = 60
 format = "%a %d/%m %R"
 on_click = "gnome-calendar" # TODO: some calendar
+
+[[block]]
+block = "custom"
+on_click = "~/.config/i3blocks/shutdown_menu/shutdown_menu"
+command = "echo "
+interval = "once"
+
+[[block]]
+block = "custom"
+on_click = "rofi -show drun -modi drun,window,run -location 1 -width 50 -columns 4"
+command = "echo "
+interval = "once"
