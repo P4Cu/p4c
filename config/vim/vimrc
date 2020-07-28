@@ -12,7 +12,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 Plugin 'ctrlpvim/ctrlp.vim' " fuzzy find files
 " Plugin 'fisadev/vim-ctrlp-cmdpalette'
-Plugin 'scrooloose/nerdtree' " TODO: remove?
 Plugin 'benmills/vimux' " running command in tmux
 Plugin 'tpope/vim-fugitive' " the ultimate git helper
 Plugin 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
@@ -32,8 +31,6 @@ Plugin 'tpope/vim-unimpaired'
 " requires manual setting inside terminal
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'a.vim'
-Plugin 'sirver/ultisnips' " TODO: maybe remove?
-Plugin 'honza/vim-snippets' " TODO: maybe remove?
 " TODO: start using this!
 Plugin 'dyng/ctrlsf.vim' " requires ack2 already in system !!
 " Plugin 'terryma/vim-multiple-cursors'
