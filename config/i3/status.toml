@@ -106,9 +106,13 @@ device = "intel_backlight"
 
 [[block]]
 block = "sound"
-# name = "@DEFAULT_SOURCE@"
-# see for MIC: https://github.com/greshake/i3status-rust/pull/371
-on_click = "pavucontrol" # make it only one instance
+device_kind = "sink"
+on_click = "pavucontrol --tab=3"
+
+[[block]]
+block = "sound"
+device_kind = "source"
+on_click = "pavucontrol --tab=4"
 
 [[block]]
 block = "battery"

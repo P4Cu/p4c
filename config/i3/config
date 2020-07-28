@@ -316,7 +316,7 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 # Password manager
 exec --no-startup-id keepassxc
 # Simple yet awesome microphone tray icon
-exec --no-startup-id mictray
+# exec --no-startup-id mictray
 # Manage pulse from tray
 exec --no-startup-id pasystray
 
