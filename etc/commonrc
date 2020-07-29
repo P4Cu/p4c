@@ -41,8 +41,3 @@ complete -c command type which-edit
 ## requires source-higlight
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" ; export LESS=' -R '
 
-if [[ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]]; then
-    source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-else
-    echo 'no /usr/share/virtualenvwrapper/virtualenvwrapper.sh' | systemd-cat -t p4c -p info
-fi

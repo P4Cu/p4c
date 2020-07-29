@@ -94,6 +94,20 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+# shows if any TaskWarrior tasks are in need of attention
+function prompt_taskwarrior {
+    if [ `task +READY +OVERDUE count` -gt "0" ]  ; then
+        printf " ﮊ"
+    elif [ `task +READY +DUETODAY count` -gt "0" ]  ; then
+        printf " "
+    elif [ `task +READY +DUETomorrow count` -gt "0" ]  ; then
+        printf " "
+    elif [ `task +READY urgency \> 10 count` -gt "0" ]  ; then
+        printf " "
+    else
+        # do nothing
+    fi
+}
 
 ## built on agnoster theme
 build_custom_prompt() {
@@ -103,6 +117,7 @@ build_custom_prompt() {
       main|viins) prompt_segment black default "INS" ;;
   esac
   prompt_status
+  prompt_taskwarrior
   prompt_virtualenv
   prompt_context
   prompt_dir
