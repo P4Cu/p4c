@@ -96,16 +96,18 @@ zle -N zle-keymap-select
 
 # shows if any TaskWarrior tasks are in need of attention
 function prompt_taskwarrior {
-    if [ `task +READY +OVERDUE count` -gt "0" ]  ; then
-        printf " ﮊ"
-    elif [ `task +READY +DUETODAY count` -gt "0" ]  ; then
-        printf " "
-    elif [ `task +READY +DUETomorrow count` -gt "0" ]  ; then
-        printf " "
-    elif [ `task +READY urgency \> 10 count` -gt "0" ]  ; then
-        printf " "
-    else
-        # do nothing
+    if [[ -f $HOME/.taskrc ]]; then
+        if [ `task +READY +OVERDUE count` -gt "0" ]  ; then
+            printf " ﮊ"
+        elif [ `task +READY +DUETODAY count` -gt "0" ]  ; then
+            printf " "
+        elif [ `task +READY +DUETomorrow count` -gt "0" ]  ; then
+            printf " "
+        elif [ `task +READY urgency \> 10 count` -gt "0" ]  ; then
+            printf " "
+        else
+            # do nothing
+        fi
     fi
 }
 
