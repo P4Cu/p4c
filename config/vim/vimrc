@@ -18,7 +18,7 @@ Plugin 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual
 Plugin 'vim-airline/vim-airline' " status line
 Plugin 'vim-airline/vim-airline-themes' " themes!
 Plugin 'ervandew/supertab' " requires some integration with YCM/UltiSnips
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
@@ -81,6 +81,7 @@ filetype plugin indent on    " required
 " highlight search
 set hlsearch incsearch ignorecase smartcase
 " bashlike vim completition + with addition of third tab for list select mode (zsh alike )
+set cursorline
 set wildmode=longest,list,full
 set wildmenu
 set mouse=a
@@ -120,7 +121,7 @@ autocmd ColorScheme *  :silent! highlight MatchParen cterm=reverse ctermfg=9 gui
 autocmd ColorScheme *  :silent! highlight CursorLine cterm=none ctermbg=52    ctermfg=white
 autocmd ColorScheme *  :silent! highlight! Visual ctermbg=202 ctermfg=black
 " highlight MatchParen cterm=none ctermbg=none ctermfg=red
-highlight MatchParen cterm=reverse ctermfg=9 gui=bold guifg=#00000 guibg=#FD971F
+highlight MatchParen cterm=reverse ctermfg=9 gui=bold guifg=black guibg=#FD971F
 highlight CursorLine cterm=none ctermbg=52    ctermfg=white
 highlight! Visual ctermbg=202 ctermfg=black
 
