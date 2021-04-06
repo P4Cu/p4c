@@ -1,8 +1,8 @@
 " vim: nobuflisted foldmethod=marker
-set nocompatible              " be iMproved, required
-filetype off                  " required
 
 let mapleader = "\<space>"
+
+let g:loaded_python_provider = 0
 
 " PLUGINS #######################################################################################{{{
 " set the runtime path to include Vundle and initialize
@@ -12,6 +12,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 Plugin 'ctrlpvim/ctrlp.vim' " fuzzy find files
 " Plugin 'fisadev/vim-ctrlp-cmdpalette'
+Plugin 'arcticicestudio/nord-vim' " nord theme
 Plugin 'benmills/vimux' " running command in tmux
 Plugin 'tpope/vim-fugitive' " the ultimate git helper
 Plugin 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
@@ -116,14 +117,18 @@ if $COLORTERM == 'gnome-terminal'
       set termguicolors
 endif
 set t_ut=
-colorscheme molokai
-autocmd ColorScheme *  :silent! highlight MatchParen cterm=reverse ctermfg=9 gui=bold guifg=#00000 guibg=#FD971F
-autocmd ColorScheme *  :silent! highlight CursorLine cterm=none ctermbg=52    ctermfg=white
-autocmd ColorScheme *  :silent! highlight! Visual ctermbg=202 ctermfg=black
+" colorscheme molokai
+colorscheme nord " molokai previously
+" autocmd ColorScheme *  :silent! highlight MatchParen cterm=reverse ctermfg=9 gui=bold guifg=#00000 guibg=#FD971F
+" autocmd ColorScheme *  :silent! highlight CursorLine cterm=none ctermbg=52    ctermfg=white
+autocmd ColorScheme *  :silent! highlight! Visual ctermbg=202 ctermfg=white
 " highlight MatchParen cterm=none ctermbg=none ctermfg=red
-highlight MatchParen cterm=reverse ctermfg=9 gui=bold guifg=black guibg=#FD971F
-highlight CursorLine cterm=none ctermbg=52    ctermfg=white
-highlight! Visual ctermbg=202 ctermfg=black
+" highlight MatchParen cterm=reverse ctermfg=9 gui=bold guifg=black guibg=#FD971F
+" highlight CursorLine cterm=none ctermbg=52    ctermfg=white
+highlight! Visual ctermbg=202 ctermfg=white
+
+autocmd ColorScheme * :silent! highlight MatchParen cterm=reverse ctermfg=9 ctermbg=white gui=bold guifg=#00000 guibg=#FD971F
+highlight MatchParen cterm=reverse ctermfg=9 ctermbg=white gui=bold guifg=#00000 guibg=#FD971F
 
 " ##################################################################################################
 
