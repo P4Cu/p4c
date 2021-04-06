@@ -14,20 +14,21 @@ source ${P4C}/opt/antigen/antigen.zsh
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 # Bundles
+antigen bundle dnf
 antigen bundle git
 antigen bundle pip
-antigen bundle Vifon/deer
+# antigen bundle Vifon/deer
 antigen bundle djui/alias-tips
 antigen bundle fancy-ctrl-z
-antigen bundle catimg
+# antigen bundle catimg
 antigen bundle colored-man-pages
 antigen bundle repo
-antigen bundle z
+# antigen bundle z
 antigen bundle extract
 antigen bundle mollifier/cd-gitroot
 antigen bundle P4Cu/cd-reporoot
 antigen bundle docker
-antigen bundle docker-compose
+# antigen bundle docker-compose
 # antigen bundle sharat87/zsh-vim-mode
 # Syntax
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -83,6 +84,7 @@ setopt transientrprompt
 
 # ag with fast jumps = tag
 # requires prebuild tag binary
+export TAG_CMD_FMT_STRING='nvim -c "call cursor({{.LineNumber}}, {{.ColumnNumber}})" "{{.Filename}}"'
 if (( $+commands[tag] )); then
   tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
 fi
