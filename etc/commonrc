@@ -39,5 +39,4 @@ alias ctag='clear ; tag'
 complete -c command type which-edit
 
 ## requires source-higlight
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" ; export LESS=' -R '
-
+export LESSOPEN="| src-hilite-lesspipe.sh %s" ; export LESS=' -R '
