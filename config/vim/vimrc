@@ -167,7 +167,6 @@ nnoremap ]g :echo "use ]c"<CR>
 " nnoremap [g :GitGutterPrevHunk<CR>
 " nnoremap ]g :GitGutterNextHunk<CR>
 nnoremap cog :GitGutterLineHighlightsToggle<CR>
-let g:gitgutter_sign_added = '🕂'
 
 nnoremap cogg :call P4C_GitGutterDiffHeadToggle()<CR>
 " This function toggles diff against HEAD
