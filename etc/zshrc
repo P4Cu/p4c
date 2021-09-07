@@ -8,6 +8,10 @@ bashcompinit -i
 # source common part
 source ${P4C}/etc/commonrc
 
+if [[ -f "${HOME}/.custom_zshrc" ]]; then
+    source "${HOME}/.custom_zshrc"
+fi
+
 # --------------------------------------------------------------------------------------------------
 # ANTIGEN
 source ${P4C}/opt/antigen/antigen.zsh
@@ -52,6 +56,7 @@ KEYTIMEOUT=1
 # KEYBINDINGS
 # vi mode
 bindkey -v
+
 
 # deer
 autoload -U deer
