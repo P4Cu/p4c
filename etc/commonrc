@@ -47,3 +47,5 @@ complete -c command type which-edit
 
 ## requires source-higlight
 export LESSOPEN="| src-hilite-lesspipe.sh %s" ; export LESS=' -R '
+
+command -v thefuck &> /dev/null && eval $(thefuck --alias) || true
