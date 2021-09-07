@@ -25,12 +25,6 @@ fi
 ## ----------------------------------------------------------------------------
 alias nvimo='nvim +OpenSession'
 alias gnp='git --no-pager'
-# {{ hide local changes in git
-# TODO: put in .gitconfig
-alias ghide='git update-index --skip-worktree'
-alias gunhide='git update-index --no-skip-worktree'
-alias ghidden='git ls-files -v "$(git rev-parse --show-toplevel)" | grep "^S"'
-# }}
 alias cdg='cd-gitroot'
 alias cdr='cd-reporoot'
 alias o='xdg-open'

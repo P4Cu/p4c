@@ -25,6 +25,10 @@
     br = branch
     a = add
     dirdiff = difftool --dir-diff
+    # hide local changes via skip-worktree
+    hide = update-index --skip-worktree
+    hide-stop = update-index --no-skip-worktree
+    hide-ls = ! git ls-files -v "$(git rev-parse --show-toplevel)" | grep "^S"
 [color]
     ui = auto
 [core]
