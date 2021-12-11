@@ -91,12 +91,12 @@ font:
   normal:
     family: DroidSansMono Nerd Font
     style: Regular
-  bold:
-    family: DroidSansMono Nerd Font
-    style: Bold
-  italic:
-    family: DroidSansMono Nerd Font
-    style: Italic
+  # bold:
+  #   family: DroidSansMono Nerd Font
+  #   style: Bold
+  # italic:
+  #   family: DroidSansMono Nerd Font
+  #   style: Italic
   # Bold italic font face
   #bold_italic:
     # Font family
