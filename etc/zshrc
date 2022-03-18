@@ -1,10 +1,10 @@
 # mandatory export
 # TODO: make it depend on variable
 export P4C=${HOME}/p4c
+
 # enable bash completition
 autoload -Uz compinit && compinit
-autoload -Uz bashcompinit
-bashcompinit -i
+autoload -Uz bashcompinit && bashcompinit
 # source common part
 source ${P4C}/etc/commonrc
 
