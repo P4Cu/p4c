@@ -4,6 +4,7 @@
 * https://github.com/KDAB/heaptrack
 * https://github.com/KDAB/GammaRay
 * massif-visualizer
+* https://www.poirrier.ca/hperf/
 
 # PHOTO
 
