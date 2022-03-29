@@ -6,6 +6,18 @@
 * massif-visualizer
 * https://www.poirrier.ca/hperf/
 
+# GIT
+
+* git-gone (rust) - delete merged pull-request 'aka leftover branches
+* git-brunch (haskell)
+
+# CMD
+
+* ranger
+* fd (cargo install fd-find) - find alternative
+* lsd
+* ripgrep (tag supports rg!)
+
 # PHOTO
 
 * gthumb
