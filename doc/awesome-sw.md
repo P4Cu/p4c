@@ -17,6 +17,7 @@
 * fd (cargo install fd-find) - find alternative
 * lsd
 * ripgrep (tag supports rg!)
+* hyperfine - benchmark commands (eg. ag vs ripgrep)
 
 # PHOTO
 
