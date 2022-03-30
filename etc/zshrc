@@ -94,6 +94,7 @@ setopt transientrprompt
 # requires prebuild tag binary
 export TAG_CMD_FMT_STRING='nvim -c "call cursor({{.LineNumber}}, {{.ColumnNumber}})" "{{.Filename}}"'
 if (( $+commands[tag] )); then
+  export TAG_SEARCH_PROG=rg
   tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
 fi
 
