@@ -22,6 +22,7 @@
 # PHOTO
 
 * gthumb
+* peek - record part of screen as gif
 
 # MISC
 * Magnus - screen magnifier
