@@ -1,6 +1,7 @@
 # Profiling
 
 * py-spy - simple / no-overhead / supports threads - sampling==inaccurate
+** speedscope - py-spy can write a trace for speedscope that can show timeline/accumulted and more
 * scalene - simple / small-overhead / support threads / memory / gpu / line /function / sampling==inacurate
 
 # Try out
