@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+TryExec=alacritty
+Exec=alacritty -e /bin/bash -c "tmux attach || tmux ; zsh"
+Icon=Alacritty
+Terminal=false
+Categories=System;TerminalEmulator;
+
+Name=Alacritty-tmux
+GenericName=Terminal
+Comment=A cross-platform, GPU enhanced terminal emulator
+StartupWMClass=Alacritty
