@@ -19,10 +19,11 @@
 * ripgrep (tag supports rg!)
 * hyperfine - benchmark commands (eg. ag vs ripgrep)
 
-# PHOTO
+# PHOTO & VIDEO
 
-* gthumb
-* peek - record part of screen as gif
+* gthumb - view & organize images
+* https://github.com/phw/peek - record part of screen as gif
+* shotcut - edit videos
 
 # MISC
 * Magnus - screen magnifier
