@@ -122,9 +122,16 @@ function prompt_taskwarrior {
     fi
 }
 
+function prompt_ranger {
+    if [[ -v RANGER_LEVEL ]]  ; then
+        printf "®️"
+    fi
+}
+
 ## built on agnoster theme
 build_custom_prompt() {
   RETVAL=$?
+  prompt_ranger
   case $KEYMAP in
       vicmd) prompt_segment yellow default "CMD" ;;
       main|viins) prompt_segment black default "INS" ;;
