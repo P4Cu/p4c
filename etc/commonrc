@@ -25,6 +25,7 @@ fi
 ## ----------------------------------------------------------------------------
 alias nvimo='nvim +OpenSession'
 alias gnp='git --no-pager'
+alias gbc='git branch --show-current'
 alias cdg='cd-gitroot'
 alias cdr='cd-reporoot'
 alias o='xdg-open'
