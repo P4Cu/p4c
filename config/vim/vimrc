@@ -109,6 +109,9 @@ if has('nvim')
 "     set inccommand=nosplit " looks like this is causing a redraw issues
 endif
 set nowrapscan " do not wrap the search!
+if has("patch-8.1.0360")
+  set diffopt+=internal,algorithm:patience
+endif
 " ##################################################################################################
 
 " ##################################################################################################
@@ -284,7 +287,7 @@ let g:multi_cursor_quit_key='<C-c>'
 " EasyClip options
 " let g:EasyClipUseSubstituteDefaults=1 " disable as it's annoying
 let g:EasyClipAlwaysMoveCursorToEndOfPaste=1
-set clipboard=unnamed,unnamedplus
+set clipboard=unnamedplus
 let g:EasyClipShareYanks=1
 let g:EasyClipShowYanksWidth=1
 " nmap ]y <plug>EasyClipSwapPasteForward
@@ -368,3 +371,5 @@ let g:EasyClipEnableBlackHoleRedirect = 0 " no black hole
 
 let g:grepper = {}
 let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'grep', 'findstr', 'pt', 'sift']
+nmap gs  <plug>(GrepperOperator)
+vmap gs  <plug>(GrepperOperator)
