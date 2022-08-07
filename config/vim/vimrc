@@ -12,12 +12,12 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 Plugin 'ctrlpvim/ctrlp.vim' " fuzzy find files
 " Plugin 'fisadev/vim-ctrlp-cmdpalette'
-Plugin 'arcticicestudio/nord-vim' " nord theme
+Plugin 'morhetz/gruvbox'
 Plugin 'benmills/vimux' " running command in tmux
 Plugin 'tpope/vim-fugitive' " the ultimate git helper
 Plugin 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
 Plugin 'vim-airline/vim-airline' " status line
-Plugin 'vim-airline/vim-airline-themes' " themes!
+" Plugin 'vim-airline/vim-airline-themes' " themes!
 Plugin 'ervandew/supertab' " requires some integration with YCM/UltiSnips
 " Plugin 'valloric/youcompleteme'
 Plugin 'jeetsukumaran/vim-buffergator'
@@ -78,9 +78,7 @@ filetype plugin indent on    " required
 " ###############################################################################################}}}
 
 
-" ##################################################################################################
-" Generic values
-" ##################################################################################################
+" Generic values ################################################################################{{{
 " highlight search
 set hlsearch incsearch ignorecase smartcase
 " bashlike vim completition + with addition of third tab for list select mode (zsh alike )
@@ -113,29 +111,16 @@ set nowrapscan " do not wrap the search!
 if has("patch-8.1.0360")
   set diffopt+=internal,algorithm:patience
 endif
-" ##################################################################################################
+" ###############################################################################################}}}
 
-" ##################################################################################################
-" Give me these colors mate!
-if $COLORTERM == 'gnome-terminal'
-      set t_Co=256
-      set termguicolors
-endif
-set t_ut=
-" colorscheme molokai
-colorscheme nord " molokai previously
-" autocmd ColorScheme *  :silent! highlight MatchParen cterm=reverse ctermfg=9 gui=bold guifg=#00000 guibg=#FD971F
-" autocmd ColorScheme *  :silent! highlight CursorLine cterm=none ctermbg=52    ctermfg=white
-autocmd ColorScheme *  :silent! highlight! Visual ctermbg=202 ctermfg=white
-" highlight MatchParen cterm=none ctermbg=none ctermfg=red
-" highlight MatchParen cterm=reverse ctermfg=9 gui=bold guifg=black guibg=#FD971F
-" highlight CursorLine cterm=none ctermbg=52    ctermfg=white
-highlight! Visual ctermbg=202 ctermfg=white
 
-autocmd ColorScheme * :silent! highlight MatchParen cterm=reverse ctermfg=9 ctermbg=white gui=bold guifg=#00000 guibg=#FD971F
-highlight MatchParen cterm=reverse ctermfg=9 ctermbg=white gui=bold guifg=#00000 guibg=#FD971F
+" THEME #########################################################################################{{{
+let g:gruvbox_italic=1
+set termguicolors
+colorscheme gruvbox
+let airline#extensions#tmuxline#snapshot_file = "~/.tmux/powerline.conf"
+" ###############################################################################################}}}
 
-" ##################################################################################################
 
 " ##################################################################################################
 nnoremap gb :bnext<CR>
@@ -190,8 +175,6 @@ endfunction
 " ##################################################################################################
 " vim-ariline
 set laststatus=2
-" let g:airline_theme='powerlineish'
-let g:airline_theme='molokai'
 set noshowmode
 " hi StatusLine 
 " Enable the list of buffers
