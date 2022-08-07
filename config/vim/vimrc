@@ -10,14 +10,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "Alternative : call vundle#begin('~/some/path/here')
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
-Plugin 'ctrlpvim/ctrlp.vim' " fuzzy find files
-" Plugin 'fisadev/vim-ctrlp-cmdpalette'
 Plugin 'morhetz/gruvbox'
 Plugin 'benmills/vimux' " running command in tmux
 Plugin 'tpope/vim-fugitive' " the ultimate git helper
 Plugin 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
 Plugin 'vim-airline/vim-airline' " status line
-" Plugin 'vim-airline/vim-airline-themes' " themes!
 Plugin 'ervandew/supertab' " requires some integration with YCM/UltiSnips
 " Plugin 'valloric/youcompleteme'
 Plugin 'jeetsukumaran/vim-buffergator'
@@ -27,9 +24,6 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'kana/vim-operator-user'
 Plugin 'tpope/vim-unimpaired'
-" Plugin 'ryanoasis/nerd-fonts' " that's heavy and required only once,
-" download proper files guifont and only install this file. For cmd it
-" requires manual setting inside terminal
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'a.vim'
 " TODO: start using this!
@@ -49,7 +43,6 @@ Plugin 'autoswap.vim'
 Plugin 'airblade/vim-gitgutter'
 " Plugin 'raimondi/delimitmate'
 Plugin 'tpope/vim-eunuch'
-Plugin 'gregsexton/gitv'
 Plugin 'moll/vim-bbye' " :Db
 Plugin 'libclang-vim/libclang-vim'
 Plugin 'kana/vim-textobj-user'
@@ -70,7 +63,8 @@ Plugin 'dhruvasagar/vim-table-mode'
 " Open file:line
 Plugin 'bogado/file-line'
 Plugin 'mhinz/vim-grepper'
-Plugin 'yggdroot/leaderf' " replace ctrlp
+Plugin 'yggdroot/leaderf'
+Plugin 'liuchengxu/vim-which-key'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -128,24 +122,12 @@ nnoremap gB :bprevious<CR>
 noremap <C-_> :Commentary<CR>
 " tree control
 noremap <F1> :YcmCompleter FixIt<CR>
-noremap <F2> <c-c>:NERDTreeToggle<CR>
 noremap <F3> :BuffergatorToggle<CR>
 map <F4> :A<CR>
 nmap <F8> :TagbarToggle<CR>
 nnoremap <F10> :YcmDiags<CR>
 nnoremap <F11> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <F12> :YcmToggleLogs<CR>
-" fuzzy finder
-let g:ctrlp_map = '<C-P>'
-let g:ctrlp_root_markers = ['.repo', '.git', '.hg', '.svn', '.bzr', '_darcs' ]
-let g:ctrlp_lazy_update = 1
-let g:ctrlp_max_files = 400000
-let g:ctrlp_working_path_mode = 'wa'
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  " see ~/.agignore for ignores
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
 " youcompleteme mapping
 noremap <C-t> :YcmCompleter GoToDeclaration<CR>
 noremap <C-g> :YcmCompleter GoTo<CR>
@@ -196,12 +178,6 @@ nmap <leader>[ <Plug>AirlineSelectPrevTab
 nmap <leader>] <Plug>AirlineSelectNextTab
 " ##################################################################################################
 
-" ##################################################################################################
-" NERDtree
-let g:NERDTreeWinSize = 100
-let g:NERDTreeMinimalUI=1
-let g:NERDTreeQuitOnOpen=1
-" ##################################################################################################
 
 " ##################################################################################################
 " Buffergator
@@ -278,8 +254,6 @@ let g:EasyClipShowYanksWidth=1
 " nmap [y <plug>EasyClipSwapPasteBackwards
 nmap <c-n> <Plug>EasyClipSwapPasteBackwards
 nmap <c-b> <Plug>EasyClipSwapPasteForward
-" let g:EasyClipSwapPasteForwardFallback='execute "normal \<Plug>(ctrlp)"'
-" let g:EasyClipSwapPasteBackwardsFallback=''
 
 " No backup files
 " set nobackup
@@ -302,8 +276,6 @@ cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR>
 
 let g:tagbar_width = 80
 let g:tagbar_autofocus = 1
-
-let g:Gitv_DoNotMapCtrlKey = 1
 
 " working with filepaths/numbers
 nnoremap cp :let @+ = expand("%:p")<cr><bar>:echo "Copied full file path"<cr>
@@ -357,3 +329,22 @@ let g:grepper = {}
 let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'grep', 'findstr', 'pt', 'sift']
 nmap gs  <plug>(GrepperOperator)
 vmap gs  <plug>(GrepperOperator)
+
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+nnoremap <silent> g :WhichKey 'g'<CR>
+nnoremap <silent> y :WhichKey 'y'<CR>
+nnoremap <silent> [ :WhichKey '['<CR>
+nnoremap <silent> ] :WhichKey ']'<CR>
+
+nnoremap <C-p> :echo "use \<leader\>ff"<CR>
+let g:Lf_ShortcutF = "<leader>ff"
+let g:Lf_ShortcutB = ""
+nnoremap <silent> <leader>fb :LeaderfBufferAll<CR>
+nnoremap <silent> <leader>fm :LeaderfMru<CR>
+nnoremap <silent> <leader>ft :LeaderfTag<CR> " TODO: or BufTag/BufTagAll ?
+nnoremap <silent> <leader>fd :LeaderfFunction<CR>
+nnoremap <silent> <leader>fD :LeaderfFunctionAll<CR>
+nnoremap <silent> <leader>f/ :LeaderfLine<CR>
+nnoremap <silent> <leader>f? :LeaderfLineAll<CR>
+nnoremap <silent> <leader>fc :LeaderfCommand<CR>
