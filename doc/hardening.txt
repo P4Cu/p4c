@@ -1,0 +1,3 @@
+tripwire
+package: unhide checklog rkhunter lynis tiger
+
