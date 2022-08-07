@@ -70,6 +70,7 @@ Plugin 'dhruvasagar/vim-table-mode'
 " Open file:line
 Plugin 'bogado/file-line'
 Plugin 'mhinz/vim-grepper'
+Plugin 'yggdroot/leaderf' " replace ctrlp
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
