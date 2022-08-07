@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # TODO: check if running in TMUX (tests work better that way) env variable $TMUX
+# TODO: check if nerdfonds are installed
 
 # test if p4c/bin in path
 
