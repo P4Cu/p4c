@@ -33,6 +33,7 @@
     ui = auto
 [core]
     editor = nvim
+    excludesfile = ~/.gitignore
 [rerere]
     enabled = true
 [color "diff"]
