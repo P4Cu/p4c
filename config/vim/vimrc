@@ -1,7 +1,6 @@
-" vim: nobuflisted foldmethod=marker
+" vim: foldmethod=marker
 
 let mapleader = "\<space>"
-
 let g:loaded_python_provider = 0
 
 " PLUGINS #######################################################################################{{{
@@ -18,21 +17,14 @@ Plugin 'vim-airline/vim-airline' " status line
 Plugin 'ervandew/supertab' " requires some integration with YCM/UltiSnips
 " Plugin 'valloric/youcompleteme'
 Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-Plugin 'easymotion/vim-easymotion'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'kana/vim-operator-user'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'a.vim'
-" TODO: start using this!
-Plugin 'dyng/ctrlsf.vim' " requires ack2 already in system !!
-" Plugin 'terryma/vim-multiple-cursors'
-Plugin 'haya14busa/vim-easyoperator-line'
+Plugin 'dyng/ctrlsf.vim'
 Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-repeat' " this is required by easyclip
-Plugin 'svermeulen/vim-easyclip'
+Plugin 'tpope/vim-repeat' " this is required by easyclip  # TODO: do we need it?
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-dispatch'
@@ -41,14 +33,12 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'autoswap.vim'
 Plugin 'airblade/vim-gitgutter'
-" Plugin 'raimondi/delimitmate'
 Plugin 'tpope/vim-eunuch'
 Plugin 'moll/vim-bbye' " :Db
 Plugin 'libclang-vim/libclang-vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'libclang-vim/vim-textobj-clang'
 Plugin 'kana/vim-textobj-line'
-" Plugin 'm42e/vim-gcov-marker'
 Plugin 'dzeban/vim-log-syntax'
 Plugin 'CharTab' " <leader>ct  character tab
 " TODO: decide if it's worth to get rid of dispath.vim
@@ -65,6 +55,8 @@ Plugin 'bogado/file-line'
 Plugin 'mhinz/vim-grepper'
 Plugin 'yggdroot/leaderf'
 Plugin 'liuchengxu/vim-which-key'
+Plugin 'peterhoeg/vim-qml'
+Plugin 'mhinz/vim-startify'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -105,6 +97,9 @@ set nowrapscan " do not wrap the search!
 if has("patch-8.1.0360")
   set diffopt+=internal,algorithm:patience
 endif
+set clipboard=unnamedplus
+" This will automatically read changed file. It will ask if we have unsaved changes.
+set autoread
 " ###############################################################################################}}}
 
 
@@ -131,8 +126,6 @@ nnoremap <F12> :YcmToggleLogs<CR>
 " youcompleteme mapping
 noremap <C-t> :YcmCompleter GoToDeclaration<CR>
 noremap <C-g> :YcmCompleter GoTo<CR>
-" Easy motion -- we want it back as one Leader not twice
-map <Leader> <Plug>(easymotion-prefix)
 
 nnoremap [g :echo "use [c"<CR>
 nnoremap ]g :echo "use ]c"<CR>
@@ -186,8 +179,6 @@ let g:buffergator_suppress_keymaps=1
 let g:buffergator_split_size = 100
 let g:buffergator_sort_regime = "basename"
 let g:buffergator_show_full_directory_path = 0
-" map <Leader>[ :BuffergatorMruCyclePrev<CR>
-" map <Leader>] :BuffergatorMruCycleNext<CR>
 " ##################################################################################################
 
 " ##################################################################################################
@@ -244,17 +235,6 @@ inoremap <leader>st <Esc>:CtrlSFToggle<CR>
 " Multiple-Cursors
 let g:multi_cursor_quit_key='<C-c>'
 
-" EasyClip options
-" let g:EasyClipUseSubstituteDefaults=1 " disable as it's annoying
-let g:EasyClipAlwaysMoveCursorToEndOfPaste=1
-set clipboard=unnamedplus
-let g:EasyClipShareYanks=1
-let g:EasyClipShowYanksWidth=1
-" nmap ]y <plug>EasyClipSwapPasteForward
-" nmap [y <plug>EasyClipSwapPasteBackwards
-nmap <c-n> <Plug>EasyClipSwapPasteBackwards
-nmap <c-b> <Plug>EasyClipSwapPasteForward
-
 " No backup files
 " set nobackup
 
@@ -264,9 +244,6 @@ nmap <c-b> <Plug>EasyClipSwapPasteForward
 " No swap file
 " set noswapfile
 
-" This will automatically read changed file. It will ask if we have unsaved
-" changes.
-set autoread
 
 let g:textobj_clang_more_mappings=1
 
@@ -323,7 +300,6 @@ let g:alternateSearchPath .= ',reg:/src/include/g/'
 
 let g:gitgutter_terminal_reports_focus = 0 " or autocmd BufReadPost * :GitGutterAll
 
-let g:EasyClipEnableBlackHoleRedirect = 0 " no black hole
 
 let g:grepper = {}
 let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'grep', 'findstr', 'pt', 'sift']
@@ -348,3 +324,17 @@ nnoremap <silent> <leader>fD :LeaderfFunctionAll<CR>
 nnoremap <silent> <leader>f/ :LeaderfLine<CR>
 nnoremap <silent> <leader>f? :LeaderfLineAll<CR>
 nnoremap <silent> <leader>fc :LeaderfCommand<CR>
+
+
+let g:startify_bookmarks = [ {'n': '~/NOTES.txt'}, '~/.zshrc' ]
+let g:startify_lists = [
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ { 'type': 'files',     'header': ['   MRU']            },
+      \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+      \ { 'type': 'commands',  'header': ['   Commands']       },
+      \ ]
+
+" nnoremap <leader>fc :Bdelete<CR>
+nnoremap <leader>hve :edit $MYVIMRC<CR>
+nnoremap <leader>hvr :source $MYVIMRC<CR>
