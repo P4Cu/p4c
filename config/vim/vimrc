@@ -4,61 +4,55 @@ let mapleader = "\<space>"
 let g:loaded_python_provider = 0
 
 " PLUGINS #######################################################################################{{{
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-"Alternative : call vundle#begin('~/some/path/here')
-Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
-Plugin 'lifepillar/vim-gruvbox8'
-Plugin 'benmills/vimux' " running command in tmux
-Plugin 'tpope/vim-fugitive' " the ultimate git helper
-Plugin 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
-Plugin 'vim-airline/vim-airline' " status line
-Plugin 'ervandew/supertab' " requires some integration with YCM/UltiSnips
-" Plugin 'valloric/youcompleteme'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'kana/vim-operator-user'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'a.vim'
-Plugin 'dyng/ctrlsf.vim'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-repeat' " this is required by easyclip  # TODO: do we need it?
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'tpope/vim-dispatch'
-" Plugin 'lyuts/vim-rtags' " TODO: lazyload
-Plugin 'majutsushi/tagbar'
-Plugin 'tmux-plugins/vim-tmux-focus-events'
-Plugin 'autoswap.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-eunuch'
-Plugin 'moll/vim-bbye' " :Db
-Plugin 'libclang-vim/libclang-vim'
-Plugin 'kana/vim-textobj-user'
-Plugin 'libclang-vim/vim-textobj-clang'
-Plugin 'kana/vim-textobj-line'
-Plugin 'dzeban/vim-log-syntax'
-Plugin 'CharTab' " <leader>ct  character tab
-Plugin 'mechatroner/rainbow_csv'
-Plugin 'embear/vim-foldsearch'
-Plugin 'terryma/vim-expand-region'
-" Plugin 'jrosiek/vim-mark'
-Plugin 'dimasg/vim-mark'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'dhruvasagar/vim-table-mode'
+call plug#begin()
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'benmills/vimux' " running command in tmux
+Plug 'tpope/vim-fugitive' " the ultimate git helper
+Plug 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
+Plug 'vim-airline/vim-airline' " status line
+Plug 'ervandew/supertab' " requires some integration with YCM/UltiSnips
+" Plug 'valloric/youcompleteme'
+Plug 'rhysd/vim-clang-format'
+Plug 'kana/vim-operator-user'
+Plug 'tpope/vim-unimpaired'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-scripts/a.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat' " this is required by easyclip  # TODO: do we need it?
+Plug 'edkolev/tmuxline.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-dispatch'
+" Plug 'lyuts/vim-rtags' " TODO: lazyload
+Plug 'majutsushi/tagbar'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'vim-scripts/autoswap.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-eunuch'
+Plug 'moll/vim-bbye' " :Db
+Plug 'libclang-vim/libclang-vim'
+Plug 'kana/vim-textobj-user'
+Plug 'libclang-vim/vim-textobj-clang'
+Plug 'kana/vim-textobj-line'
+Plug 'dzeban/vim-log-syntax'
+Plug 'vim-scripts/CharTab' " <leader>ct  character tab
+Plug 'mechatroner/rainbow_csv'
+Plug 'embear/vim-foldsearch'
+Plug 'terryma/vim-expand-region'
+" Plug 'jrosiek/vim-mark'
+Plug 'dimasg/vim-mark'
+Plug 'davidhalter/jedi-vim'
+Plug 'dhruvasagar/vim-table-mode'
 " Open file:line
-Plugin 'bogado/file-line'
-Plugin 'mhinz/vim-grepper'
-Plugin 'liuchengxu/vim-which-key'
-Plugin 'peterhoeg/vim-qml'
-Plugin 'mhinz/vim-startify'
-Plugin 'liuchengxu/vim-clap' " needs: `:call clap#installer#build_all()`
-Plugin 'michaeljsmith/vim-indent-object'
+Plug 'bogado/file-line'
+Plug 'mhinz/vim-grepper'
+Plug 'liuchengxu/vim-which-key'
+Plug 'peterhoeg/vim-qml'
+Plug 'mhinz/vim-startify'
+Plug 'liuchengxu/vim-clap' " needs: `:call clap#installer#build_all()`
+Plug 'michaeljsmith/vim-indent-object'
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+call plug#end()
 " ###############################################################################################}}}
 
 
