@@ -9,14 +9,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "Alternative : call vundle#begin('~/some/path/here')
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
-Plugin 'morhetz/gruvbox'
+Plugin 'lifepillar/vim-gruvbox8'
 Plugin 'benmills/vimux' " running command in tmux
 Plugin 'tpope/vim-fugitive' " the ultimate git helper
 Plugin 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
 Plugin 'vim-airline/vim-airline' " status line
 Plugin 'ervandew/supertab' " requires some integration with YCM/UltiSnips
 " Plugin 'valloric/youcompleteme'
-Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'kana/vim-operator-user'
 Plugin 'tpope/vim-unimpaired'
@@ -28,7 +27,7 @@ Plugin 'tpope/vim-repeat' " this is required by easyclip  # TODO: do we need it?
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-dispatch'
-Plugin 'lyuts/vim-rtags'
+" Plugin 'lyuts/vim-rtags' " TODO: lazyload
 Plugin 'majutsushi/tagbar'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'autoswap.vim'
@@ -41,8 +40,6 @@ Plugin 'libclang-vim/vim-textobj-clang'
 Plugin 'kana/vim-textobj-line'
 Plugin 'dzeban/vim-log-syntax'
 Plugin 'CharTab' " <leader>ct  character tab
-" TODO: decide if it's worth to get rid of dispath.vim
-Plugin 'benekastah/neomake'
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'embear/vim-foldsearch'
 Plugin 'terryma/vim-expand-region'
@@ -53,10 +50,11 @@ Plugin 'dhruvasagar/vim-table-mode'
 " Open file:line
 Plugin 'bogado/file-line'
 Plugin 'mhinz/vim-grepper'
-Plugin 'yggdroot/leaderf'
 Plugin 'liuchengxu/vim-which-key'
 Plugin 'peterhoeg/vim-qml'
 Plugin 'mhinz/vim-startify'
+Plugin 'liuchengxu/vim-clap' " needs: `:call clap#installer#build_all()`
+Plugin 'michaeljsmith/vim-indent-object'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -104,9 +102,8 @@ set autoread
 
 
 " THEME #########################################################################################{{{
-let g:gruvbox_italic=1
 set termguicolors
-colorscheme gruvbox
+colorscheme gruvbox8 " gruvbox8_hard
 let airline#extensions#tmuxline#snapshot_file = "~/.tmux/powerline.conf"
 " ###############################################################################################}}}
 
@@ -115,9 +112,9 @@ let airline#extensions#tmuxline#snapshot_file = "~/.tmux/powerline.conf"
 nnoremap gb :bnext<CR>
 nnoremap gB :bprevious<CR>
 noremap <C-_> :Commentary<CR>
-" tree control
-noremap <F1> :YcmCompleter FixIt<CR>
-noremap <F3> :BuffergatorToggle<CR>
+noremap <F1> :Clap<CR>
+" noremap <F1> :YcmCompleter FixIt<CR>
+noremap <F3> :Clap buffers<CR>
 map <F4> :A<CR>
 nmap <F8> :TagbarToggle<CR>
 nnoremap <F10> :YcmDiags<CR>
@@ -171,16 +168,6 @@ nmap <leader>[ <Plug>AirlineSelectPrevTab
 nmap <leader>] <Plug>AirlineSelectNextTab
 " ##################################################################################################
 
-
-" ##################################################################################################
-" Buffergator
-set hidden
-let g:buffergator_suppress_keymaps=1
-let g:buffergator_split_size = 100
-let g:buffergator_sort_regime = "basename"
-let g:buffergator_show_full_directory_path = 0
-" ##################################################################################################
-
 " ##################################################################################################
 " MISC
 set colorcolumn=101
@@ -213,10 +200,10 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" " better key bindings for UltiSnipsExpandTrigger
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " bug with UltiSnips+YCM+SuperTab
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
@@ -230,7 +217,7 @@ nmap     <leader>sn <Plug>CtrlSFCwordPath
 nmap     <leader>sp <Plug>CtrlSFPwordPath
 nnoremap <leader>so :CtrlSFOpen<CR>
 nnoremap <leader>st :CtrlSFToggle<CR>
-inoremap <leader>st <Esc>:CtrlSFToggle<CR>
+" inoremap <leader>st <Esc>:CtrlSFToggle<CR>
 
 " Multiple-Cursors
 let g:multi_cursor_quit_key='<C-c>'
@@ -314,16 +301,16 @@ nnoremap <silent> [ :WhichKey '['<CR>
 nnoremap <silent> ] :WhichKey ']'<CR>
 
 nnoremap <C-p> :echo "use \<leader\>ff"<CR>
-let g:Lf_ShortcutF = "<leader>ff"
+" let g:Lf_ShortcutF = "<leader>ff"
+let g:Lf_ShortcutF = ""
+nnoremap <silent> <leader>ff :Clap files<CR>
 let g:Lf_ShortcutB = ""
-nnoremap <silent> <leader>fb :LeaderfBufferAll<CR>
-nnoremap <silent> <leader>fm :LeaderfMru<CR>
-nnoremap <silent> <leader>ft :LeaderfTag<CR> " TODO: or BufTag/BufTagAll ?
-nnoremap <silent> <leader>fd :LeaderfFunction<CR>
-nnoremap <silent> <leader>fD :LeaderfFunctionAll<CR>
-nnoremap <silent> <leader>f/ :LeaderfLine<CR>
-nnoremap <silent> <leader>f? :LeaderfLineAll<CR>
-nnoremap <silent> <leader>fc :LeaderfCommand<CR>
+nnoremap <silent> <leader>fb :Clap buffers<CR>
+nnoremap <silent> <leader>fm :Clap recent_files <CR>
+nnoremap <silent> <F2> :Clap tags<CR>
+nnoremap <silent> <leader>f/ :Clap blines<CR>
+nnoremap <silent> <leader>f? :Clap lines<CR>
+nnoremap <silent> <leader>fc :Clap command<CR>
 
 
 let g:startify_bookmarks = [ {'n': '~/NOTES.txt'}, '~/.zshrc' ]
@@ -338,3 +325,5 @@ let g:startify_lists = [
 " nnoremap <leader>fc :Bdelete<CR>
 nnoremap <leader>hve :edit $MYVIMRC<CR>
 nnoremap <leader>hvr :source $MYVIMRC<CR>
+
+let g:startify_session_persistence=1
