@@ -12,46 +12,43 @@ Plug 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual m
 Plug 'vim-airline/vim-airline' " status line
 Plug 'ervandew/supertab' " requires some integration with YCM/UltiSnips
 " Plug 'valloric/youcompleteme'
-Plug 'rhysd/vim-clang-format'
-Plug 'kana/vim-operator-user'
+Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 Plug 'tpope/vim-unimpaired'
 Plug 'ryanoasis/vim-devicons'
-Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/a.vim' " { 'for': ['c', 'cpp'] } TODO: cannot as we're unmapping a few things
 Plug 'dyng/ctrlsf.vim'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-repeat' " this is required by easyclip  # TODO: do we need it?
+Plug 'tpope/vim-abolish' " TODO: add it to <leader> so it's easier to find
+Plug 'tpope/vim-repeat' " this is required by easyclip  # TODO: do we need it? most probably yes
 Plug 'edkolev/tmuxline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-dispatch'
-" Plug 'lyuts/vim-rtags' " TODO: lazyload
-Plug 'majutsushi/tagbar'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+" Plug 'lyuts/vim-rtags' " TODO: lazyload
 Plug 'vim-scripts/autoswap.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-eunuch'
 Plug 'moll/vim-bbye' " :Db
-Plug 'libclang-vim/libclang-vim'
 Plug 'kana/vim-textobj-user'
-Plug 'libclang-vim/vim-textobj-clang'
 Plug 'kana/vim-textobj-line'
-Plug 'dzeban/vim-log-syntax'
-Plug 'vim-scripts/CharTab' " <leader>ct  character tab
-Plug 'mechatroner/rainbow_csv'
-Plug 'embear/vim-foldsearch'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'terryma/vim-expand-region'
-" Plug 'jrosiek/vim-mark'
+Plug 'dzeban/vim-log-syntax'
+Plug 'embear/vim-foldsearch'
 Plug 'dimasg/vim-mark'
-Plug 'davidhalter/jedi-vim'
-Plug 'dhruvasagar/vim-table-mode'
-" Open file:line
-Plug 'bogado/file-line'
-Plug 'mhinz/vim-grepper'
-Plug 'liuchengxu/vim-which-key'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'wsdjeg/vim-fetch' " Open some/file:line:column
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'peterhoeg/vim-qml'
 Plug 'mhinz/vim-startify'
-Plug 'liuchengxu/vim-clap' " needs: `:call clap#installer#build_all()`
-Plug 'michaeljsmith/vim-indent-object'
-" All of your Plugins must be added before the following line
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+" Utilitaries {{{
+Plug 'vim-scripts/CharTab' " <leader>ct  character tab # TODO: lazy load
+Plug 'mechatroner/rainbow_csv' " TODO: lazy load
+Plug 'dhruvasagar/vim-table-mode' " TODO: lazy load
+" }}}
+" Considered for deletion {{{
+" Plug 'kana/vim-operator-user' " TODO: most probably not needed
+Plug 'mhinz/vim-grepper' " TODO: do I need one if vim-clap can do it?
+" }}}
 call plug#end()
 " ###############################################################################################}}}
 
@@ -59,29 +56,23 @@ call plug#end()
 " Generic values ################################################################################{{{
 " highlight search
 set hlsearch incsearch ignorecase smartcase
-" bashlike vim completition + with addition of third tab for list select mode (zsh alike )
 set cursorline
+" bashlike vim completition + with addition of third tab for list select mode (zsh alike )
 set wildmode=longest,list,full
 set wildmenu
 set mouse=a
 set splitright splitbelow
 set scrolloff=10 " always show x lines from cursor
-set ttyfast " we're fast & local
 set undofile " keep history for each file (allows undo after close) file.un~
 set gdefault " rly mate, when i wanted to replace only the first occurence in line?
 set lazyredraw
-" Whitespace
 set tabstop=4 shiftwidth=4
 set expandtab
-set list lcs=trail:·,tab:»·
-" Numbering of lines
-set numberwidth=5
-" use <cor> <con> to enable dispalying
-set norelativenumber nonumber
-" use <cow>
-set nowrap
-set updatetime=1000 "this will update tagbar when idle for 1s | also writes swap after 1s
-set timeoutlen=500 ttimeoutlen=0
+set list lcs=trail:·,tab:»· " Whitespace
+set numberwidth=5 " Numbering of lines
+set norelativenumber nonumber " use <cor> <con> to enable dispalying
+set nowrap " use <cow>
+set updatetime=1000 timeoutlen=500 ttimeoutlen=0
 if has('nvim')
 "     set inccommand=nosplit " looks like this is causing a redraw issues
 endif
@@ -140,7 +131,6 @@ endfunction
 
 " ##################################################################################################
 " vim-ariline
-set laststatus=2
 set noshowmode
 " hi StatusLine 
 " Enable the list of buffers
@@ -165,11 +155,6 @@ nmap <leader>] <Plug>AirlineSelectNextTab
 " ##################################################################################################
 " MISC
 set colorcolumn=101
-" ##################################################################################################
-
-" ##################################################################################################
-" GVim deditacted settings
-set guioptions-=T " no toolbar!
 " ##################################################################################################
 
 " ##################################################################################################
@@ -216,24 +201,10 @@ nnoremap <leader>st :CtrlSFToggle<CR>
 " Multiple-Cursors
 let g:multi_cursor_quit_key='<C-c>'
 
-" No backup files
-" set nobackup
-
-" No write backup
-" set nowritebackup
-
-" No swap file
-" set noswapfile
-
-
 let g:textobj_clang_more_mappings=1
 
 " always use buffer delete map
-" cmap bd Bd
 cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR>
-
-let g:tagbar_width = 80
-let g:tagbar_autofocus = 1
 
 " working with filepaths/numbers
 nnoremap cp :let @+ = expand("%:p")<cr><bar>:echo "Copied full file path"<cr>
