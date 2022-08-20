@@ -18,14 +18,37 @@
 * lsd
 * ripgrep (tag supports rg!)
 * hyperfine - benchmark commands (eg. ag vs ripgrep)
+* sk # TODO ADD MORE INFO
 
 # PHOTO & VIDEO
 
 * gthumb - view & organize images
-* https://github.com/phw/peek - record part of screen as gif
+* https://github.com/phw/peek - record part of screen as gif  <- HUUGE!
+* https://gitlab.com/screenkey/screenkey - helper for screen recording and sharing
 * shotcut - edit videos
+
+# DOCKER
+* container-diff
+
+# Gnome extensions
+* AppIndicator and KStatusNotifierItem Support
+* Current screen only on window switcher 
+* Dash to Dock
+* Espresso
+* GTK Title Bar
+* Mpris Indicator Button
+* No Title Bar
+* Nothing to say
+* Notification Counter
+* OpenWeather
+* Overview Navigation
+* Quick Close in Overview
+* Sound Input & Output Device Chooser
+* Transparent Window
+* Vitals
 
 # MISC
 * Magnus - screen magnifier
 * Qalculate
 * syncthing
+* Ferdi - multiple chats in one
