@@ -2,6 +2,9 @@
 
 let mapleader = "\<space>"
 let g:loaded_python_provider = 0
+let g:ale_completion_enabled = 1
+" TODO: report a bug that default linters do not merge as specified by doc
+let g:ale_linters = { 'python': ['pylsp', 'flake8', 'mypy', 'pylint', 'pyright'] }
 
 " PLUGINS #######################################################################################{{{
 call plug#begin()
@@ -34,12 +37,13 @@ Plug 'terryma/vim-expand-region'
 Plug 'dzeban/vim-log-syntax'
 Plug 'embear/vim-foldsearch'
 Plug 'dimasg/vim-mark'
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'wsdjeg/vim-fetch' " Open some/file:line:column
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'peterhoeg/vim-qml'
 Plug 'mhinz/vim-startify'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'dense-analysis/ale'
 " Utilitaries {{{
 Plug 'vim-scripts/CharTab' " <leader>ct  character tab # TODO: lazy load
 Plug 'mechatroner/rainbow_csv' " TODO: lazy load
@@ -94,6 +98,9 @@ let airline#extensions#tmuxline#snapshot_file = "~/.tmux/powerline.conf"
 
 
 " ##################################################################################################
+" to have nice command search
+cnoremap <c-p> <up>
+cnoremap <c-n> <down>
 nnoremap gb :bnext<CR>
 nnoremap gB :bprevious<CR>
 noremap <C-_> :Commentary<CR>
@@ -115,6 +122,7 @@ nnoremap ]g :echo "use ]c"<CR>
 " nnoremap ]g :GitGutterNextHunk<CR>
 nnoremap cog :GitGutterLineHighlightsToggle<CR>
 
+" TODO: would be nice to make a command aout of it and allow anything like HEAD~
 nnoremap cogg :call P4C_GitGutterDiffHeadToggle()<CR>
 " This function toggles diff against HEAD
 function! P4C_GitGutterDiffHeadToggle()
@@ -292,3 +300,8 @@ nnoremap <leader>hve :edit $MYVIMRC<CR>
 nnoremap <leader>hvr :source $MYVIMRC<CR>
 
 let g:startify_session_persistence=1
+
+set completeopt=menu,menuone,preview,noselect,noinsert
+inoremap <C-Space> <Plug>(ale_complete)
+nnoremap <silent> <F20> <Plug>(ale_previous)
+nnoremap <silent> <F8> <Plug>(ale_next)
