@@ -5,6 +5,7 @@
 * https://github.com/KDAB/GammaRay
 * massif-visualizer
 * https://www.poirrier.ca/hperf/
+* clangd + a script that captures all parameters and executes `compdb -p folder1 -p folder2 list > compile_commands.json`
 
 # GIT
 
@@ -52,3 +53,5 @@
 * Qalculate
 * syncthing
 * Ferdi - multiple chats in one
+* Borg + Vorta - backups
+* https://github.com/0x192/universal-android-debloater - remove unwanted packages from any Android
