@@ -14,7 +14,6 @@ Plug 'tpope/vim-fugitive' " the ultimate git helper
 Plug 'tpope/vim-commentary' " comment/uncomment lines with gcc or gc in visual mode
 Plug 'vim-airline/vim-airline' " status line
 Plug 'ervandew/supertab' " requires some integration with YCM/UltiSnips
-" Plug 'valloric/youcompleteme'
 Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 Plug 'tpope/vim-unimpaired'
 Plug 'ryanoasis/vim-devicons'
@@ -26,7 +25,6 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-dispatch'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-" Plug 'lyuts/vim-rtags' " TODO: lazyload
 Plug 'vim-scripts/autoswap.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'moll/vim-bbye' " :Db
@@ -37,9 +35,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'dzeban/vim-log-syntax'
 Plug 'embear/vim-foldsearch'
 Plug 'dimasg/vim-mark'
-" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'wsdjeg/vim-fetch' " Open some/file:line:column
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'peterhoeg/vim-qml'
 Plug 'mhinz/vim-startify'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
@@ -48,10 +44,17 @@ Plug 'dense-analysis/ale'
 Plug 'vim-scripts/CharTab' " <leader>ct  character tab # TODO: lazy load
 Plug 'mechatroner/rainbow_csv' " TODO: lazy load
 Plug 'dhruvasagar/vim-table-mode' " TODO: lazy load
+Plug 'masukomi/vim-markdown-folding'
+Plug 'folke/which-key.nvim' " awesome plugin to show available commands
+" }}}
+" Experimental {{{
 " }}}
 " Considered for deletion {{{
 " Plug 'kana/vim-operator-user' " TODO: most probably not needed
 Plug 'mhinz/vim-grepper' " TODO: do I need one if vim-clap can do it?
+" Plug 'lyuts/vim-rtags' " TODO: lazyload
+" Plug 'valloric/youcompleteme'
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " }}}
 call plug#end()
 " ###############################################################################################}}}
@@ -182,18 +185,18 @@ let g:session_command_aliases = 1
 set guifont=DroidSansMonoForPowerline\ Nerd\ Font\ 11
 let g:airline_powerline_fonts=1
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" " make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " " better key bindings for UltiSnipsExpandTrigger
 " let g:UltiSnipsExpandTrigger = "<tab>"
 " let g:UltiSnipsJumpForwardTrigger = "<tab>"
 " let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" bug with UltiSnips+YCM+SuperTab
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+" " bug with UltiSnips+YCM+SuperTab
+" let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 " CtrlSF
 nmap     <leader>sf <Plug>CtrlSFPrompt
@@ -205,11 +208,6 @@ nmap     <leader>sp <Plug>CtrlSFPwordPath
 nnoremap <leader>so :CtrlSFOpen<CR>
 nnoremap <leader>st :CtrlSFToggle<CR>
 " inoremap <leader>st <Esc>:CtrlSFToggle<CR>
-
-" Multiple-Cursors
-let g:multi_cursor_quit_key='<C-c>'
-
-let g:textobj_clang_more_mappings=1
 
 " always use buffer delete map
 cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR>
@@ -238,8 +236,8 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " missing toggle paste
 nmap cop :setlocal <C-R>=<SNR>61_toggle("paste")<CR><CR>
 
-" rtags configuration
-let g:rtagsMinCharsForCommandCompletion=2
+" " rtags configuration
+" let g:rtagsMinCharsForCommandCompletion=2
 
 " a.vim settings
 let g:alternateNoDefaultAlternate = 1
@@ -266,13 +264,6 @@ let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'grep', 'findstr', 'pt', '
 nmap gs  <plug>(GrepperOperator)
 vmap gs  <plug>(GrepperOperator)
 
-
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-" nnoremap <silent> g :WhichKey 'g'<CR>
-" nnoremap <silent> y :WhichKey 'y'<CR>
-nnoremap <silent> [ :WhichKey '['<CR>
-nnoremap <silent> ] :WhichKey ']'<CR>
-
 nnoremap <C-p> :echo "use \<leader\>ff"<CR>
 " let g:Lf_ShortcutF = "<leader>ff"
 let g:Lf_ShortcutF = ""
@@ -286,7 +277,7 @@ nnoremap <silent> <leader>f? :Clap lines<CR>
 nnoremap <silent> <leader>fc :Clap command<CR>
 
 
-let g:startify_bookmarks = [ {'n': '~/NOTES.txt'}, '~/.zshrc' ]
+let g:startify_bookmarks = [ '~/.zshrc' ]
 let g:startify_lists = [
       \ { 'type': 'sessions',  'header': ['   Sessions']       },
       \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
@@ -305,3 +296,10 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 inoremap <C-Space> <Plug>(ale_complete)
 nnoremap <silent> <F20> <Plug>(ale_previous)
 nnoremap <silent> <F8> <Plug>(ale_next)
+
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+
+lua << EOF
+  require("which-key").setup {
+  }
+EOF
