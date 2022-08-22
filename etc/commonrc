@@ -50,3 +50,5 @@ complete -c command type which-edit
 export LESSOPEN="| src-hilite-lesspipe.sh %s" ; export LESS=' -R '
 
 command -v thefuck &> /dev/null && eval $(thefuck --alias) || true
+
+alias glog1='glog $(glog-branch)'
