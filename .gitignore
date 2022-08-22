@@ -3,3 +3,4 @@
 config/ranger/plugins/__init__.py
 config/ranger/plugins/__pycache__/
 config/vim/.netrwhist
+bin/clangd.toml
