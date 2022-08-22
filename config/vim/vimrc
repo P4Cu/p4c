@@ -91,6 +91,7 @@ endif
 set clipboard=unnamedplus
 " This will automatically read changed file. It will ask if we have unsaved changes.
 set autoread
+set sessionoptions=blank,curdir,folds,help,tabpages,winpos " what to save in sessions - startify
 " ###############################################################################################}}}
 
 
