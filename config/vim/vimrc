@@ -5,6 +5,7 @@ let g:loaded_python_provider = 0
 let g:ale_completion_enabled = 1
 " TODO: report a bug that default linters do not merge as specified by doc
 let g:ale_linters = { 'python': ['pylsp', 'flake8', 'mypy', 'pylint', 'pyright'] }
+let g:polyglot_disabled = ['markdown'] " due to https://github.com/sheerun/vim-polyglot/issues/478
 
 " PLUGINS #######################################################################################{{{
 call plug#begin()
@@ -36,15 +37,15 @@ Plug 'dzeban/vim-log-syntax'
 Plug 'embear/vim-foldsearch'
 Plug 'dimasg/vim-mark'
 Plug 'wsdjeg/vim-fetch' " Open some/file:line:column
-Plug 'peterhoeg/vim-qml'
 Plug 'mhinz/vim-startify'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'dense-analysis/ale'
+Plug 'sheerun/vim-polyglot' " a lot of filetypes
+Plug 'plasticboy/vim-markdown'
 " Utilitaries {{{
 Plug 'vim-scripts/CharTab' " <leader>ct  character tab # TODO: lazy load
 Plug 'mechatroner/rainbow_csv' " TODO: lazy load
 Plug 'dhruvasagar/vim-table-mode' " TODO: lazy load
-Plug 'masukomi/vim-markdown-folding'
 Plug 'folke/which-key.nvim' " awesome plugin to show available commands
 " }}}
 " Experimental {{{
@@ -168,13 +169,13 @@ nmap <leader>] <Plug>AirlineSelectNextTab
 set colorcolumn=101
 " ##################################################################################################
 
-" ##################################################################################################
-" Project specific
-" ##################################################################################################
+" Project specific {{{
+" write something like: `autocmd BufRead,BufNewFile /home/p4c/repo/* call P4C_repo()`
+" and do customizations in that function
 if filereadable(glob("~/.vimrc_custom"))
     source ~/.vimrc_custom
 endif
-" ##################################################################################################
+" }}} ##############################################################################################
 
 " Vim session
 let g:session_autoload = 'no'
@@ -299,7 +300,10 @@ nnoremap <silent> <F8> <Plug>(ale_next)
 
 autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
+" https://github.com/nanotee/nvim-lua-guide
 lua << EOF
   require("which-key").setup {
   }
 EOF
+
+let g:vim_markdown_folding_style_pythonic = 1
