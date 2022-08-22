@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+"""
+Script that returns merge base of branch, tracking branch, and main.
+Ideal input to git log --graph
+"""
+
+from subprocess import check_output, check_call, CalledProcessError, DEVNULL
+import sys
+
+for_branch = sys.argv[1] if len(sys.argv) > 1 else "HEAD"
+
+def get_rev(branch_name):
+    try:
+        return check_output([
+                'git',
+                'rev-parse',
+                '--abbrev-ref',
+                '--symbolic-full-name',
+                branch_name
+            ],
+            universal_newlines=True,
+            stderr=DEVNULL,
+        ).strip()
+    except CalledProcessError:
+        return None
+
+def merge_base(*refs):
+    refs = list(filter(None, refs))
+    return check_output([
+                'git',
+                'merge-base',
+                '--octopus',
+                *refs
+            ], universal_newlines=True
+        ).strip()
+
+current_name = get_rev(for_branch)
+assert current_name, "Branch not existing"
+upstream_name = get_rev(for_branch+'@{upstream}')
+main_branch = get_rev('origin/HEAD')
+base = merge_base(current_name, upstream_name, main_branch)
+print(*filter(None, [current_name, upstream_name]), f"^{base}~")
