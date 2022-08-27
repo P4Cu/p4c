@@ -21,31 +21,21 @@ antigen use oh-my-zsh
 antigen bundle dnf
 antigen bundle git
 antigen bundle pip
-# antigen bundle Vifon/deer
 antigen bundle djui/alias-tips
 antigen bundle fancy-ctrl-z
-# antigen bundle catimg
 antigen bundle colored-man-pages
 antigen bundle repo
-# antigen bundle z
 antigen bundle extract
 antigen bundle mollifier/cd-gitroot
 antigen bundle P4Cu/cd-reporoot
 antigen bundle docker
-# antigen bundle docker-compose
-# antigen bundle sharat87/zsh-vim-mode
 # Syntax
 antigen bundle zsh-users/zsh-syntax-highlighting
 # unstable completition
 antigen bundle zsh-users/zsh-completions
 # completition generator
 antigen bundle RobSis/zsh-completion-generator
-# awesome ls
-antigen bundle supercrabtree/k
 antigen bundle bil-elmoussaoui/flatpak-zsh-completion
-# antigen bundle rust
-# antigen bundle rustup
-# antigen bundle cargo
 # Theme
 antigen theme agnoster
 # Tell antigen that you're done
@@ -64,30 +54,18 @@ fpath+=~/.zfunc
 # KEYBINDINGS
 # vi mode
 bindkey -v
-
-
-# deer
-autoload -U deer
-zle -N deer
-bindkey '\ek' deer
+# TODO: for as long as PR is not merged: https://github.com/ohmyzsh/ohmyzsh/pull/11134
+bindkey -M viins '^Z' fancy-ctrl-z
+bindkey -M vicmd '^Z' fancy-ctrl-z
 
 # make ctrl-n ctrl-p behave exacltly like up/down arrows
-# bindkey "^P" up-line-or-search
-# bindkey "^N" down-line-or-search
 bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
-# history-beginning-search-backward
-#
-# allow ctrl-a and ctrl-e to move to beginning/end of line
-bindkey '^a' beginning-of-line
-bindkey '^e' end-of-line
 bindkey '^r' history-incremental-search-backward
 # --------------------------------------------------------------------------------------------------
 
-alias http="python3 -m http.server"
-
 if [ -n "$TMUX" ]; then
-    alias clear="command clear && tmux clear"
+    alias clear="command clear && tmux clear-history"
 fi
 
 
