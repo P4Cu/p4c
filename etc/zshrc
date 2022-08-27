@@ -43,9 +43,9 @@ antigen bundle RobSis/zsh-completion-generator
 # awesome ls
 antigen bundle supercrabtree/k
 antigen bundle bil-elmoussaoui/flatpak-zsh-completion
-antigen bundle rust
-antigen bundle rustup
-antigen bundle cargo
+# antigen bundle rust
+# antigen bundle rustup
+# antigen bundle cargo
 # Theme
 antigen theme agnoster
 # Tell antigen that you're done
@@ -54,6 +54,11 @@ antigen apply
 
 # 10ms for key sequences (default 40)
 KEYTIMEOUT=1
+
+# completions
+# rustup completions zsh cargo > ~/.zfunc/_cargo
+# rustup completions zsh rustup > ~/.zfunc/_rustup
+fpath+=~/.zfunc
 
 # --------------------------------------------------------------------------------------------------
 # KEYBINDINGS

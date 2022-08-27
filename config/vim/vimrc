@@ -51,7 +51,7 @@ Plug 'folke/which-key.nvim' " awesome plugin to show available commands
 " Experimental {{{
 " }}}
 " Considered for deletion {{{
-" Plug 'kana/vim-operator-user' " TODO: most probably not needed
+Plug 'kana/vim-operator-user' " TODO: most probably not needed
 Plug 'mhinz/vim-grepper' " TODO: do I need one if vim-clap can do it?
 " Plug 'lyuts/vim-rtags' " TODO: lazyload
 " Plug 'valloric/youcompleteme'
@@ -78,7 +78,7 @@ set tabstop=4 shiftwidth=4
 set expandtab
 set list lcs=trail:·,tab:»· " Whitespace
 set numberwidth=5 " Numbering of lines
-set norelativenumber nonumber " use <cor> <con> to enable dispalying
+set norelativenumber number " use <cor> <con> to enable dispalying
 set nowrap " use <cow>
 set updatetime=1000 timeoutlen=500 ttimeoutlen=0
 if has('nvim')
@@ -91,7 +91,7 @@ endif
 set clipboard=unnamedplus
 " This will automatically read changed file. It will ask if we have unsaved changes.
 set autoread
-set sessionoptions=blank,curdir,folds,help,tabpages,winpos " what to save in sessions - startify
+set sessionoptions=buffers,blank,curdir,folds,help,tabpages,winpos " what to save in sessions - startify
 " ###############################################################################################}}}
 
 
@@ -128,18 +128,13 @@ nnoremap ]g :echo "use ]c"<CR>
 nnoremap cog :GitGutterLineHighlightsToggle<CR>
 
 " TODO: would be nice to make a command aout of it and allow anything like HEAD~
-nnoremap cogg :call P4C_GitGutterDiffHeadToggle()<CR>
 " This function toggles diff against HEAD
-function! P4C_GitGutterDiffHeadToggle()
-    if g:gitgutter_diff_base == ''
-        echom 'P4C_GitGutterDiffHeadToggle diff against HEAD'
-        let g:gitgutter_diff_base = 'HEAD'
-    else
-        echom 'P4C_GitGutterDiffHeadToggle diff against INDEX'
-        let g:gitgutter_diff_base = ''
-    endif
+function! P4C_GitGutterDiffAgainst(revision)
+    let g:gitgutter_diff_base = a:revision
+    echom 'P4C_GitGutterDiffHeadToggle diff against ' + a:revision
     execute 'silent GitGutter'
 endfunction
+command -nargs=1 P4CGitGutterAgainst silent call P4C_GitGutterDiffAgainst("<args>")
 " ##################################################################################################
 
 " ##################################################################################################
