@@ -264,6 +264,7 @@ vmap gs  <plug>(GrepperOperator)
 nnoremap <C-p> :echo "use \<leader\>ff"<CR>
 " let g:Lf_ShortcutF = "<leader>ff"
 let g:Lf_ShortcutF = ""
+let g:clap_layout = { 'relative': 'editor' }
 nnoremap <silent> <leader>ff :Clap files<CR>
 let g:Lf_ShortcutB = ""
 nnoremap <silent> <leader>fb :Clap buffers<CR>
