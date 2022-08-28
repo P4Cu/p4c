@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 
-# TODO: check if running in TMUX (tests work better that way) env variable $TMUX
+if [ -z "$TMUX" ] ; then
+    echo 'Please run in tmux.'
+    exit 1
+fi
+
 # TODO: check if nerdfonds are installed
 
 # test if p4c/bin in path
 
 # nvim 7.2
+# nvim --version
 # tmux 2.2
+# tmux -V
 # zsh ??
 
 echo "About to run 'nvim :checkhealth'. Press <enter> to continue.. "; read -r
