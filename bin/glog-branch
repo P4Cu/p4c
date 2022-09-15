@@ -2,12 +2,29 @@
 """
 Script that returns merge base of branch, tracking branch, and main.
 Ideal input to git log --graph
+
+Custom head might be set using: git config --worktree worktree.head <name>
+To enable worktree config use: git config extensions.worktreeConfig true
 """
 
 from subprocess import check_output, check_call, CalledProcessError, DEVNULL
 import sys
 
 for_branch = sys.argv[1] if len(sys.argv) > 1 else "HEAD"
+
+def get_config_defined_head():
+    try:
+        return check_output([
+                'git',
+                'config',
+                '--get',
+                'worktree.head',
+            ],
+            universal_newlines=True,
+            stderr=DEVNULL,
+        ).strip()
+    except CalledProcessError:
+        return None
 
 def get_rev(branch_name):
     try:
@@ -37,6 +54,8 @@ def merge_base(*refs):
 current_name = get_rev(for_branch)
 assert current_name, "Branch not existing"
 upstream_name = get_rev(for_branch+'@{upstream}')
-main_branch = get_rev('origin/HEAD')
+main_branch = get_config_defined_head()
+if main_branch is None:
+    main_branch = get_rev('origin/HEAD')
 base = merge_base(current_name, upstream_name, main_branch)
 print(*filter(None, [current_name, upstream_name]), f"^{base}~")
