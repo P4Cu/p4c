@@ -11,6 +11,7 @@
 
 * git-gone (rust) - delete merged pull-request 'aka leftover branches
 * git-brunch (haskell)
+* pip install git-get-merge eg. `git get-merge <sha> <to_which_branch>`
 
 # CMD
 
