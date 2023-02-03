@@ -7,10 +7,16 @@ Custom head might be set using: git config --worktree worktree.head <name>
 To enable worktree config use: git config extensions.worktreeConfig true
 """
 
+# TODO: Is it same as: g lgg @ @{upstream} "^$(git merge-base @ @{upstream})^@"
+
 from subprocess import check_output, check_call, CalledProcessError, DEVNULL
 import sys
+import argparse
 
-for_branch = sys.argv[1] if len(sys.argv) > 1 else "HEAD"
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", "--debug", action="store_true")
+parser.add_argument("for_branch", nargs='?', default="HEAD")
+ARGS = parser.parse_args()
 
 def get_config_defined_head():
     try:
@@ -51,11 +57,35 @@ def merge_base(*refs):
             ], universal_newlines=True
         ).strip()
 
-current_name = get_rev(for_branch)
+def ancestors(commit):
+    """
+    Gets list of ancestors list of commit.
+    """
+    # does not return correctly so beter to do with some other tricks
+    # return check_output([ 'git', 'rev-list', '--ancestry-path', f"{commit}^..{commit}" ], universal_newlines=True).strip().splitlines()
+    return check_output([
+                'git',
+                'rev-parse',
+                f"{commit}^@"
+            ], universal_newlines=True
+        ).strip().splitlines()
+
+current_name = get_rev(ARGS.for_branch)
 assert current_name, "Branch not existing"
-upstream_name = get_rev(for_branch+'@{upstream}')
+if ARGS.debug:
+    print(f"current: {current_name}")
+upstream_name = get_rev(ARGS.for_branch+'@{upstream}')
+if ARGS.debug:
+    print(f"upstraem: {upstream_name}")
 main_branch = get_config_defined_head()
 if main_branch is None:
     main_branch = get_rev('origin/HEAD')
+if ARGS.debug:
+    print(f"main branch: {main_branch}")
 base = merge_base(current_name, upstream_name, main_branch)
-print(*filter(None, [current_name, upstream_name]), f"^{base}~")
+if ARGS.debug:
+    print(f"base: {base}")
+base_ancestors = ancestors(base)
+if ARGS.debug:
+    print(f"base ancestors: {base_ancestors}")
+print(*filter(None, [current_name, upstream_name]), " ".join([f"^{ancestor}" for ancestor in base_ancestors]))
