@@ -15,6 +15,7 @@
 
 # CMD
 
+* wezterm - seems better than alacritty
 * ranger
 * fd (cargo install fd-find) - find alternative
 * lsd

@@ -133,3 +133,5 @@ build_custom_prompt() {
 PROMPT='%{%f%b%k%}$(build_custom_prompt) '
 
 unalias glog
+unalias gbr
+alias gbr=gbranch.py

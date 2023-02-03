@@ -1,5 +1,8 @@
 " vim: foldmethod=marker
 
+" netrw is just annoyance - disable it by saying it's already loaded
+" let loaded_netrwPlugin = 1
+
 let mapleader = "\<space>"
 let g:loaded_python_provider = 0
 let g:ale_completion_enabled = 1
@@ -304,3 +307,5 @@ lua << EOF
 EOF
 
 let g:vim_markdown_folding_style_pythonic = 1
+
+let g:netrw_fastbrowse=0

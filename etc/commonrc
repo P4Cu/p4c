@@ -52,4 +52,6 @@ export LESSOPEN="| src-hilite-lesspipe.sh %s" ; export LESS=' -R '
 command -v thefuck &> /dev/null && eval $(thefuck --alias) || true
 
 alias glog1='glog $(glog-branch)'
+alias glog2='glog $(glog-branch) $(git config worktree.head)'
 alias ranger="source $(which ranger)"
+alias gbr='gbranch.py'
