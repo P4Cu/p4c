@@ -55,3 +55,5 @@ alias glog1='glog $(glog-branch)'
 alias glog2='glog $(glog-branch) $(git config worktree.head)'
 alias ranger="source $(which ranger)"
 alias gbr='gbranch.py'
+
+alias skf='sk -c "rg --color=always --line-number \"{}\"" --ansi --delimiter=":" --nth="3.." --preview "bat {1} --color=always --line-range {2}:+100"'
