@@ -27,7 +27,7 @@
     amend = commit --amend
     br = branch
     a = add
-    dirdiff = difftool --dir-diff
+    dirdiff = difftool --gui --dir-diff # --no-symlinks
     # hide local changes via skip-worktree
     hide = update-index --skip-worktree
     hide-stop = update-index --no-skip-worktree

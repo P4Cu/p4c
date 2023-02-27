@@ -14,6 +14,8 @@ if [[ -f "${HOME}/.custom_zshrc" ]]; then
     source "${HOME}/.custom_zshrc"
 fi
 
+command -v zoxide &>/dev/null && eval "$(zoxide init zsh)" || true
+
 # --------------------------------------------------------------------------------------------------
 # ANTIGEN
 source ${P4C}/opt/antigen/antigen.zsh
@@ -43,6 +45,11 @@ antigen theme agnoster
 # Tell antigen that you're done
 antigen apply
 # --------------------------------------------------------------------------------------------------
+
+# remove spiteful git bindings
+unalias glog
+unalias gbr
+unalias gloga
 
 # 10ms for key sequences (default 40)
 KEYTIMEOUT=1
@@ -135,7 +142,5 @@ build_custom_prompt() {
 
 PROMPT='%{%f%b%k%}$(build_custom_prompt) '
 
-unalias glog
-unalias gbr
 alias gbr=gbranch.py
 alias gfp="git fetch --prune"
