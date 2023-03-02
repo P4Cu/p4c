@@ -8,6 +8,8 @@ autoload -Uz bashcompinit && bashcompinit
 # source common part
 source ${P4C}/etc/commonrc
 
+eval "$(zoxide init zsh)"
+
 if [[ -f "${HOME}/.custom_zshrc" ]]; then
     source "${HOME}/.custom_zshrc"
 fi

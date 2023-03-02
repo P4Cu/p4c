@@ -7,7 +7,10 @@ let mapleader = "\<space>"
 let g:loaded_python_provider = 0
 let g:ale_completion_enabled = 1
 " TODO: report a bug that default linters do not merge as specified by doc
-let g:ale_linters = { 'python': ['pylsp', 'flake8', 'mypy', 'pylint', 'pyright'] }
+let g:ale_linters = {
+\ 'python': ['pylsp', 'flake8', 'mypy', 'pylint', 'pyright'],
+\ 'rust': ['analyzer'],
+\ }
 let g:polyglot_disabled = ['markdown'] " due to https://github.com/sheerun/vim-polyglot/issues/478
 
 " PLUGINS #######################################################################################{{{
