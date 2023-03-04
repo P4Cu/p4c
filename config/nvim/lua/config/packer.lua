@@ -57,9 +57,47 @@ return require('packer').startup(function(use)
 -- Plug 'kana/vim-operator-user' " TODO: most probably not needed
 -- " }}}
 
+
+  use("neovim/nvim-lspconfig")
+  -- Visualize lsp progress
+  use({
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup()
+    end
+  })
+  -- Autocompletion framework
+  use("hrsh7th/nvim-cmp")
+  use({
+    -- cmp LSP completion
+    "hrsh7th/cmp-nvim-lsp",
+    -- cmp Snippet completion
+    "hrsh7th/cmp-vsnip",
+    -- cmp Path completion
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-buffer",
+    after = { "hrsh7th/nvim-cmp" },
+    requires = { "hrsh7th/nvim-cmp" },
+  })
+  -- See hrsh7th other plugins for more great completion sources!
+  -- Snippet engine
+  use('hrsh7th/vim-vsnip')
+  -- Adds extra functionality over rust analyzer
+  use("simrat39/rust-tools.nvim")
+
+  -- Optional
+  use("nvim-lua/popup.nvim")
+  use("nvim-lua/plenary.nvim")
+  use("nvim-telescope/telescope.nvim") -- move from vim-clap?
+  -- use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- maybe not needed?
+  use('nvim-telescope/telescope-ui-select.nvim')
+  -- TODO: https://github.com/nvim-telescope/telescope-fzy-native.nvim
+
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
     require('packer').sync()
   end
 end)
+

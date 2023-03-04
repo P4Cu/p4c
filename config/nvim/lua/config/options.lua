@@ -39,3 +39,4 @@ vim.opt.termguicolors = true
 vim.opt.showmode = false
 vim.opt.colorcolumn = '101'
 vim.opt.completeopt = 'menu,menuone,preview,noselect,noinsert'
+vim.opt.shortmess = vim.opt.shortmess + "c" -- Avoid showing extra messages when using completion
