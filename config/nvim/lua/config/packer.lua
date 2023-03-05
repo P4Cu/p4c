@@ -21,7 +21,6 @@ return require('packer').startup({ function(use)
   use 'tpope/vim-fugitive' -- the ultimate git helper
   use 'tpope/vim-commentary' -- comment/uncomment lines with gcc or gc in visual mode
   use 'vim-airline/vim-airline' -- status line
-  use {'rhysd/vim-clang-format', ft = {'c', 'cpp'} }
   use 'tpope/vim-unimpaired'
   use 'ryanoasis/vim-devicons'
   use 'dyng/ctrlsf.vim'
@@ -45,15 +44,7 @@ return require('packer').startup({ function(use)
   use 'sheerun/vim-polyglot' -- a lot of filetypes
   use 'plasticboy/vim-markdown'
 
--- Utilitaries {{{
-  use 'vim-scripts/CharTab' -- <leader>ct  character tab # TODO: lazy load
-  use 'mechatroner/rainbow_csv' -- TODO: lazy load
-  use 'dhruvasagar/vim-table-mode' -- TODO: lazy load
   use 'folke/which-key.nvim' -- awesome plugin to show available commands
--- }}}
--- " Considered for deletion {{{
--- Plug 'kana/vim-operator-user' " TODO: most probably not needed
--- " }}}
 
 
   use {
