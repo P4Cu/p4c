@@ -1,5 +1,3 @@
-local opts = { noremap = true, silent = true }
-
 -- " to have nice command search
 vim.keymap.set('c', '<c-p>', '<up>')
 vim.keymap.set('c', '<c-n>', '<down>')
@@ -11,7 +9,6 @@ vim.keymap.set('',  '<F13>', '<cmd>Telescope resume<CR>')
 vim.keymap.set('',  '<F2>',  '<cmd>Telescope buffers<CR>')
 vim.keymap.set('',  '<F3>',  '<cmd>Telescope tags<CR>')
 vim.keymap.set('',  '<F4>',  '<cmd>A<CR>')
-vim.keymap.set('',  '<F8>',  '<cmd>TagbarToggle<CR>')
 
 vim.keymap.set('n',  '[g',  '<cmd>echo "use [c"<CR>')
 vim.keymap.set('n',  ']g',  '<cmd>echo "use ]c"<CR>')
@@ -76,8 +73,4 @@ vim.keymap.set('n', '<leader>fc', '<cmd>Telescope commands<CR>')
 -- vim.keymap.set('n',  <leader>fc <cmd>Bdelete<CR>
 vim.keymap.set('n', '<leader>hve', '<cmd>edit $MYVIMRC<CR>')
 vim.keymap.set('n', '<leader>hvr', '<cmd>source $MYVIMRC<CR>')
-
-vim.keymap.set('i',  '<C-Space>',      '<Plug>(ale_complete)')
-vim.keymap.set('n',  '<F20>', '<Plug>(ale_previous)')
-vim.keymap.set('n',  '<F8>',  '<Plug>(ale_next)')
 

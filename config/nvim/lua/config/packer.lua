@@ -42,7 +42,6 @@ return require('packer').startup({ function(use)
   use 'dimasg/vim-mark'
   use 'wsdjeg/vim-fetch' -- Open some/file:line:column
   use 'mhinz/vim-startify'
-  use 'dense-analysis/ale'
   use 'sheerun/vim-polyglot' -- a lot of filetypes
   use 'plasticboy/vim-markdown'
 

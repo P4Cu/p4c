@@ -24,8 +24,8 @@ local function on_attach(_, buffer)
   })
 
   -- Goto previous/next diagnostic warning/error
-  vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, keymap_opts)
-  vim.keymap.set("n", "g]", vim.diagnostic.goto_next, keymap_opts)
+  vim.keymap.set("n", "<F20>", vim.diagnostic.goto_prev, keymap_opts)
+  vim.keymap.set("n", "<F8>", vim.diagnostic.goto_next, keymap_opts)
 end
 
 -- use mason to get external tools
