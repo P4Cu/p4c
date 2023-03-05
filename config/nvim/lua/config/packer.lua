@@ -22,7 +22,6 @@ return require('packer').startup(function(use)
   use {'rhysd/vim-clang-format', ft = {'c', 'cpp'} }
   use 'tpope/vim-unimpaired'
   use 'ryanoasis/vim-devicons'
-  use {'vim-scripts/a.vim', ft = {'c', 'cpp'} } -- TODO: cannot as we're unmapping a few things
   use 'dyng/ctrlsf.vim'
   use 'tpope/vim-abolish' -- " TODO: add it to <leader> so it's easier to find
   use 'tpope/vim-repeat' -- " this is required by easyclip  # TODO: do we need it? most probably yes
@@ -42,7 +41,6 @@ return require('packer').startup(function(use)
   use 'dimasg/vim-mark'
   use 'wsdjeg/vim-fetch' -- Open some/file:line:column
   use 'mhinz/vim-startify'
-  use { 'liuchengxu/vim-clap', run = ':Clap install-binary!' }
   use 'dense-analysis/ale'
   use 'sheerun/vim-polyglot' -- a lot of filetypes
   use 'plasticboy/vim-markdown'
@@ -88,11 +86,12 @@ return require('packer').startup(function(use)
   -- Optional
   use("nvim-lua/popup.nvim")
   use("nvim-lua/plenary.nvim")
-  use("nvim-telescope/telescope.nvim") -- move from vim-clap?
+  use("nvim-telescope/telescope.nvim")
   -- use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- maybe not needed?
   use('nvim-telescope/telescope-ui-select.nvim')
   -- TODO: https://github.com/nvim-telescope/telescope-fzy-native.nvim
 
+  use "williamboman/mason.nvim" -- builds
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

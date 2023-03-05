@@ -6,23 +6,10 @@
 " This function toggles diff against HEAD
 function! P4C_GitGutterDiffAgainst(revision)
     let g:gitgutter_diff_base = a:revision
-    echom 'P4C_GitGutterDiffHeadToggle diff against ' + a:revision
+    echom 'P4C_GitGutterDiffAgains diff against ' + a:revision
     execute 'silent GitGutter'
 endfunction
 command -nargs=1 P4CGitGutterAgainst silent call P4C_GitGutterDiffAgainst("<args>")
-" ##################################################################################################
-
-" ##################################################################################################
-" vim-ariline
-" hi StatusLine 
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline_powerline_fonts=1 " vim-devicons
-let g:airline#extensions#tmuxline#snapshot_file = "~/.tmux/powerline.conf"
 " ##################################################################################################
 
 
@@ -34,68 +21,12 @@ if filereadable(glob("~/.vimrc_custom"))
 endif
 " }}} ##############################################################################################
 
-" Vim session
-let g:session_autoload = 'no'
-let g:session_autosave = 'yes'
-let g:session_command_aliases = 1
 
 
-" " better key bindings for UltiSnipsExpandTrigger
-" let g:UltiSnipsExpandTrigger = "<tab>"
-" let g:UltiSnipsJumpForwardTrigger = "<tab>"
-" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-" let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
-
-
-" always use buffer delete map
-cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR>
-
-let g:PyFlakeCheckers = 'pep8'
 let g:autoswap_detect_tmux = 1
-
-" a.vim settings
-let g:alternateNoDefaultAlternate = 1
-
-" thats the default
-let g:alternateSearchPath = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc'
-let g:alternateSearchPath .= ',sfr:../../include,sfr:../../inc'
-let g:alternateSearchPath .= ',sfr:../../source,sfr:../../src'
-let g:alternateSearchPath .= ',reg:/include/src/g/'
-let g:alternateSearchPath .= ',reg:/src/include/g/'
-"            EXAMPLE: 'reg:/inc/src/g/' will replace every instance 
-"            of 'inc' with 'src' in the source file path. It is possible
-"            to use match variables so you could do something like:
-"            'reg:|src/\([^/]*\)|inc/\1||' (see 'help :substitute', 
-"            'help pattern' and 'help sub-replace-special' for more details
-" https://superuser.com/questions/313064/switching-between-src-and-include-files-in-vim/313113#313113
-" let g:alternateSearchPath = 'reg:#\<src\>$#include#,reg:#\<include\>$#src#'
-
-let g:gitgutter_terminal_reports_focus = 0 " or autocmd BufReadPost * :GitGutterAll
-
-
-let g:clap_layout = { 'relative': 'editor' }
-
-
-let g:startify_bookmarks = [ '~/.zshrc' ]
-let g:startify_lists = [
-      \ { 'type': 'sessions',  'header': ['   Sessions']       },
-      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-      \ { 'type': 'files',     'header': ['   MRU']            },
-      \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-      \ { 'type': 'commands',  'header': ['   Commands']       },
-      \ ]
-
-let g:startify_session_persistence=1
 
 
 autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
-
-" https://github.com/nanotee/nvim-lua-guide
-lua << EOF
-  require("which-key").setup {
-  }
-EOF
 
 let g:vim_markdown_folding_style_pythonic = 1
 

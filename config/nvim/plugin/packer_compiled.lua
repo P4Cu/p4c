@@ -199,11 +199,6 @@ _G.packer_plugins = {
     path = "/home/p4c/.local/share/nvim/site/pack/packer/opt/vim-clang-format",
     url = "https://github.com/rhysd/vim-clang-format"
   },
-  ["vim-clap"] = {
-    loaded = true,
-    path = "/home/p4c/.local/share/nvim/site/pack/packer/start/vim-clap",
-    url = "https://github.com/liuchengxu/vim-clap"
-  },
   ["vim-commentary"] = {
     loaded = true,
     path = "/home/p4c/.local/share/nvim/site/pack/packer/start/vim-commentary",

@@ -43,7 +43,7 @@ def get_matching_config(path):
 
 def get_clangd_path_param():
     args = [arg.startswith(PARAM_MATCH) for arg in sys.argv]
-    assert sum(args) == 1
+    assert sum(args) == 1, f"Args: {args}"
     index = args.index(True)
     arg = sys.argv[index]
 

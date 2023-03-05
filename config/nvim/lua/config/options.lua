@@ -40,3 +40,6 @@ vim.opt.showmode = false
 vim.opt.colorcolumn = '101'
 vim.opt.completeopt = 'menu,menuone,preview,noselect,noinsert'
 vim.opt.shortmess = vim.opt.shortmess + "c" -- Avoid showing extra messages when using completion
+-- have a fixed column for the diagnostics to appear in
+-- this removes the jitter when warnings/errors flow in
+vim.wo.signcolumn = "yes"
