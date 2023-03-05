@@ -11,7 +11,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup(function(use)
+return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
   use 'lifepillar/vim-gruvbox8'
@@ -56,7 +56,10 @@ return require('packer').startup(function(use)
 -- " }}}
 
 
-  use("neovim/nvim-lspconfig")
+  use {
+    "neovim/nvim-lspconfig",
+     -- config = require("config.lsp")
+  }
   -- Visualize lsp progress
   use({
     "j-hui/fidget.nvim",
@@ -84,9 +87,19 @@ return require('packer').startup(function(use)
   use("simrat39/rust-tools.nvim")
 
   -- Optional
-  use("nvim-lua/popup.nvim")
+  use("nvim-lua/popup.nvim") -- TODO: is it needed ? telescope-ui-select is same?
   use("nvim-lua/plenary.nvim")
-  use("nvim-telescope/telescope.nvim")
+
+  use {
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = "nvim-lua/plenary.nvim",
+  }
+
+
+  use {
+    "nvim-telescope/telescope.nvim",
+    requires = "nvim-treesitter/nvim-treesitter",
+  }
   -- use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- maybe not needed?
   use('nvim-telescope/telescope-ui-select.nvim')
   -- TODO: https://github.com/nvim-telescope/telescope-fzy-native.nvim
@@ -98,5 +111,18 @@ return require('packer').startup(function(use)
   if packer_bootstrap then
     require('packer').sync()
   end
-end)
+end,
+
+  config = {
+    compile_path = require("packer.util").join_paths(vim.fn.stdpath("config"), "plugin", "50-compiled.lua"),
+    profile = {
+      enable = true,
+    },
+    display = {
+      open_fn = function()
+        return require("packer.util").float({ border = "none" })
+      end,
+    },
+  },
+})
 

@@ -1,6 +1,12 @@
 -- LSP status can be checked by LspInfo / LspLog commands
 
+-- TODO: on attach got broken
+
 local function on_attach(client, buffer)
+    if client.config.flags then
+      client.config.flags.allow_incremental_sync = true
+    end
+
     local keymap_opts = { buffer = buffer }
     -- Code navigation and shortcuts
     vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, keymap_opts)
@@ -42,7 +48,7 @@ require'lspconfig'.docker_compose_language_service.setup{ server = { on_attach =
 require'lspconfig'.lua_ls.setup {
   settings = {
     Lua = {
-      server = { on_attach = on_attach },
+      -- server = { on_attach = on_attach },
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
@@ -83,3 +89,47 @@ require("rust-tools").setup {
     },
   },
 }
+
+
+-- local null_ls = require("null-ls")
+-- local formatting = null_ls.builtins.formatting
+-- local diagnostics = null_ls.builtins.diagnostics
+-- null_ls.setup({
+--   on_attach = on_attach({ format = true }),
+--   sources = {
+--     -- Diagnostics
+--     diagnostics.ansiblelint,
+--     diagnostics.curlylint,
+--     diagnostics.eslint_d,
+--     diagnostics.flake8,
+--     diagnostics.hadolint,
+--     diagnostics.revive,
+-- 
+--     -- Code Actions
+-- 
+--     -- Formatting
+--     formatting.black,
+--     formatting.csharpier,
+--     formatting.fixjson,
+--     formatting.golines,
+--     formatting.isort,
+--     formatting.prettierd.with({
+--       filetypes = {
+--         "css",
+--         "markdown",
+--         "javascript",
+--         "javascriptreact",
+--         "typescript",
+--         "typescriptreact",
+--         "yaml",
+--       },
+--     }),
+--     formatting.rustfmt,
+--     formatting.shfmt,
+--     formatting.stylua,
+--     formatting.terraform_fmt,
+--     formatting.trim_newlines,
+--     formatting.trim_whitespace,
+--     formatting.xmllint,
+--   },
+-- })

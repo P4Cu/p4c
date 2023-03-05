@@ -5,6 +5,18 @@
 -- https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
 --
 -- https://github.com/t-troebst/config.nvim
+--
+-- https://github.com/nvm-sh/nvm - node version manager
+--  nvm install stable && nvm use stable
+--  npm install tree-sitter
+
+local function check_nvim_version()
+  local version = vim.version()
+  if version.minor < 8 then error("Use at least nvim 8.3") end
+  if version.patch < 3 then error("Use at least nvim 8.3") end
+end
+check_nvim_version()
+
 
 
 vim.g.mapleader = " "
@@ -34,3 +46,11 @@ vim.cmd([[ colorscheme gruvbox8 ]])
 vim.cmd('source ~/.config/nvim/vimrc')
 vim.cmd([[ cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR> ]]) -- always use buffer delete map
 
+-- auto reload configs
+local packerSyncGrp = vim.api.nvim_create_augroup("PackerSyncGrp", {})
+vim.api.nvim_clear_autocmds({ group = packerSyncGrp })
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = packerSyncGrp,
+  pattern = { "**/nvim/lua/config/*.lua", "**/nvim/plugin/*main.lua" },
+  command = "source <afile> | PackerCompile",
+})
