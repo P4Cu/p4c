@@ -41,10 +41,10 @@ require 'config.plugin.startify'
 require 'config.plugin.which-key'
 require 'config.plugin.nvim-cmp'
 
-vim.cmd([[ colorscheme gruvbox8 ]])
+vim.cmd [[ colorscheme gruvbox8 ]]
 
-vim.cmd('source ~/.config/nvim/vimrc')
-vim.cmd([[ cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR> ]]) -- always use buffer delete map
+vim.cmd [[ source ~/.config/nvim/vimrc ]]
+vim.cmd [[ cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR> ]] -- always use buffer delete map
 
 -- auto reload configs
 local packerSyncGrp = vim.api.nvim_create_augroup("PackerSyncGrp", {})

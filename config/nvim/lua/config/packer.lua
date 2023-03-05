@@ -11,6 +11,8 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+vim.g.neo_tree_remove_legacy_commands = 1
+
 return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
@@ -122,6 +124,16 @@ return require('packer').startup({ function(use)
     config = require('config.plugin.gitsigns')
   }
 
+  use {
+  "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    }
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
@@ -130,10 +142,6 @@ return require('packer').startup({ function(use)
 end,
 
   config = {
-    compile_path = require("packer.util").join_paths(vim.fn.stdpath("config"), "plugin", "50-compiled.lua"),
-    profile = {
-      enable = true,
-    },
     display = {
       open_fn = function()
         return require("packer.util").float({ border = "none" })
