@@ -1,12 +1,6 @@
 -- LSP status can be checked by LspInfo / LspLog commands
 
--- TODO: on attach got broken
-
 local function on_attach(client, buffer)
-    if client.config.flags then
-      client.config.flags.allow_incremental_sync = true
-    end
-
     local keymap_opts = { buffer = buffer }
     -- Code navigation and shortcuts
     vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, keymap_opts)
@@ -36,19 +30,19 @@ end
 
 -- use mason to get external tools
 require("mason").setup()
-require('lspconfig').clangd.setup{ server = { on_attach = on_attach } }
-require("lspconfig").pyright.setup{ server = { on_attach = on_attach } } -- pip install pyright
-require'lspconfig'.bashls.setup{ server = { on_attach = on_attach } } -- npm i -g bash-language-server
-require'lspconfig'.cmake.setup{ server = { on_attach = on_attach } }
-require'lspconfig'.dockerls.setup{ server = { on_attach = on_attach } } -- npm install -g dockerfile-language-server-nodejs
-require'lspconfig'.docker_compose_language_service.setup{ server = { on_attach = on_attach } } -- npm install @microsoft/compose-language-service
+require('lspconfig').clangd.setup{ on_attach = on_attach }
+require("lspconfig").pyright.setup{ on_attach = on_attach } -- pip install pyright
+require'lspconfig'.bashls.setup{ on_attach = on_attach } -- npm i -g bash-language-server
+require'lspconfig'.cmake.setup{ on_attach = on_attach }
+require'lspconfig'.dockerls.setup{ on_attach = on_attach } -- npm install -g dockerfile-language-server-nodejs
+require'lspconfig'.docker_compose_language_service.setup{on_attach = on_attach } -- npm install @microsoft/compose-language-service
 
 -- https://github.com/LuaLS/lua-language-server/wiki/Getting-Started#command-line
 -- configured for neovim completions
 require'lspconfig'.lua_ls.setup {
+  on_attach = on_attach,
   settings = {
     Lua = {
-      -- server = { on_attach = on_attach },
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
@@ -75,8 +69,7 @@ require("rust-tools").setup {
   -- these override the defaults set by rust-tools.nvim
   -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
   server = {
-    -- on_attach is a callback called when the language server attachs to the buffer
-    on_attach = on_attach,
+    on_attach = on_attach, -- this is exception
     settings = { -- ????
       -- to enable rust-analyzer settings visit:
       -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
