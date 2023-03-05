@@ -30,7 +30,6 @@ return require('packer').startup({ function(use)
   use 'tpope/vim-dispatch'
   use 'tmux-plugins/vim-tmux-focus-events'
   use 'vim-scripts/autoswap.vim'
-  use 'airblade/vim-gitgutter'
   use 'moll/vim-bbye' -- :Db
   use 'kana/vim-textobj-user'
   use 'kana/vim-textobj-line'
@@ -105,6 +104,23 @@ return require('packer').startup({ function(use)
   -- TODO: https://github.com/nvim-telescope/telescope-fzy-native.nvim
 
   use "williamboman/mason.nvim" -- builds
+
+  use {
+    "folke/trouble.nvim",
+    requires = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = require('config.plugin.gitsigns')
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

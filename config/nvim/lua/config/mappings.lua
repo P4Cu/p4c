@@ -16,8 +16,6 @@ vim.keymap.set('',  '<F8>',  '<cmd>TagbarToggle<CR>')
 vim.keymap.set('n',  '[g',  '<cmd>echo "use [c"<CR>')
 vim.keymap.set('n',  ']g',  '<cmd>echo "use ]c"<CR>')
 vim.keymap.set('n',  'cog', '<cmd>GitGutterLineHighlightsToggle<CR>')
--- vim.keymap.set('n',  [g <cmd>GitGutterPrevHunk<CR>
--- vim.keymap.set('n',  ]g <cmd>GitGutterNextHunk<CR>
 
 
 vim.keymap.set('n', '<leader>1', '<Plug>AirlineSelectTab1')
