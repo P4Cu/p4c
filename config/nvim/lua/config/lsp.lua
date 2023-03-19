@@ -93,7 +93,6 @@ return function()
       diagnostics.shellcheck,
       diagnostics.pylint,
       diagnostics.flake8,
-      diagnostics.luacheck,
       formatting.black,
       formatting.rustfmt,
     },

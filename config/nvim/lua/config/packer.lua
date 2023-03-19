@@ -160,6 +160,7 @@ return require('packer').startup({ function(use)
         -- no space after command is important as otherwise it fails
         vim.cmd [[command! Session SessionManager load_session]]
         vim.cmd [[command! SessionDelete SessionManager delete_session]]
+        vim.cmd [[command! SessionSaveCurrent SessionManager save_current_session]]
       end
   }
 
