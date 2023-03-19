@@ -6,3 +6,4 @@ config/vim/.netrwhist
 bin/clangd.toml
 etc/zshrc.zwc
 config/nvim/lua/.luarc.json
+config/vim/spell

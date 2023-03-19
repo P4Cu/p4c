@@ -11,16 +11,20 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-vim.g.neo_tree_remove_legacy_commands = 1
-
 return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
-  use 'lifepillar/vim-gruvbox8'
+  -- use 'lifepillar/vim-gruvbox8'
+  use {
+    "ellisonleao/gruvbox.nvim",
+    config = function()
+      vim.cmd [[ colorscheme gruvbox ]]
+      vim.o.background = "dark"
+    end
+  }
   use 'benmills/vimux' -- running command in tmux
   use 'tpope/vim-fugitive' -- the ultimate git helper
   use 'tpope/vim-commentary' -- comment/uncomment lines with gcc or gc in visual mode
-  use 'vim-airline/vim-airline' -- status line
   use 'tpope/vim-unimpaired'
   use 'ryanoasis/vim-devicons'
   use 'dyng/ctrlsf.vim'
@@ -40,7 +44,6 @@ return require('packer').startup({ function(use)
   use 'embear/vim-foldsearch'
   use 'dimasg/vim-mark'
   use 'wsdjeg/vim-fetch' -- Open some/file:line:column
-  use 'mhinz/vim-startify'
   use 'sheerun/vim-polyglot' -- a lot of filetypes
   use 'plasticboy/vim-markdown'
 
@@ -48,8 +51,24 @@ return require('packer').startup({ function(use)
 
 
   use {
-    "neovim/nvim-lspconfig",
-     -- config = require("config.lsp")
+    {
+      "neovim/nvim-lspconfig",
+      config = require("config.lsp")(), -- NOTE: has to be called
+    },
+    {
+      "jose-elias-alvarez/null-ls.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "neovim/nvim-lspconfig",
+      }
+    },
+    {
+      "simrat39/rust-tools.nvim",
+      requires = {
+        "neovim/nvim-lspconfig",
+      }
+    },
+    -- TODO: https://github.com/p00f/clangd_extensions.nvim
   }
   -- Visualize lsp progress
   use({
@@ -74,39 +93,37 @@ return require('packer').startup({ function(use)
   -- See hrsh7th other plugins for more great completion sources!
   -- Snippet engine
   use('hrsh7th/vim-vsnip')
-  -- Adds extra functionality over rust analyzer
-  use("simrat39/rust-tools.nvim")
 
   -- Optional
   use("nvim-lua/popup.nvim") -- TODO: is it needed ? telescope-ui-select is same?
   use("nvim-lua/plenary.nvim")
 
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    requires = "nvim-lua/plenary.nvim",
-  }
-
 
   use {
-    "nvim-telescope/telescope.nvim",
-    requires = "nvim-treesitter/nvim-treesitter",
+    {
+      "nvim-telescope/telescope.nvim",
+      requires = "nvim-treesitter/nvim-treesitter",
+      config = require('config.plugin.telescope'),
+    },
+    'nvim-telescope/telescope-ui-select.nvim', -- integrate telescope as selector
+    'JoseConseco/telescope_sessions_picker.nvim',
   }
-  -- use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- maybe not needed?
-  use('nvim-telescope/telescope-ui-select.nvim')
-  -- TODO: https://github.com/nvim-telescope/telescope-fzy-native.nvim
 
   use "williamboman/mason.nvim" -- builds
 
   use {
     "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
+    requires = {
+      "folke/todo-comments.nvim", -- non mandatory
+      "nvim-tree/nvim-web-devicons",
+      "nvim-lua/plenary.nvim", -- required by todo-comments
+    },
     config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
+      require("trouble").setup {}
+      require("todo-comments").setup {}
+    end,
+    -- TODO: should be possible to use 'Todo.*' but somehow that does not work, bug?
+    cmd = { 'Trouble', 'TodoTrouble' }, -- lazy load
   }
 
   use {
@@ -121,7 +138,73 @@ return require('packer').startup({ function(use)
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
-    }
+    },
+    config = function()
+      vim.g.neo_tree_remove_legacy_commands = 1
+
+      require('neo-tree').setup {
+        filesystem = {
+          follow_current_file = true,
+        },
+      }
+    end,
+  }
+
+  use {
+    'Shatur/neovim-session-manager',
+      config = function ()
+        require'session_manager'.setup {
+          autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir,
+          autosave_only_in_session = true,
+        }
+        -- no space after command is important as otherwise it fails
+        vim.cmd [[command! Session SessionManager load_session]]
+        vim.cmd [[command! SessionDelete SessionManager delete_session]]
+      end
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function()
+      require'lualine'.setup {
+        options = {
+          theme = 'gruvbox',
+        },
+      }
+    end
+  }
+  use {
+    'nanozuki/tabby.nvim',
+    -- after = 'ellisonleao/gruvbox.nvim',
+    config = function()
+      require('tabby.tabline').use_preset('active_wins_at_tail', {
+        theme = {
+          fill = 'Visual',
+          tab = 'TabLineFill',
+          win = 'TabLineSel',
+          head = 'Visual',
+          tail = 'Visual',
+          current_tab = 'TabLineSel',
+        },
+        tab_name = {
+            -- name_fallback = function(tabid) return "" end
+        },
+        buf_name = {
+          mode = 'shorten'
+        },
+      })
+    end,
+  }
+
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require('indent_blankline').setup({
+        show_current_context = true,
+        space_char_blankline = " ",
+      })
+    end,
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
@@ -139,4 +222,3 @@ end,
     },
   },
 })
-

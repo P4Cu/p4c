@@ -3,8 +3,8 @@ vim.keymap.set('c', '<c-p>', '<up>')
 vim.keymap.set('c', '<c-n>', '<down>')
 vim.keymap.set('n', 'gb',    '<cmd>bnext<CR>')
 vim.keymap.set('n', 'gB',    '<cmd>bprevious<CR>')
-vim.keymap.set('',  '<C-_>', '<cmd>Commentary<CR>')
-vim.keymap.set('',  '<F1>',  '<cmd>Telescope<CR>')
+vim.keymap.set('',  '<C-_>', ":Commentary<CR>")
+vim.keymap.set('',  '<F1>',  '<cmd>Telescope builtin include_extensions=true<CR>')
 vim.keymap.set('',  '<F13>', '<cmd>Telescope resume<CR>')
 vim.keymap.set('',  '<F2>',  '<cmd>Telescope buffers<CR>')
 vim.keymap.set('',  '<F3>',  '<cmd>Telescope tags<CR>')
@@ -13,20 +13,6 @@ vim.keymap.set('',  '<F4>',  '<cmd>A<CR>')
 vim.keymap.set('n',  '[g',  '<cmd>echo "use [c"<CR>')
 vim.keymap.set('n',  ']g',  '<cmd>echo "use ]c"<CR>')
 vim.keymap.set('n',  'cog', '<cmd>GitGutterLineHighlightsToggle<CR>')
-
-
-vim.keymap.set('n', '<leader>1', '<Plug>AirlineSelectTab1')
-vim.keymap.set('n', '<leader>2', '<Plug>AirlineSelectTab2')
-vim.keymap.set('n', '<leader>3', '<Plug>AirlineSelectTab3')
-vim.keymap.set('n', '<leader>4', '<Plug>AirlineSelectTab4')
-vim.keymap.set('n', '<leader>5', '<Plug>AirlineSelectTab5')
-vim.keymap.set('n', '<leader>6', '<Plug>AirlineSelectTab6')
-vim.keymap.set('n', '<leader>7', '<Plug>AirlineSelectTab7')
-vim.keymap.set('n', '<leader>8', '<Plug>AirlineSelectTab8')
-vim.keymap.set('n', '<leader>9', '<Plug>AirlineSelectTab9')
-vim.keymap.set('n', '<leader>[', '<Plug>AirlineSelectPrevTab')
-vim.keymap.set('n', '<leader>]', '<Plug>AirlineSelectNextTab')
-
 
 
 -- " CtrlSF
@@ -72,5 +58,14 @@ vim.keymap.set('n', '<leader>fc', '<cmd>Telescope commands<CR>')
 
 -- vim.keymap.set('n',  <leader>fc <cmd>Bdelete<CR>
 vim.keymap.set('n', '<leader>hve', '<cmd>edit $MYVIMRC<CR>')
+-- TODO: sourcing vimrc does not work as files are already loaded with `require`
 vim.keymap.set('n', '<leader>hvr', '<cmd>source $MYVIMRC<CR>')
 
+-- tabs manipulation
+vim.api.nvim_set_keymap("n", "<leader>tn",  "<cmd>tab split<CR>", { desc = 'tab new' })
+vim.api.nvim_set_keymap("n", "<leader>tc",  "<cmd>tabclose<CR>",  { desc = 'tab close' })
+vim.api.nvim_set_keymap("n", "<leader>to",  "<cmd>tabonly<CR>",   { desc = 'tab only' })
+vim.api.nvim_set_keymap("n", "<leader>tmp", "<cmd>-tabmove<CR>",  { desc = 'move tab backwards' })
+vim.api.nvim_set_keymap("n", "<leader>tmn", "<cmd>+tabmove<CR>",  { desc = 'move tab forward' })
+
+vim.keymap.set('n', '\\', '<cmd>Neotree toggle<cr>', { desc = 'neotree toggle' })

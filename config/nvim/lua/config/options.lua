@@ -18,7 +18,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.list = true
-vim.opt.lcs = 'trail:·,tab:»· ' -- Whitespace
+vim.opt.listchars= 'trail:·,tab:»· ,nbsp:+' -- Whitespace
 vim.opt.numberwidth = 5 --  Numbering of lines
 vim.opt.relativenumber = false
 vim.opt.number = true -- use <cor> <con> to enable dispalying
@@ -34,7 +34,7 @@ vim.opt.diffopt = 'filler,closeoff,internal,algorithm:patience'
 vim.opt.clipboard = 'unnamedplus'
 -- " This will automatically read changed file. It will ask if we have unsaved changes.
 vim.opt.autoread = true
-vim.opt.sessionoptions = 'buffers,blank,curdir,folds,help,tabpages,winpos' -- what to save in sessions - startify
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"  -- what to save in sessions
 vim.opt.termguicolors = true
 vim.opt.showmode = false
 vim.opt.colorcolumn = '101'
