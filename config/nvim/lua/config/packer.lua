@@ -29,7 +29,7 @@ return require('packer').startup({ function(use)
   use 'ryanoasis/vim-devicons'
   use 'dyng/ctrlsf.vim'
   use 'tpope/vim-abolish' -- " TODO: add it to <leader> so it's easier to find
-  use 'tpope/vim-repeat' -- " this is required by easyclip  # TODO: do we need it? most probably yes
+  use 'tpope/vim-repeat' --  # TODO: do we need it? most probably yes
   use 'edkolev/tmuxline.vim'
   use 'christoomey/vim-tmux-navigator'
   use 'tpope/vim-dispatch'
@@ -207,6 +207,8 @@ return require('packer').startup({ function(use)
       })
     end,
   }
+
+  use "folke/neodev.nvim" -- superior support for neovim config files/plugins
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
