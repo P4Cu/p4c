@@ -7,7 +7,8 @@ vim.keymap.set('',  '<C-_>', ":Commentary<CR>")
 vim.keymap.set('',  '<F1>',  '<cmd>Telescope builtin include_extensions=true<CR>')
 vim.keymap.set('',  '<F13>', '<cmd>Telescope resume<CR>')
 vim.keymap.set('',  '<F2>',  '<cmd>Telescope buffers<CR>')
-vim.keymap.set('',  '<F3>',  '<cmd>Telescope tags<CR>')
+vim.keymap.set('',  '<F3>',  '<cmd>Telescope lsp_document_symbols<CR>')
+vim.keymap.set('',  '<F15>', '<cmd>Telescope lsp_workspace_symbols<CR>')
 vim.keymap.set('',  '<F4>',  '<cmd>A<CR>')
 
 vim.keymap.set('n',  '[g',  '<cmd>echo "use [c"<CR>')
@@ -55,6 +56,7 @@ vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 vim.keymap.set('n', '<leader>f/', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
 vim.keymap.set('n', '<leader>fc', '<cmd>Telescope commands<CR>')
+vim.keymap.set('n', '<leader>fm', '<cmd>Telescope keymaps<CR>')
 
 -- vim.keymap.set('n',  <leader>fc <cmd>Bdelete<CR>
 vim.keymap.set('n', '<leader>hve', '<cmd>edit $MYVIMRC<CR>')
