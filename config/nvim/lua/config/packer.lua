@@ -14,14 +14,14 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
-  -- use 'lifepillar/vim-gruvbox8'
   use {
-    "ellisonleao/gruvbox.nvim",
+    'luisiacc/gruvbox-baby',
     config = function()
-      vim.cmd [[ colorscheme gruvbox ]]
+      vim.cmd [[ colorscheme gruvbox-baby ]]
       vim.o.background = "dark"
     end
   }
+
   use 'benmills/vimux' -- running command in tmux
   use 'tpope/vim-fugitive' -- the ultimate git helper
   use 'tpope/vim-commentary' -- comment/uncomment lines with gcc or gc in visual mode
@@ -107,6 +107,28 @@ return require('packer').startup({ function(use)
     },
     'nvim-telescope/telescope-ui-select.nvim', -- integrate telescope as selector
     'JoseConseco/telescope_sessions_picker.nvim',
+  }
+
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    use "HiPhish/nvim-ts-rainbow2",
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        ensure_installed = { "c", "lua", "rust", "cpp" },
+        highlight = {
+          enable = true,
+        },
+        incremental_selection = { enable = true },
+        textobjects = { enable = true },
+        rainbow = {
+          enable = true,
+          disable = {},
+          query = 'rainbow-parens',
+          -- Highlight the entire buffer all at once
+          strategy = require 'ts-rainbow'.strategy.global,
+        }
+      }
+    end,
   }
 
   use "williamboman/mason.nvim" -- builds

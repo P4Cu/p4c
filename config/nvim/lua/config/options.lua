@@ -43,3 +43,7 @@ vim.opt.shortmess = vim.opt.shortmess + "c" -- Avoid showing extra messages when
 -- have a fixed column for the diagnostics to appear in
 -- this removes the jitter when warnings/errors flow in
 vim.wo.signcolumn = "yes"
+-- best way for having folding
+vim.opt.foldmethod='expr'
+vim.opt.foldexpr='nvim_treesitter#foldexpr()'
+vim.opt.foldlevelstart=99
