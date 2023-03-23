@@ -15,10 +15,9 @@ return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-    'luisiacc/gruvbox-baby',
+    'sainnhe/gruvbox-material',
     config = function()
-      vim.cmd [[ colorscheme gruvbox-baby ]]
-      vim.o.background = "dark"
+      vim.cmd [[ colorscheme gruvbox-material ]]
     end
   }
 
@@ -51,9 +50,9 @@ return require('packer').startup({ function(use)
 
 
   use {
+    { "williamboman/mason.nvim" },
     {
       "neovim/nvim-lspconfig",
-      config = require("config.lsp")(), -- NOTE: has to be called
     },
     {
       "jose-elias-alvarez/null-ls.nvim",
@@ -131,8 +130,6 @@ return require('packer').startup({ function(use)
     end,
   }
 
-  use "williamboman/mason.nvim" -- builds
-
   use {
     "folke/trouble.nvim",
     requires = {
@@ -192,7 +189,7 @@ return require('packer').startup({ function(use)
     config = function()
       require'lualine'.setup {
         options = {
-          theme = 'gruvbox',
+          theme = 'gruvbox-material',
         },
 
         tabline = {
@@ -261,6 +258,15 @@ return require('packer').startup({ function(use)
   }
 
   use "folke/neodev.nvim" -- superior support for neovim config files/plugins
+
+  use {
+    "RRethy/vim-illuminate",
+    config = function()
+      pcall(function()
+        require('illuminate').configure {}
+      end)
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
