@@ -15,10 +15,9 @@ return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-    'luisiacc/gruvbox-baby',
+    'sainnhe/gruvbox-material',
     config = function()
-      vim.cmd [[ colorscheme gruvbox-baby ]]
-      vim.o.background = "dark"
+      vim.cmd [[ colorscheme gruvbox-material ]]
     end
   }
 
@@ -190,7 +189,7 @@ return require('packer').startup({ function(use)
     config = function()
       require'lualine'.setup {
         options = {
-          theme = 'gruvbox',
+          theme = 'gruvbox-material',
         },
       }
     end
@@ -201,12 +200,12 @@ return require('packer').startup({ function(use)
     config = function()
       require('tabby.tabline').use_preset('active_wins_at_tail', {
         theme = {
-          fill = 'Visual',
-          tab = 'TabLineFill',
-          win = 'TabLineSel',
-          head = 'Visual',
-          tail = 'Visual',
-          current_tab = 'TabLineSel',
+          -- fill = 'Visual',
+          -- tab = 'TabLineFill',
+          -- win = 'TabLineSel',
+          -- head = 'Visual',
+          -- tail = 'Visual',
+          -- current_tab = 'TabLineSel',
         },
         tab_name = {
             -- name_fallback = function(tabid) return "" end
