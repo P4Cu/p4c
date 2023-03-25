@@ -230,6 +230,15 @@ return require('packer').startup({ function(use)
 
   use "folke/neodev.nvim" -- superior support for neovim config files/plugins
 
+  use {
+    "RRethy/vim-illuminate",
+    config = function()
+      pcall(function()
+        require('illuminate').configure {}
+      end)
+    end,
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
