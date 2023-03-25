@@ -51,9 +51,9 @@ return require('packer').startup({ function(use)
 
 
   use {
+    { "williamboman/mason.nvim" },
     {
       "neovim/nvim-lspconfig",
-      config = require("config.lsp")(), -- NOTE: has to be called
     },
     {
       "jose-elias-alvarez/null-ls.nvim",
@@ -130,8 +130,6 @@ return require('packer').startup({ function(use)
       }
     end,
   }
-
-  use "williamboman/mason.nvim" -- builds
 
   use {
     "folke/trouble.nvim",

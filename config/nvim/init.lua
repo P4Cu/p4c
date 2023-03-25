@@ -26,6 +26,7 @@ vim.g.mapleader = " "
 -- " let loaded_netrwPlugin = 1
 
 require 'config.packer'
+require 'config.lsp'
 require 'config.options'
 require 'config.mappings'
 require 'config.diagnostics'
