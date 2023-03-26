@@ -21,20 +21,21 @@ return require('packer').startup({
       "neanias/everforest-nvim",
       config = function()
         require("everforest").setup {
-          background = "hard",   -- medium is default
+          background = "medium", -- medium is default
         }
         vim.cmd [[colorscheme everforest]]
+        vim.cmd [[highlight lualine_a_tabs_inactive gui=bold guifg=#7A8478 guibg=#b7d38c]]
       end,
     })
 
-    use 'benmills/vimux'     -- running command in tmux
-    use 'tpope/vim-fugitive' -- the ultimate git helper
+    use 'benmills/vimux'       -- running command in tmux
+    use 'tpope/vim-fugitive'   -- the ultimate git helper
     use 'tpope/vim-commentary' -- comment/uncomment lines with gcc or gc in visual mode
     use 'tpope/vim-unimpaired'
     use 'ryanoasis/vim-devicons'
     use 'dyng/ctrlsf.vim'
-    use 'tpope/vim-abolish'  -- " TODO: add it to <leader> so it's easier to find
-    use 'tpope/vim-repeat'   --  # TODO: do we need it? most probably yes
+    use 'tpope/vim-abolish'    -- " TODO: add it to <leader> so it's easier to find
+    use 'tpope/vim-repeat'     --  # TODO: do we need it? most probably yes
     use 'edkolev/tmuxline.vim' -- TODO: generates powerline.conf for tmux from airline
     use 'christoomey/vim-tmux-navigator'
     use 'tpope/vim-dispatch'
@@ -48,7 +49,7 @@ return require('packer').startup({
     use 'dzeban/vim-log-syntax'
     use 'embear/vim-foldsearch'
     use 'dimasg/vim-mark'
-    use 'wsdjeg/vim-fetch'   -- Open some/file:line:column
+    use 'wsdjeg/vim-fetch'     -- Open some/file:line:column
     use 'sheerun/vim-polyglot' -- a lot of filetypes
     use 'plasticboy/vim-markdown'
 
@@ -121,50 +122,12 @@ return require('packer').startup({
     use {
       "nvim-treesitter/nvim-treesitter",
       use "HiPhish/nvim-ts-rainbow2",
-      config = function()
-        require 'nvim-treesitter.configs'.setup {
-          ensure_installed = { "c", "lua", "rust", "cpp" },
-          highlight = {
-            enable = true,
-          },
-          incremental_selection = { enable = true },
-          textobjects = { enable = true },
-          rainbow = {
-            enable = true,
-            disable = {},
-            query = 'rainbow-parens',
-            -- Highlight the entire buffer all at once
-            strategy = require 'ts-rainbow'.strategy.global,
-          }
-        }
-      end,
-
       use {
         "nvim-treesitter/nvim-treesitter-textobjects",
         after = "nvim-treesitter",
         requires = "nvim-treesitter/nvim-treesitter",
-        config = function()
-          require 'nvim-treesitter.configs'.setup {
-            textobjects = {
-              select = {
-                enable = true,
-                -- lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-                keymaps = {
-                  -- You can use the capture groups defined in textobjects.scm
-                  ["af"] = { query = "@function.outer", desc = "around function" },
-                  ["if"] = { query = "@function.inner", desc = "inside function" },
-                  ["ac"] = { query = "@class.outer", desc = "around class" },
-                  ["ic"] = { query = "@class.inner", desc = "inside class" },
-                  ["ab"] = { query = "@block.outer", desc = "around block" },
-                  ["ib"] = { query = "@block.inner", desc = "inside block" },
-                  ["ip"] = { query = "@parameter.inner", desc = "inside parameter" },
-                  ["ap"] = { query = "@parameter.outer", desc = "around parameter" },
-                },
-              },
-            },
-          }
-        end,
       },
+      config = require('config.plugin.treesitter'),
     }
 
     use {
@@ -172,7 +135,7 @@ return require('packer').startup({
       requires = {
         "folke/todo-comments.nvim", -- non mandatory
         "nvim-tree/nvim-web-devicons",
-        "nvim-lua/plenary.nvim",  -- required by todo-comments
+        "nvim-lua/plenary.nvim",    -- required by todo-comments
       },
       config = function()
         require("trouble").setup {}

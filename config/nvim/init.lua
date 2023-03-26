@@ -18,11 +18,7 @@ local function check_nvim_version()
 end
 check_nvim_version()
 
-
 vim.g.mapleader = " "
-
--- " netrw is just annoyance - disable it by saying it's already loaded
--- " let loaded_netrwPlugin = 1
 
 require 'config.packer'
 require 'config.lsp'
