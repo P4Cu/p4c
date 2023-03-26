@@ -1,4 +1,3 @@
-
 -- Inspecting lua can be done via:
 -- lua = require('rust-tools')
 --

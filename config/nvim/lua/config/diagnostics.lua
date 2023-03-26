@@ -1,7 +1,7 @@
 vim.diagnostic.config {
   virtual_text = false,
   -- signs = {
-    -- active = signs,
+  -- active = signs,
   -- },
   signs = true,
   underline = { severity = { min = vim.diagnostic.severity.ERROR } },

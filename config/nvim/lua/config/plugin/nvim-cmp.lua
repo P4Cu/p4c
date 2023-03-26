@@ -24,7 +24,6 @@ cmp.setup({
       select = true,
     }),
   },
-
   -- Installed sources
   sources = {
     { name = "nvim_lsp" },

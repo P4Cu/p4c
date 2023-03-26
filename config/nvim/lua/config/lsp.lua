@@ -1,7 +1,6 @@
 local navic = require("nvim-navic")
 
 local function on_attach(client, buffer)
-
   if client.server_capabilities.documentSymbolProvider then
     navic.attach(client, buffer)
   end
@@ -36,10 +35,10 @@ end
 -- use mason to get external tools
 require("mason").setup()
 require('lspconfig').clangd.setup { on_attach = on_attach }
-require('lspconfig').pyright.setup { on_attach = on_attach }                     -- pip install pyright
-require('lspconfig').bashls.setup { on_attach = on_attach }                       -- npm i -g bash-language-server
+require('lspconfig').pyright.setup { on_attach = on_attach }                         -- pip install pyright
+require('lspconfig').bashls.setup { on_attach = on_attach }                          -- npm i -g bash-language-server
 require('lspconfig').cmake.setup { on_attach = on_attach }
-require('lspconfig').dockerls.setup { on_attach = on_attach }                     -- npm install -g dockerfile-language-server-nodejs
+require('lspconfig').dockerls.setup { on_attach = on_attach }                        -- npm install -g dockerfile-language-server-nodejs
 require('lspconfig').docker_compose_language_service.setup { on_attach = on_attach } -- npm install @microsoft/compose-language-service
 
 -- configured for neovim completions
@@ -57,7 +56,7 @@ require("rust-tools").setup {
     settings = {
       -- to enable rust-analyzer settings visit:
       -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-          ["rust-analyzer"] = {
+      ["rust-analyzer"] = {
         -- enable clippy on save
         checkOnSave = {
           command = "clippy",
