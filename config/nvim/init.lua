@@ -36,7 +36,7 @@ require 'config.plugin.nvim-cmp'
 
 
 vim.cmd [[ source ~/.config/nvim/vimrc ]]
-vim.cmd [[ cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR> ]] -- always use buffer delete map
+vim.cmd [[cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR>]] -- always use buffer delete map
 
 -- auto reload configs
 local packerSyncGrp = vim.api.nvim_create_augroup("PackerSyncGrp", {})
