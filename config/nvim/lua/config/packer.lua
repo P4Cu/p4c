@@ -1,4 +1,3 @@
--- TODO: add https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 -- TODO: some navigation like: https://github.com/SmiteshP/nvim-navbuddy
 
 
@@ -139,6 +138,33 @@ return require('packer').startup({ function(use)
         }
       }
     end,
+
+    use {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after = "nvim-treesitter",
+        requires = "nvim-treesitter/nvim-treesitter",
+        config = function()
+          require'nvim-treesitter.configs'.setup {
+            textobjects = {
+              select = {
+                enable = true,
+                -- lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+                keymaps = {
+                  -- You can use the capture groups defined in textobjects.scm
+                  ["af"] = { query = "@function.outer", desc = "around function" },
+                  ["if"] = { query = "@function.inner", desc = "inside function" },
+                  ["ac"] = { query = "@class.outer", desc = "around class" },
+                  ["ic"] = { query = "@class.inner", desc = "inside class" },
+                  ["ab"] = { query = "@block.outer", desc = "around block" },
+                  ["ib"] = { query = "@block.inner", desc = "inside block" },
+                  ["ip"] = { query = "@parameter.inner", desc = "inside parameter" },
+                  ["ap"] = { query = "@parameter.outer", desc = "around parameter" },
+                },
+              },
+            },
+          }
+        end,
+      },
   }
 
   use {
