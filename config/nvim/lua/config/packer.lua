@@ -58,9 +58,7 @@ return require('packer').startup({
 
     use {
       { "williamboman/mason.nvim" },
-      {
-        "neovim/nvim-lspconfig",
-      },
+      { "neovim/nvim-lspconfig", },
       {
         "jose-elias-alvarez/null-ls.nvim",
         requires = {
@@ -70,9 +68,7 @@ return require('packer').startup({
       },
       {
         "simrat39/rust-tools.nvim",
-        requires = {
-          "neovim/nvim-lspconfig",
-        }
+        requires = { "neovim/nvim-lspconfig", }
       },
       use {
         "SmiteshP/nvim-navic",
@@ -83,9 +79,7 @@ return require('packer').startup({
     -- Visualize lsp progress
     use({
       "j-hui/fidget.nvim",
-      config = function()
-        require("fidget").setup()
-      end
+      config = function() require("fidget").setup() end
     })
     -- Autocompletion framework
     use("hrsh7th/nvim-cmp")
