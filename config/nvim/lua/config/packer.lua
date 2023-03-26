@@ -14,12 +14,15 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
-  use {
-    'sainnhe/gruvbox-material',
-    config = function()
-      vim.cmd [[ colorscheme gruvbox-material ]]
-    end
-  }
+  use({
+      "neanias/everforest-nvim",
+        config = function()
+          require("everforest").setup {
+            background = "hard", -- medium is default
+          }
+          vim.cmd [[colorscheme everforest]]
+        end,
+      })
 
   use 'benmills/vimux' -- running command in tmux
   use 'tpope/vim-fugitive' -- the ultimate git helper
@@ -29,7 +32,7 @@ return require('packer').startup({ function(use)
   use 'dyng/ctrlsf.vim'
   use 'tpope/vim-abolish' -- " TODO: add it to <leader> so it's easier to find
   use 'tpope/vim-repeat' --  # TODO: do we need it? most probably yes
-  use 'edkolev/tmuxline.vim'
+  use 'edkolev/tmuxline.vim' -- TODO: generates powerline.conf for tmux from airline
   use 'christoomey/vim-tmux-navigator'
   use 'tpope/vim-dispatch'
   use 'tmux-plugins/vim-tmux-focus-events'
