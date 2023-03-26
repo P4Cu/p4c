@@ -42,7 +42,7 @@ vim.opt.completeopt = 'menu,menuone,preview,noselect,noinsert'
 vim.opt.shortmess = vim.opt.shortmess + "c" -- Avoid showing extra messages when using completion
 -- have a fixed column for the diagnostics to appear in
 -- this removes the jitter when warnings/errors flow in
-vim.wo.signcolumn = "yes"
+vim.opt.signcolumn = "auto:1-2" -- one or two columns for diagnostic signs
 -- best way for having folding
 vim.opt.foldmethod='expr'
 vim.opt.foldexpr='nvim_treesitter#foldexpr()'

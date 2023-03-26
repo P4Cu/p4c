@@ -67,6 +67,10 @@ return require('packer').startup({ function(use)
         "neovim/nvim-lspconfig",
       }
     },
+    use {
+      "SmiteshP/nvim-navic",
+      requires = "neovim/nvim-lspconfig"
+    }
     -- TODO: https://github.com/p00f/clangd_extensions.nvim
   }
   -- Visualize lsp progress
@@ -186,66 +190,8 @@ return require('packer').startup({ function(use)
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = function()
-      require'lualine'.setup {
-        options = {
-          theme = 'gruvbox-material',
-        },
-
-        tabline = {
-          -- todo would be nice to show current lsp path
-          lualine_a = {{'tabs', mode=2}},
-          lualine_b = {'windows'},
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = {'branch'},
-          lualine_z = {}
-        },
-
-        winbar = {
-          lualine_a = {'searchcount'}, -- TODO: that should be on somewhere
-          lualine_b = {"require'lsp-status'.status()"},
-          lualine_c = {'filename'},
-          lualine_x = {'buffers'},
-          lualine_y = {},
-          lualine_z = {}
-        },
-
-        -- eg. an inactive split
-        inactive_winbar = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = {'filename'},
-          lualine_x = {},
-          lualine_y = {},
-          lualine_z = {}
-        },
-
-      }
-    end
+    config = require 'config.plugin.lualine',
   }
-  -- use {
-  --   'nanozuki/tabby.nvim',
-  --   -- after = 'ellisonleao/gruvbox.nvim',
-  --   config = function()
-  --     require('tabby.tabline').use_preset('active_wins_at_tail', {
-  --       theme = {
-  --         fill = 'lualine_c_visual',
-  --         tab = 'lualine_c_inactive',
-  --         win = 'TabLineSel',
-  --         head = 'Visual',
-  --         tail = 'Visual',
-  --         current_tab = 'lualine_a_insert',
-  --       },
-  --       tab_name = {
-  --           -- name_fallback = function(tabid) return "" end
-  --       },
-  --       buf_name = {
-  --         mode = 'shorten'
-  --       },
-  --     })
-  --   end,
-  -- }
 
   use {
     'lukas-reineke/indent-blankline.nvim',

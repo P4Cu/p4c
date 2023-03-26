@@ -1,4 +1,11 @@
-local function on_attach(_, buffer)
+local navic = require("nvim-navic")
+
+local function on_attach(client, buffer)
+
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, buffer)
+  end
+
   local keymap_opts = { buffer = buffer }
   -- Code navigation and shortcuts
   vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, keymap_opts)
