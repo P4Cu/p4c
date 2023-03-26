@@ -1,3 +1,7 @@
+-- TODO: add https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+-- TODO: some navigation like: https://github.com/SmiteshP/nvim-navbuddy
+
+
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
