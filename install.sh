@@ -39,6 +39,4 @@ echo "you will also need to install NerdFont - check vimrc"
 echo 'mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf'
 
-echo ""
-echo "Be also aware that you need to compile vim YouCompleteMe plugin to be able to use it"
 echo "For anything requiring your attention in neovim try: :CheckHealth"
