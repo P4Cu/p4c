@@ -5,18 +5,22 @@ local function on_attach(client, buffer)
     navic.attach(client, buffer)
   end
 
-  local keymap_opts = { buffer = buffer }
+  local function map(mode, l, r, description)
+    vim.keymap.set(mode, l, r, {buffer = buffer, desc = description})
+  end
+
   -- Code navigation and shortcuts
-  vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, keymap_opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, keymap_opts)
-  vim.keymap.set("n", "gD", vim.lsp.buf.implementation, keymap_opts)
-  vim.keymap.set("n", "<c-k>", vim.lsp.buf.signature_help, keymap_opts)
-  vim.keymap.set("n", "1gD", vim.lsp.buf.type_definition, keymap_opts)
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, keymap_opts)
-  vim.keymap.set("n", "g0", vim.lsp.buf.document_symbol, keymap_opts)
-  vim.keymap.set("n", "gW", vim.lsp.buf.workspace_symbol, keymap_opts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, keymap_opts)
-  vim.keymap.set("n", "ga", vim.lsp.buf.code_action, keymap_opts)
+  map("n", "K", vim.lsp.buf.hover, "Hover")
+  map("n", "gD", vim.lsp.buf.implementation, "Go to implementation")
+  map("n", "<c-k>", vim.lsp.buf.signature_help, "Signature")
+  map("n", "1gD", vim.lsp.buf.type_definition, "Go to type-definition")
+  map("n", "gr", vim.lsp.buf.references, "Find references")
+  map("n", "g0", vim.lsp.buf.document_symbol, "Document symbol")
+  map("n", "gW", vim.lsp.buf.workspace_symbol, "Workspace symbol")
+  map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+  map("n", "ga", vim.lsp.buf.code_action, "Code actions")
+  map("n", "<F8>", vim.diagnostic.goto_next, "Next diagnostic")
+  map("n", "<F20>", vim.diagnostic.goto_prev, "Previous diagnostic")
 
   -- Show diagnostic popup on cursor hover
   local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
@@ -26,10 +30,6 @@ local function on_attach(client, buffer)
     end,
     group = diag_float_grp,
   })
-
-  -- Goto previous/next diagnostic warning/error
-  vim.keymap.set("n", "<F20>", vim.diagnostic.goto_prev, keymap_opts)
-  vim.keymap.set("n", "<F8>", vim.diagnostic.goto_next, keymap_opts)
 end
 
 -- use mason to get external tools
