@@ -48,7 +48,7 @@ alias ctag='clear ; tag'
 complete -c command type which-edit
 
 ## requires source-higlight
-export LESSOPEN="| src-hilite-lesspipe.sh %s" ; export LESS=' -R '
+export LESSOPEN="| ${$(command -v src-hilite-lesspipe.sh):-/usr/share/source-highlight/src-hilite-lesspipe.sh} %s" ; export LESS=' -R '
 
 command -v thefuck &> /dev/null && eval $(thefuck --alias) || true
 
@@ -56,5 +56,41 @@ alias glog1='glog $(glog-branch)'
 alias glog2='glog $(glog-branch) $(git config worktree.head)'
 alias ranger="source $(which ranger)"
 alias gbr='gbranch.py'
+
+glog1fp() {
+    args=()
+    while [[ $# > 0 ]]; do
+        case "$1" in
+            # -v | --verbose ) VERBOSE="-v" ; shift ;;
+            -- ) shift; break ;;
+            * ) args+="${1}" ; shift ;;
+        esac
+    done
+    glog1 ${args} -- --first-parent ${@}
+}
+
+glog2fp() {
+    args=()
+    while [[ $# > 0 ]]; do
+        case "$1" in
+            # -v | --verbose ) VERBOSE="-v" ; shift ;;
+            -- ) shift; break ;;
+            * ) args+="${1}" ; shift ;;
+        esac
+    done
+    glog2 ${args} -- --first-parent ${@}
+}
+
+
+gloga() {
+    args=()
+    while [[ $# > 0 ]]; do
+        case "$1" in
+            -- ) shift; break ;;
+            * ) args+="${1}" ; shift ;;
+        esac
+    done
+    glog2 ${args} -- --all --first-parent ${@}
+}
 
 alias skf='sk -c "rg --color=always --line-number \"{}\"" --ansi --delimiter=":" --nth="3.." --preview "bat {1} --color=always --line-range {2}:+100"'

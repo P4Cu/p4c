@@ -14,7 +14,7 @@
 
 local function check_nvim_version()
   local version = vim.version()
-  if version.minor < 8 or version.patch < 3 then vim.cmd [[ echom "Use at least nvim 8.3" ]] end
+  if version.minor < 9 then vim.cmd [[ echom "Use at least nvim 8.3" ]] end
 end
 check_nvim_version()
 

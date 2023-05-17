@@ -13,7 +13,7 @@ return function()
         'diagnostics' -- TODO: telescope diagnostics (buffnr=0 <- current)
       },
       lualine_c = { 'filename' },
-      lualine_x = { 'encoding', 'fileformat', 'filetype' },
+      lualine_x = { 'overseer', 'encoding', 'fileformat', 'filetype' },
       lualine_y = { 'progress' },
       lualine_z = { 'location' }
     },
@@ -38,9 +38,17 @@ return function()
       lualine_c = {},
       lualine_x = {
         {
-          function() return require("nvim-navic").get_location() end,
-          cond = function() return require("nvim-navic").is_available() end
-          -- TODO: on_click should go to some searching
+          -- function() return vim.fn['nvim_treesitter#statusline(90)'] end,
+          function()
+            return require'nvim-treesitter'.statusline {
+              type_patterns = {'namespace', 'class', 'function', 'method'},
+              transform_fn = function(line, _node)
+                  line = line:gsub('%s*[%[%(%{]*%s*$', '')
+                  line = line:gsub('namespace ', '')
+                return line
+              end,
+            }
+          end,
         },
       },
       lualine_y = {},

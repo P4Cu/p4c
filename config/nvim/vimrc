@@ -13,7 +13,7 @@ command -nargs=1 P4CGitGutterAgainst silent call P4C_GitGutterDiffAgainst("<args
 " ##################################################################################################
 
 
-command Format lua = vim.lsp.buf.formatting()
+command Format lua = vim.lsp.buf.format { async = true }
 
 
 " Project specific {{{

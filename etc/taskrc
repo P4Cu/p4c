@@ -54,3 +54,4 @@ weekstart=Monday
 calendar.details=full
 
 context=work
+list.all.projects=1

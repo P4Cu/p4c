@@ -1,8 +1,8 @@
-local navic = require("nvim-navic")
-
 local function on_attach(client, buffer)
   if client.server_capabilities.documentSymbolProvider then
-    navic.attach(client, buffer)
+    require "lsp_signature".on_attach({
+        bind = true,
+      }, buffer)
   end
 
   local function map(mode, l, r, description)
@@ -15,6 +15,7 @@ local function on_attach(client, buffer)
   map("n", "<c-k>", vim.lsp.buf.signature_help, "Signature")
   map("n", "1gD", vim.lsp.buf.type_definition, "Go to type-definition")
   map("n", "gr", vim.lsp.buf.references, "Find references")
+  map("n", "gR", vim.lsp.buf.rename, "Rename symbol")
   map("n", "g0", vim.lsp.buf.document_symbol, "Document symbol")
   map("n", "gW", vim.lsp.buf.workspace_symbol, "Workspace symbol")
   map("n", "gd", vim.lsp.buf.definition, "Go to definition")

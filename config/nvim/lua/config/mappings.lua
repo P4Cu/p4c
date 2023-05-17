@@ -7,9 +7,11 @@ vim.keymap.set('',  '<C-_>', ":Commentary<CR>")
 vim.keymap.set('',  '<F1>',  '<cmd>Telescope builtin include_extensions=true<CR>')
 vim.keymap.set('',  '<F13>', '<cmd>Telescope resume<CR>')
 vim.keymap.set('',  '<F2>',  '<cmd>Telescope buffers<CR>')
+vim.keymap.set('',  '<F14>',  '<cmd>Telescope oldfiles<CR>')
 vim.keymap.set('',  '<F3>',  '<cmd>Telescope lsp_document_symbols<CR>')
 vim.keymap.set('',  '<F15>', '<cmd>Telescope lsp_workspace_symbols<CR>')
-vim.keymap.set('',  '<F4>',  '<cmd>A<CR>')
+vim.keymap.set('',  '<F7>',  '<cmd>OverseerToggle<CR>')
+vim.keymap.set('',  '<F19>',  '<cmd>OverseerLoadBundle<CR>')
 
 vim.keymap.set('n',  '[g',  '<cmd>echo "use [c"<CR>')
 vim.keymap.set('n',  ']g',  '<cmd>echo "use ]c"<CR>')
@@ -50,10 +52,10 @@ vim.g.Lf_ShortcutF = "<leader>ff"
 vim.g.Lf_ShortcutF = ""
 vim.g.Lf_ShortcutB = ""
 
-vim.keymap.set('n', '<C-p>',      '<cmd>echo "use \\<leader\\>ff"<CR>')
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope fd<CR>')
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
+vim.keymap.set('v', '<leader>fg', '<cmd>Telescope grep_string<CR>')
 vim.keymap.set('n', '<leader>f/', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
 vim.keymap.set('n', '<leader>fc', '<cmd>Telescope commands<CR>')
 vim.keymap.set('n', '<leader>fm', '<cmd>Telescope keymaps<CR>')

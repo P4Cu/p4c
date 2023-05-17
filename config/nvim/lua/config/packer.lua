@@ -24,7 +24,7 @@ return require('packer').startup({
           background = "medium", -- medium is default
         }
         vim.cmd [[colorscheme everforest]]
-        vim.cmd [[highlight lualine_a_tabs_inactive gui=bold guifg=#7A8478 guibg=#b7d38c]]
+        vim.cmd [[highlight lualine_a_tabs_inactive gui=bold guifg=#7A8478 guibg=#b7d38c ]]
       end,
     })
 
@@ -50,11 +50,15 @@ return require('packer').startup({
     use 'embear/vim-foldsearch'
     use 'dimasg/vim-mark'
     use 'wsdjeg/vim-fetch'     -- Open some/file:line:column
-    use 'sheerun/vim-polyglot' -- a lot of filetypes
     use 'plasticboy/vim-markdown'
 
     use 'folke/which-key.nvim' -- awesome plugin to show available commands
 
+    use {
+      -- before lspconfig
+      "folke/neodev.nvim", -- superior support for neovim config files/plugins
+      config = function() require("neodev").setup {} end
+    }
 
     use {
       { "williamboman/mason.nvim" },
@@ -70,11 +74,10 @@ return require('packer').startup({
         "simrat39/rust-tools.nvim",
         requires = { "neovim/nvim-lspconfig", }
       },
-      use {
-        "SmiteshP/nvim-navic",
+      {
+        "ray-x/lsp_signature.nvim",
         requires = "neovim/nvim-lspconfig"
-      }
-      -- TODO: https://github.com/p00f/clangd_extensions.nvim
+      },
     }
     -- Visualize lsp progress
     use({
@@ -193,8 +196,6 @@ return require('packer').startup({
       end,
     }
 
-    use "folke/neodev.nvim" -- superior support for neovim config files/plugins
-
     use {
       "RRethy/vim-illuminate",
       config = function()
@@ -205,6 +206,21 @@ return require('packer').startup({
     }
 
     use "sindrets/diffview.nvim"
+
+    use {
+      -- tasks
+      'stevearc/overseer.nvim',
+      config = function() pcall(function() require('overseer').setup() end) end,
+      requires = {
+        {"nvim-telescope/telescope.nvim", }, -- for menus
+        {"stevearc/dressing.nvim", }, -- otherwise telescope does not work properly
+        {"rcarriga/nvim-notify", opt=true}, -- nicer notifications
+      }
+    }
+    use {
+      -- Nicer vim.ui.select and vim.ui.input
+      'stevearc/dressing.nvim'
+    }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
