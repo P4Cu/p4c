@@ -72,6 +72,7 @@ fi
 
 
 setopt histignorespace
+setopt HIST_IGNORE_SPACE
 setopt extended_glob
 setopt transientrprompt
 
