@@ -7,7 +7,8 @@
 [mergetool "mymeld"]
     cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $MERGED $REMOTE
 [diff]
-    tool = meld
+    tool = vimdiff
+	algorithm = patience
 [alias]
     st = status
     lg = !"git lgg"
@@ -38,3 +39,5 @@
     enabled = true
 [color "diff"]
     meta = blue
+[mergetool]
+	keepBackup = false
