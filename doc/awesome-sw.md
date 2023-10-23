@@ -26,7 +26,7 @@
 # PHOTO & VIDEO
 
 * gthumb - view & organize images
-* https://github.com/phw/peek - record part of screen as gif  <- HUUGE!
+* https://github.com/phw/peek - record part of screen as gif  -- HUUGE!
 * https://gitlab.com/screenkey/screenkey - helper for screen recording and sharing
 * shotcut - edit videos
 
@@ -51,6 +51,7 @@
 * Vitals
 
 # MISC
+* Safe Eyes - awesome sight reminder
 * Magnus - screen magnifier
 * Qalculate
 * syncthing
