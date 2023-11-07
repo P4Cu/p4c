@@ -12,7 +12,7 @@ local function on_attach(client, buffer)
   -- Code navigation and shortcuts
   map("n", "K", vim.lsp.buf.hover, "Hover")
   map("n", "gD", vim.lsp.buf.implementation, "Go to implementation")
-  map("n", "<c-k>", vim.lsp.buf.signature_help, "Signature")
+  map("n", "gS", vim.lsp.buf.signature_help, "Signature")
   map("n", "1gD", vim.lsp.buf.type_definition, "Go to type-definition")
   map("n", "gr", vim.lsp.buf.references, "Find references")
   map("n", "gR", vim.lsp.buf.rename, "Rename symbol")

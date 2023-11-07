@@ -30,7 +30,6 @@ return require('packer').startup({
 
     use 'benmills/vimux'       -- running command in tmux
     use 'tpope/vim-fugitive'   -- the ultimate git helper
-    use 'tpope/vim-commentary' -- comment/uncomment lines with gcc or gc in visual mode
     use 'tpope/vim-unimpaired'
     use 'ryanoasis/vim-devicons'
     use 'dyng/ctrlsf.vim'
@@ -51,6 +50,15 @@ return require('packer').startup({
     use 'dimasg/vim-mark'
     use 'wsdjeg/vim-fetch'     -- Open some/file:line:column
     use 'plasticboy/vim-markdown'
+
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup {
+              mappings = { basic = false, extra = false },
+            }
+        end
+    }
 
     use 'folke/which-key.nvim' -- awesome plugin to show available commands
 
@@ -109,12 +117,16 @@ return require('packer').startup({
     use {
       {
         "nvim-telescope/telescope.nvim",
-        requires = "nvim-treesitter/nvim-treesitter",
+        requires = {
+            { "nvim-treesitter/nvim-treesitter" },
+            { "nvim-telescope/telescope-live-grep-args.nvim" },
+        },
         config = require('config.plugin.telescope'),
       },
       'nvim-telescope/telescope-ui-select.nvim', -- integrate telescope as selector
       'JoseConseco/telescope_sessions_picker.nvim',
     }
+
 
     use {
       "nvim-treesitter/nvim-treesitter",
@@ -162,6 +174,12 @@ return require('packer').startup({
           filesystem = {
             follow_current_file = true,
           },
+          event_handlers = {
+            {
+              event = "file_opened",
+              handler = function(file_path) require("neo-tree").close_all() end
+            },
+          }
         }
       end,
     }

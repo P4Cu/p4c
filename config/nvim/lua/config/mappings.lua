@@ -1,9 +1,14 @@
+-- delete to black hole
+vim.keymap.set('n',  'X',  '"_x')
+vim.keymap.set('v',  'X',  '"_x')
+
 -- " to have nice command search
 vim.keymap.set('c', '<c-p>', '<up>')
 vim.keymap.set('c', '<c-n>', '<down>')
 vim.keymap.set('n', 'gb',    '<cmd>bnext<CR>')
 vim.keymap.set('n', 'gB',    '<cmd>bprevious<CR>')
-vim.keymap.set('',  '<C-_>', ":Commentary<CR>")
+vim.keymap.set('n',  '<C-_>', require('Comment.api').toggle.linewise.current)
+vim.keymap.set('v',  '<C-_>', '<Plug>(comment_toggle_linewise_visual)')
 vim.keymap.set('',  '<F1>',  '<cmd>Telescope builtin include_extensions=true<CR>')
 vim.keymap.set('',  '<F13>', '<cmd>Telescope resume<CR>')
 vim.keymap.set('',  '<F2>',  '<cmd>Telescope buffers<CR>')
@@ -54,8 +59,9 @@ vim.g.Lf_ShortcutB = ""
 
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope fd<CR>')
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
-vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
-vim.keymap.set('v', '<leader>fg', '<cmd>Telescope grep_string<CR>')
+vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep_args<CR>')
+-- vim.keymap.set('v', '<leader>fg', '<cmd>Telescope grep_string<CR>')
+vim.keymap.set("v", "<leader>fg", require("telescope-live-grep-args.shortcuts").grep_visual_selection)
 vim.keymap.set('n', '<leader>f/', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
 vim.keymap.set('n', '<leader>fc', '<cmd>Telescope commands<CR>')
 vim.keymap.set('n', '<leader>fm', '<cmd>Telescope keymaps<CR>')
@@ -72,4 +78,4 @@ vim.api.nvim_set_keymap("n", "<leader>to",  "<cmd>tabonly<CR>",   { desc = 'tab 
 vim.api.nvim_set_keymap("n", "<leader>tmp", "<cmd>-tabmove<CR>",  { desc = 'move tab backwards' })
 vim.api.nvim_set_keymap("n", "<leader>tmn", "<cmd>+tabmove<CR>",  { desc = 'move tab forward' })
 
-vim.keymap.set('n', '\\', '<cmd>Neotree toggle<cr>', { desc = 'neotree toggle' })
+vim.keymap.set('n', '\\', '<cmd>Neotree toggle current reveal_force_cwd<cr>', { desc = 'neotree toggle' })

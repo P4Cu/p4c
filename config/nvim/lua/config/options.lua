@@ -1,7 +1,7 @@
 -- vim.opt.option = x
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
-vim.opt.ignorecase = true
+vim.opt.ignorecase = true -- required for smartcase override with \C magic
 vim.opt.smartcase = true
 vim.opt.cursorline = true
 -- " bashlike vim completition + with addition of third tab for list select mode (zsh alike )

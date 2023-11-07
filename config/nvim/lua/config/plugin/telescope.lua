@@ -18,4 +18,5 @@ return function()
   }
   require('telescope').load_extension('sessions_picker')
   require("telescope").load_extension("ui-select")
+  require("telescope").load_extension("live_grep_args")
 end
