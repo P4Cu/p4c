@@ -29,6 +29,7 @@
 * https://github.com/phw/peek - record part of screen as gif  -- HUUGE!
 * https://gitlab.com/screenkey/screenkey - helper for screen recording and sharing
 * shotcut - edit videos
+* catt - cast all the things (chromecast)
 
 # DOCKER
 * container-diff
