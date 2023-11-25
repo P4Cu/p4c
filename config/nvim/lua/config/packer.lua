@@ -153,7 +153,7 @@ return require('packer').startup({
         require("todo-comments").setup {}
       end,
       -- TODO: should be possible to use 'Todo.*' but somehow that does not work, bug?
-      cmd = { 'Trouble', 'TodoTrouble' }, -- lazy load
+      -- cmd = { 'Trouble', 'TodoTrouble' }, -- lazy load
     }
 
     use {

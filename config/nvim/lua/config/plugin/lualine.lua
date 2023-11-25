@@ -8,9 +8,24 @@ return function()
     sections = {
       lualine_a = { 'mode' },
       lualine_b = {
-        'branch',     -- TODO: on_click gitui
-        'diff',       -- TODO: on_click gitui
-        'diagnostics' -- TODO: telescope diagnostics (buffnr=0 <- current)
+          { 'branch', on_click = function ()
+              vim.cmd('Git branch --list')
+          end },
+          { 'diff', on_click = function ()
+              if next(require('diffview.lib').views) == nil then
+                vim.cmd('DiffviewOpen')
+              else
+                vim.cmd('DiffviewClose')
+              end
+          end },
+          { 'diagnostics', always_visible = true,
+            on_click = function(number_of_clicks, mouse_button, key_modifiers)
+              if mouse_button == 'l' then
+                  require('trouble').toggle()
+              elseif mouse_button == 'r' then
+                  vim.cmd('TodoTrouble')
+            end
+          end },
       },
       lualine_c = { 'filename' },
       lualine_x = { 'overseer', 'encoding', 'fileformat', 'filetype' },
