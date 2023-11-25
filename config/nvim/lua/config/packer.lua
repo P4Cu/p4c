@@ -60,7 +60,10 @@ return require('packer').startup({
         end
     }
 
-    use 'folke/which-key.nvim' -- awesome plugin to show available commands
+    use {
+        'folke/which-key.nvim', -- awesome plugin to show available commands
+        config = function() require("which-key").setup {} end
+    }
 
     use {
       -- before lspconfig
