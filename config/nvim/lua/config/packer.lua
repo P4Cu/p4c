@@ -36,14 +36,12 @@ return require('packer').startup({
     use 'tpope/vim-repeat'     --  # TODO: do we need it? most probably yes
     use 'edkolev/tmuxline.vim' -- TODO: generates powerline.conf for tmux from airline
     use 'christoomey/vim-tmux-navigator'
-    use 'tpope/vim-dispatch'
     use 'tmux-plugins/vim-tmux-focus-events'
     use 'vim-scripts/autoswap.vim'
     use 'moll/vim-bbye' -- :Db
     use 'kana/vim-textobj-user'
     use 'kana/vim-textobj-line'
     use 'michaeljsmith/vim-indent-object'
-    use 'terryma/vim-expand-region'
     use 'dzeban/vim-log-syntax'
     use 'embear/vim-foldsearch'
     use 'dimasg/vim-mark'
