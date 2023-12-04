@@ -24,7 +24,6 @@ return require('packer').startup({
           background = "medium", -- medium is default
         }
         vim.cmd [[colorscheme everforest]]
-        vim.cmd [[highlight lualine_a_tabs_inactive gui=bold guifg=#7A8478 guibg=#b7d38c ]]
       end,
     })
 
