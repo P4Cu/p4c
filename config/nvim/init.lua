@@ -13,8 +13,8 @@
 --   https://www.reddit.com/r/neovim/comments/wdiv4p/setting_up_neovim_with_lsp_and_clangd/
 
 local function check_nvim_version()
-  local version = vim.version()
-  if version.minor < 9 then vim.cmd [[ echom "Use at least nvim 8.3" ]] end
+    local version = vim.version()
+    if version.minor < 9 then vim.cmd [[ echom "Use at least nvim 8.3" ]] end
 end
 check_nvim_version()
 
@@ -26,7 +26,6 @@ require 'config.options'
 require 'config.mappings'
 require 'config.diagnostics'
 
-require 'config.plugin.which-key'
 require 'config.plugin.nvim-cmp'
 
 
@@ -37,8 +36,8 @@ vim.cmd [[cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<C
 local packerSyncGrp = vim.api.nvim_create_augroup("PackerSyncGrp", {})
 vim.api.nvim_clear_autocmds({ group = packerSyncGrp })
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  group = packerSyncGrp,
-  -- TODO: path should be from data folder, it's used a few times in script already
-  pattern = { "**/nvim/lua/config/*.lua", "**/nvim/plugin/*main.lua" },
-  command = "source <afile> | PackerCompile",
+    group = packerSyncGrp,
+    -- TODO: path should be from data folder, it's used a few times in script already
+    pattern = { "**/nvim/lua/config/*.lua", "**/nvim/plugin/*main.lua" },
+    command = "source <afile> | PackerCompile",
 })
