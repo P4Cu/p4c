@@ -34,7 +34,6 @@ return function()
       map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'git toggle current line blame' })
       map('n', '<leader>hd', gs.diffthis, { desc = 'git diff index' })
       map('n', '<leader>hD', function() gs.diffthis('~') end, { desc = 'git diff previous' })
-      map('n', '<leader>td', gs.toggle_deleted)
 
       -- Text object
       map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'in git hunk' })

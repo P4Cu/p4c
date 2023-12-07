@@ -110,9 +110,8 @@ return require('packer').startup({
     use('hrsh7th/vim-vsnip')
 
     -- Optional
-    use("nvim-lua/popup.nvim") -- TODO: is it needed ? telescope-ui-select is same?
+    -- use("nvim-lua/popup.nvim") -- TODO: is it needed ? telescope-ui-select is same?
     use("nvim-lua/plenary.nvim")
-
 
     use {
       {
@@ -220,7 +219,31 @@ return require('packer').startup({
       end,
     }
 
-    use "sindrets/diffview.nvim"
+    use {
+        "sindrets/diffview.nvim",
+        config = function() pcall(function()
+            vim.cmd [[command! -nargs=* Dfo DiffviewOpen]]
+            local actions = require("diffview.actions")
+            require('diffview').setup {
+                view = {
+                    merge_tool = {
+                        layout = "diff3_mixed",
+                    }
+                },
+                keymaps = {
+                    view = {
+                      { "n", "\\", actions.toggle_files, { desc = "Toggle the file panel." } },
+                    },
+                    file_panel = {
+                      { "n", "\\", actions.toggle_files, { desc = "Toggle the file panel." } },
+                    },
+                    file_history_panel = {
+                      { "n", "\\", actions.toggle_files, { desc = "Toggle the file panel." } },
+                    }
+                },
+            } end)
+        end,
+    }
 
     use {
       -- tasks
