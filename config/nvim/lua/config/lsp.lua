@@ -9,6 +9,7 @@ local function on_attach(client, buffer)
     vim.keymap.set(mode, l, r, {buffer = buffer, desc = description})
   end
 
+  -- TODO: take map from mappings.lua or simply map it there (but then it's not attached)
   -- Code navigation and shortcuts
   map("n", "K", vim.lsp.buf.hover, "Hover")
   map("n", "gD", vim.lsp.buf.implementation, "Go to implementation")
@@ -23,6 +24,7 @@ local function on_attach(client, buffer)
   map("n", "<F4>", "<CMD>ClangdSwitchSourceHeader<CR>", "Switch Source Header")
   map("n", "<F8>", vim.diagnostic.goto_next, "Next diagnostic")
   map("n", "<F20>", vim.diagnostic.goto_prev, "Previous diagnostic")
+  map("n", "<LocalLeader>f", function() vim.lsp.buf.format { async = true } end, "Format code")
 
   -- Show diagnostic popup on cursor hover
   local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
@@ -44,17 +46,37 @@ require('lspconfig').dockerls.setup { on_attach = on_attach }                   
 require('lspconfig').docker_compose_language_service.setup { on_attach = on_attach } -- npm install @microsoft/compose-language-service
 
 -- configured for neovim completions
-require 'lspconfig'.lua_ls.setup {
+require('lspconfig').lua_ls.setup {
   on_attach = on_attach,
+    settings = {
+        Lua = {
+            completion = {
+                callSnippet = "Replace"
+            }
+        }
+    }
 }
 
 -- configures nvim-lspconfig for us
-require("rust-tools").setup {
+local rt = require("rust-tools")
+rt.setup {
   -- all the opts to send to nvim-lspconfig
   -- these override the defaults set by rust-tools.nvim
   -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
   server = {
-    on_attach = on_attach, -- this is exception
+        on_attach = function(client, buffnr)
+            -- default actions
+            on_attach(client, buffnr)
+            -- custom actions only for rust
+            local function nmap(key, action, desc)
+                vim.keymap.set("n", key, action, { buffer = buffnr, desc = desc })
+            end
+            -- TODO: mapping.lua should return mappable and we should use it here
+            nmap("<LocalLeader>a", rt.hover_actions.hover_actions, '[Rust] action')
+            nmap("<LocalLeader>t", rt.open_cargo_toml.open_cargo_toml, "[Rust] open toml")
+            nmap("<LocalLeader>r", rt.runnables.runnables, "[Rust] runnables")
+            nmap("<LocalLeader>p", rt.parent_module.parent_module, "[Rust] parent module")
+        end,
     settings = {
       -- to enable rust-analyzer settings visit:
       -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
@@ -66,6 +88,8 @@ require("rust-tools").setup {
       },
     },
   },
+  -- no dap setup here - done in dap.lua - this would be dap.adapters.rt_lldb
+    dap = { adapter = false, }
 }
 
 

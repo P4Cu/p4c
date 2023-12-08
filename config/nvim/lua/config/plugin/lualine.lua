@@ -3,6 +3,7 @@ return function()
     options = {
       theme = 'auto',
       globalstatus = true, -- https://github.com/neovim/neovim/pull/17266
+      disabled_filetypes = require('config.plugin.dap').ui_filetypes,
     },
 
     sections = {
@@ -19,7 +20,7 @@ return function()
               end
           end },
           { 'diagnostics', always_visible = true,
-            on_click = function(number_of_clicks, mouse_button, key_modifiers)
+            on_click = function(_ --[[ number_of_clicks ]], mouse_button, _ --[[ key_modifiers ]])
               if mouse_button == 'l' then
                   require('trouble').toggle()
               elseif mouse_button == 'r' then
@@ -57,7 +58,7 @@ return function()
           function()
             return require'nvim-treesitter'.statusline {
               type_patterns = {'namespace', 'class', 'function', 'method'},
-              transform_fn = function(line, _node)
+              transform_fn = function(line, _ --[[ node ]])
                   line = line:gsub('%s*[%[%(%{]*%s*$', '')
                   line = line:gsub('namespace ', '')
                 return line

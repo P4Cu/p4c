@@ -21,7 +21,10 @@ end
 check_nvim_version()
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+vim.keymap.set("n", "<leader>,", ",", { remap = true, desc="Like <LocalLeader>" }) -- , is not typical maping, so we need to map it instead of unmap
 
+-- TODO: either move them to respective groups in packer or load in order like 01-xxx / 02-xxx
 require 'config.packer'
 require 'config.lsp'
 require 'config.options'

@@ -1,3 +1,5 @@
+-- TODO: switch to lazy vim
+
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -63,7 +65,11 @@ require('packer').startup({
     use {
       -- before lspconfig
       "folke/neodev.nvim", -- superior support for neovim config files/plugins
-      config = function() require("neodev").setup {} end
+            config = function()
+                require("neodev").setup {
+                    library = { plugins = { "nvim-dap-ui" }, types = true },
+                }
+            end
     }
 
     use {
@@ -123,6 +129,11 @@ require('packer').startup({
       'JoseConseco/telescope_sessions_picker.nvim',
     }
 
+    use {
+      "rcarriga/nvim-dap-ui",
+      requires = { "mfussenegger/nvim-dap", "williamboman/mason.nvim" },
+      config = require('config.plugin.dap').config,
+    }
 
     use {
       "nvim-treesitter/nvim-treesitter",
@@ -255,7 +266,7 @@ require('packer').startup({
     use {
       -- Nicer vim.ui.select and vim.ui.input
       'stevearc/dressing.nvim'
-    }
+        }
 
     use { 'aklt/plantuml-syntax' }
 
@@ -282,6 +293,5 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   -- paths cannot be resolved as this would break soft-link to dot folder
   -- thus usage of glob **/
   pattern = { "**/nvim/lua/config/*.lua" },
-  -- TODO: set different path for packercompile, inside of data folder or sth
   command = "source <afile> | PackerCompile",
 })
