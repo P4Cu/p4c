@@ -20,6 +20,7 @@ local function on_attach(client, buffer)
   map("n", "gW", vim.lsp.buf.workspace_symbol, "Workspace symbol")
   map("n", "gd", vim.lsp.buf.definition, "Go to definition")
   map("n", "ga", vim.lsp.buf.code_action, "Code actions")
+  map("n", "<F4>", "<CMD>ClangdSwitchSourceHeader<CR>", "Switch Source Header")
   map("n", "<F8>", vim.diagnostic.goto_next, "Next diagnostic")
   map("n", "<F20>", vim.diagnostic.goto_prev, "Previous diagnostic")
 
