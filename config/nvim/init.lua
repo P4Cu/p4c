@@ -26,7 +26,6 @@ require 'config.options'
 require 'config.mappings'
 require 'config.diagnostics'
 
-require 'config.plugin.which-key'
 require 'config.plugin.nvim-cmp'
 
 

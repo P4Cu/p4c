@@ -24,7 +24,6 @@ return require('packer').startup({
           background = "medium", -- medium is default
         }
         vim.cmd [[colorscheme everforest]]
-        vim.cmd [[highlight lualine_a_tabs_inactive gui=bold guifg=#7A8478 guibg=#b7d38c ]]
       end,
     })
 
@@ -37,14 +36,12 @@ return require('packer').startup({
     use 'tpope/vim-repeat'     --  # TODO: do we need it? most probably yes
     use 'edkolev/tmuxline.vim' -- TODO: generates powerline.conf for tmux from airline
     use 'christoomey/vim-tmux-navigator'
-    use 'tpope/vim-dispatch'
     use 'tmux-plugins/vim-tmux-focus-events'
     use 'vim-scripts/autoswap.vim'
     use 'moll/vim-bbye' -- :Db
     use 'kana/vim-textobj-user'
     use 'kana/vim-textobj-line'
     use 'michaeljsmith/vim-indent-object'
-    use 'terryma/vim-expand-region'
     use 'dzeban/vim-log-syntax'
     use 'embear/vim-foldsearch'
     use 'dimasg/vim-mark'
@@ -60,7 +57,10 @@ return require('packer').startup({
         end
     }
 
-    use 'folke/which-key.nvim' -- awesome plugin to show available commands
+    use {
+        'folke/which-key.nvim', -- awesome plugin to show available commands
+        config = function() require("which-key").setup {} end
+    }
 
     use {
       -- before lspconfig
@@ -129,7 +129,7 @@ return require('packer').startup({
 
     use {
       "nvim-treesitter/nvim-treesitter",
-      use "HiPhish/nvim-ts-rainbow2",
+      use "HiPhish/rainbow-delimiters.nvim",
       use {
         "nvim-treesitter/nvim-treesitter-textobjects",
         after = "nvim-treesitter",
@@ -150,7 +150,7 @@ return require('packer').startup({
         require("todo-comments").setup {}
       end,
       -- TODO: should be possible to use 'Todo.*' but somehow that does not work, bug?
-      cmd = { 'Trouble', 'TodoTrouble' }, -- lazy load
+      -- cmd = { 'Trouble', 'TodoTrouble' }, -- lazy load
     }
 
     use {
@@ -259,6 +259,8 @@ return require('packer').startup({
       -- Nicer vim.ui.select and vim.ui.input
       'stevearc/dressing.nvim'
     }
+
+    use { 'aklt/plantuml-syntax' }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

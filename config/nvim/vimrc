@@ -2,17 +2,6 @@
 
 " ##################################################################################################
 
-" TODO: would be nice to make a command aout of it and allow anything like HEAD~
-" This function toggles diff against HEAD
-function! P4C_GitGutterDiffAgainst(revision)
-    let g:gitgutter_diff_base = a:revision
-    echom 'P4C_GitGutterDiffAgains diff against ' + a:revision
-    execute 'silent GitGutter'
-endfunction
-command -nargs=1 P4CGitGutterAgainst silent call P4C_GitGutterDiffAgainst("<args>")
-" ##################################################################################################
-
-
 command Format lua = vim.lsp.buf.format { async = true }
 
 

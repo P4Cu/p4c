@@ -1,6 +1,6 @@
 return function()
   require 'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "lua", "rust", "cpp", "python" },
+    ensure_installed = { "c", "lua", "rust", "cpp", "python", "bash", "cmake", "yaml", "dockerfile", "markdown", "make", "git_rebase", "git_config", "toml", "vim", "xml" },
     highlight = {
       enable = true,
     },
@@ -21,13 +21,7 @@ return function()
           ["ap"] = { query = "@parameter.outer", desc = "around parameter" },
         },
       },
-    },
-    rainbow = {
-      enable = true,
-      disable = {},
-      query = 'rainbow-parens',
-      -- Highlight the entire buffer all at once
-      strategy = require 'ts-rainbow'.strategy.global,
     }
   }
+  require('rainbow-delimiters.setup').setup {}
 end
