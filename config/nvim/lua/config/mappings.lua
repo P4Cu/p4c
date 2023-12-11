@@ -17,6 +17,7 @@ vim.keymap.set('',  '<F3>',  '<cmd>Telescope lsp_document_symbols<CR>')
 vim.keymap.set('',  '<F15>', '<cmd>Telescope lsp_workspace_symbols<CR>')
 vim.keymap.set('',  '<F7>',  '<cmd>OverseerToggle<CR>')
 vim.keymap.set('',  '<F19>',  '<cmd>OverseerLoadBundle<CR>')
+vim.keymap.set('', '<F31>', '<cmd>OverseerQuickAction open<CR>')
 
 vim.keymap.set('n',  '[g',  '<cmd>echo "use [c"<CR>')
 vim.keymap.set('n',  ']g',  '<cmd>echo "use ]c"<CR>')
