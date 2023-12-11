@@ -260,6 +260,8 @@ return require('packer').startup({
       'stevearc/dressing.nvim'
     }
 
+    use { 'aklt/plantuml-syntax' }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
