@@ -1,3 +1,9 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 # mandatory export
 # TODO: make it depend on variable
 export P4C=${HOME}/p4c
@@ -41,7 +47,7 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle RobSis/zsh-completion-generator
 antigen bundle bil-elmoussaoui/flatpak-zsh-completion
 # Theme
-antigen theme agnoster
+antigen theme romkatv/powerlevel10k
 # Tell antigen that you're done
 antigen apply
 # --------------------------------------------------------------------------------------------------
@@ -91,56 +97,8 @@ if (( $+commands[tag] )); then
   tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
 fi
 
-# required to properly draw vi-mode
-function zle-line-init zle-keymap-select {
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-# shows if any TaskWarrior tasks are in need of attention
-function prompt_taskwarrior {
-    if [[ -f $HOME/.taskrc ]]; then
-        if [ `task +READY +OVERDUE count` -gt "0" ]  ; then
-            printf " ﮊ"
-        elif [ `task +READY +DUETODAY count` -gt "0" ]  ; then
-            printf " "
-        elif [ `task +READY +DUETomorrow count` -gt "0" ]  ; then
-            printf " "
-        elif [ `task +READY urgency \> 10 count` -gt "0" ]  ; then
-            printf " "
-        else
-            # do nothing
-        fi
-    fi
-}
-
-function prompt_ranger {
-    if [[ -v RANGER_LEVEL ]]  ; then
-        printf "®️"
-    fi
-}
-
-## built on agnoster theme
-build_custom_prompt() {
-  RETVAL=$?
-  prompt_ranger
-  case $KEYMAP in
-      vicmd) prompt_segment yellow default "CMD" ;;
-      main|viins) prompt_segment black default "INS" ;;
-  esac
-  prompt_status
-  prompt_taskwarrior
-  prompt_virtualenv
-  prompt_context
-  prompt_dir
-  prompt_git
-  prompt_bzr
-  prompt_hg
-  prompt_end
-}
-
-PROMPT='%{%f%b%k%}$(build_custom_prompt) '
-
 alias gbr=gbranch.py
 alias gfp="git fetch --prune"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
