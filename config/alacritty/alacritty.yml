@@ -143,62 +143,32 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-## Colors (Solarized Dark)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x002b36'
-#     foreground: '0x839496'
-# 
-#   # Normal colors
-#   normal:
-#     black:   '0x073642'
-#     red:     '0xdc322f'
-#     green:   '0x859900'
-#     yellow:  '0xb58900'
-#     blue:    '0x268bd2'
-#     magenta: '0xd33682'
-#     cyan:    '0x2aa198'
-#     white:   '0xeee8d5'
-# 
-#   # Bright colors
-#   bright:
-#     black:   '0x002b36'
-#     red:     '0xcb4b16'
-#     green:   '0x586e75'
-#     yellow:  '0x657b83'
-#     blue:    '0x839496'
-#     magenta: '0x6c71c4'
-#     cyan:    '0x93a1a1'
-#     white:   '0xfdf6e3'
-# Colors (Nord)
+# everforest dark
 colors:
-  # Default colors
   primary:
-    background: '0x2E3440'
-    foreground: '0xD8DEE9'
+    background: '0x2d353b'
+    foreground: '0xd3c6aa'
 
-  # Normal colors
   normal:
-    black:   '0x3B4252'
-    red:     '0xBF616A'
-    green:   '0xA3BE8C'
-    yellow:  '0xEBCB8B'
-    blue:    '0x81A1C1'
-    magenta: '0xB48EAD'
-    cyan:    '0x88C0D0'
-    white:   '0xE5E9F0'
+    black: '0x475258'
+    red: '0xe67e80'
+    green: '0xa7c080'
+    yellow: '0xdbbc7f'
+    blue: '0x7fbbb3'
+    magenta: '0xd699b6'
+    cyan: '0x83c092'
+    white: '0xd3c6aa'
 
-  # Bright colors
+# Bright colors
   bright:
-    black:   '0x4C566A'
-    red:     '0xBF616A'
-    green:   '0xA3BE8C'
-    yellow:  '0xEBCB8B'
-    blue:    '0x81A1C1'
-    magenta: '0xB48EAD'
-    cyan:    '0x8FBCBB'
-    white:   '0xECEFF4'
+    black: '0x475258'
+    red: '0xe67e80'
+    green: '0xa7c080'
+    yellow: '0xdbbc7f'
+    blue: '0x7fbbb3'
+    magenta: '0xd699b6'
+    cyan: '0x83c092'
+    white: '0xd3c6aa'
 
 # Visual Bell
 #
