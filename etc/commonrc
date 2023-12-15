@@ -93,4 +93,6 @@ gloga() {
     glog2 ${args} -- --all --first-parent ${@}
 }
 
+alias glogb='glog -- --branches'
+
 alias skf='sk -c "rg --color=always --line-number \"{}\"" --ansi --delimiter=":" --nth="3.." --preview "bat {1} --color=always --line-range {2}:+100"'
