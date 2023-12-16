@@ -69,8 +69,6 @@ vim.keymap.set('n', '<leader>fm', '<cmd>Telescope keymaps<CR>')
 
 -- vim.keymap.set('n',  <leader>fc <cmd>Bdelete<CR>
 vim.keymap.set('n', '<leader>hve', '<cmd>edit $MYVIMRC<CR>')
--- TODO: sourcing vimrc does not work as files are already loaded with `require`
-vim.keymap.set('n', '<leader>hvr', '<cmd>source $MYVIMRC<CR>')
 
 -- tabs manipulation
 vim.api.nvim_set_keymap("n", "<leader>tn",  "<cmd>tab split<CR>", { desc = 'tab new' })

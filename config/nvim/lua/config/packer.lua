@@ -1,5 +1,3 @@
--- TODO: some navigation like: https://github.com/SmiteshP/nvim-navbuddy
-
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -110,7 +108,6 @@ return require('packer').startup({
     use('hrsh7th/vim-vsnip')
 
     -- Optional
-    -- use("nvim-lua/popup.nvim") -- TODO: is it needed ? telescope-ui-select is same?
     use("nvim-lua/plenary.nvim")
 
     use {
