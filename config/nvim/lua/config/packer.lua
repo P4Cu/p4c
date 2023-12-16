@@ -11,7 +11,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup({
+require('packer').startup({
   function(use)
     use 'wbthomason/packer.nvim'
 
@@ -272,4 +272,16 @@ return require('packer').startup({
       end,
     },
   },
+})
+
+-- auto reload configs
+local packerSyncGrp = vim.api.nvim_create_augroup("PackerSyncGrp", {})
+vim.api.nvim_clear_autocmds({ group = packerSyncGrp })
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = packerSyncGrp,
+  -- paths cannot be resolved as this would break soft-link to dot folder
+  -- thus usage of glob **/
+  pattern = { "**/nvim/lua/config/*.lua" },
+  -- TODO: set different path for packercompile, inside of data folder or sth
+  command = "source <afile> | PackerCompile",
 })

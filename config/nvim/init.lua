@@ -12,6 +12,8 @@
 -- TODO: info how to provide default on_attach!
 --   https://www.reddit.com/r/neovim/comments/wdiv4p/setting_up_neovim_with_lsp_and_clangd/
 
+-- TODO: this file should be super simplified
+
 local function check_nvim_version()
   local version = vim.version()
   if version.minor < 9 then vim.cmd [[ echom "Use at least nvim 8.3" ]] end
@@ -31,13 +33,3 @@ require 'config.plugin.nvim-cmp'
 
 vim.cmd [[ source ~/.config/nvim/vimrc ]]
 vim.cmd [[cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR>]] -- always use buffer delete map
-
--- auto reload configs
-local packerSyncGrp = vim.api.nvim_create_augroup("PackerSyncGrp", {})
-vim.api.nvim_clear_autocmds({ group = packerSyncGrp })
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  group = packerSyncGrp,
-  -- TODO: path should be from data folder, it's used a few times in script already
-  pattern = { "**/nvim/lua/config/*.lua", "**/nvim/plugin/*main.lua" },
-  command = "source <afile> | PackerCompile",
-})
