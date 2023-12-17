@@ -1,7 +1,14 @@
-local M = {}
+local M = {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+        "mfussenegger/nvim-dap",
+        "williamboman/mason.nvim"
+    },
+}
 
 -- small function to get dap.adapters.lldb
-function M.get_lldb_adapter()
+local function get_lldb_adapter()
+    require 'mason'.setup() -- TODO: why is this needed!? WHY o lazy nvim !?!
     local mason_registry = require("mason-registry")
     local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
     local codelldb_path = codelldb_root .. "adapter/codelldb"
@@ -28,8 +35,8 @@ function M.config()
     )
 
     -- first map available debugging adapters which later are mapped to filetypes
-    dap.adapters.lldb = require('config.plugin.dap').get_lldb_adapter() -- NOTE: cannot use M.get_lldb_adapter due to packer upvalues problem https://github.com/wbthomason/packer.nvim/pull/402
-    dap.adapters.rt_lldb = dap.adapters.lldb                            -- alternative name required by rust-tools
+    dap.adapters.lldb = get_lldb_adapter()
+    dap.adapters.rt_lldb = dap.adapters.lldb -- alternative name required by rust-tools
     dap.adapters.rust = dap.adapters.lldb
 
     -- set better json parser and load .vscode/launch.js

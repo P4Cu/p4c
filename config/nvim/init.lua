@@ -9,30 +9,52 @@
 --  nvm install stable && nvm use stable
 --  npm install tree-sitter
 --
--- TODO: info how to provide default on_attach!
---   https://www.reddit.com/r/neovim/comments/wdiv4p/setting_up_neovim_with_lsp_and_clangd/
 
--- TODO: this file should be super simplified
-
+-- TODO: better https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/health.lua
 local function check_nvim_version()
-  local version = vim.version()
-  if version.minor < 9 then vim.cmd [[ echom "Use at least nvim 8.3" ]] end
+    local version = vim.version()
+    if version.minor < 9 then vim.cmd [[ echom "Use at least nvim 8.3" ]] end
 end
 check_nvim_version()
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
-vim.keymap.set("n", "<leader>,", ",", { remap = true, desc="Like <LocalLeader>" }) -- , is not typical maping, so we need to map it instead of unmap
+vim.keymap.set("n", "<leader>,", ",", { remap = true, desc = "Like <LocalLeader>" }) -- , is not typical maping, so we need to map it instead of unmap
 
--- TODO: either move them to respective groups in packer or load in order like 01-xxx / 02-xxx
-require 'config.packer'
-require 'config.lsp'
-require 'config.options'
-require 'config.mappings'
-require 'config.diagnostics'
+-- setup Lazy plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
+require('lazy').setup('plugins')
 
-require 'config.plugin.nvim-cmp'
+require('options')
+require('mappings')
 
+vim.diagnostic.config {
+    virtual_text = false,
+    -- signs = {
+    -- active = signs,
+    -- },
+    signs = true,
+    underline = { severity = { min = vim.diagnostic.severity.ERROR } },
+    severity_sort = true,
+    float = {
+        -- style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+    },
+}
 
 vim.cmd [[ source ~/.config/nvim/vimrc ]]
 vim.cmd [[cabbrev bd <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Bd' : 'bd')<CR>]] -- always use buffer delete map
