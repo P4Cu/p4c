@@ -77,17 +77,13 @@ return {
 
     {
       "RRethy/vim-illuminate",
-      config = function()
-        pcall(function()
-          require('illuminate').configure {}
-        end)
-      end,
+      config = function() require('illuminate').configure {} end,
     },
 
     {
       -- tasks
       'stevearc/overseer.nvim',
-      config = function() pcall(function() require('overseer').setup() end) end,
+      config = function() require('overseer').setup() end,
       dependencies = {
         {"nvim-telescope/telescope.nvim", }, -- for menus
         {"stevearc/dressing.nvim", }, -- otherwise telescope does not work properly
