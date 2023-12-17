@@ -5,8 +5,6 @@
 [merge]
     tool = vimdiff
     conflictstyle = diff3
-[mergetool "mymeld"]
-    cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $MERGED $REMOTE
 [diff]
     tool = vimdiff
     algorithm = patience
