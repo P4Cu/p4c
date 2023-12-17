@@ -11,15 +11,10 @@ end
 
 return {
     -- TODO: can be lazy
-    { "williamboman/mason.nvim", config = {} },
+    { "williamboman/mason.nvim",  config = {} },
     -- TODO: bridging lspconfig and mason via https://github.com/williamboman/mason-lspconfig.nvim
 
-    {
-        "folke/neodev.nvim",
-        config = {
-            library = { plugins = { "nvim-dap-ui" }, types = true }
-        }
-    },
+    { "folke/neodev.nvim", opts = {}, },
 
     { "ray-x/lsp_signature.nvim", },
 

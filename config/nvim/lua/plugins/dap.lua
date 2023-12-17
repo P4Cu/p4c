@@ -1,11 +1,3 @@
-local M = {
-    "rcarriga/nvim-dap-ui",
-    dependencies = {
-        "mfussenegger/nvim-dap",
-        "williamboman/mason.nvim"
-    },
-}
-
 -- small function to get dap.adapters.lldb
 local function get_lldb_adapter()
     require 'mason'.setup() -- TODO: why is this needed!? WHY o lazy nvim !?!
@@ -16,23 +8,8 @@ local function get_lldb_adapter()
     return require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
 end
 
--- configuration loaded on dap setup
-M.ui_filetypes = { 'dapui_scopes', 'dapui_breakpoints', 'dapui_stacks', 'dapui_watches', 'dap-repl', 'dapui_console' }
-
--- all dap.ui windows filetypes - source code window is not included
-function M.config()
-    local dap, dapui = require("dap"), require("dapui")
-
-    vim.api.nvim_create_user_command(
-        'DapUiClose',
-        function(_)
-            require('dap').terminate()
-            require('dapui').close()
-            -- TODO: call
-            -- require('config.mappings').dapui_terminate()
-        end,
-        { nargs = 0 }
-    )
+local function dap_config()
+    local dap = require("dap")
 
     -- first map available debugging adapters which later are mapped to filetypes
     dap.adapters.lldb = get_lldb_adapter()
@@ -59,6 +36,21 @@ function M.config()
         command = "tmux",
         args = { "new-window", "-ad", "-c", "<desired-root-dir>" },
     }
+end
+
+function dapui_config()
+    local dap, dapui = require("dap"), require("dapui")
+
+    vim.api.nvim_create_user_command(
+        'DapUiClose',
+        function(_)
+            dap.terminate()
+            dapui.close()
+            -- TODO: call
+            -- require('config.mappings').dapui_terminate()
+        end,
+        { nargs = 0 }
+    )
 
     -- setup gui looks
     dapui.setup {
@@ -132,4 +124,23 @@ function M.config()
     end
 end
 
-return M
+return {
+    {
+        "mfussenegger/nvim-dap",
+        config = dap_config,
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        config = dapui_config,
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "williamboman/mason.nvim"
+        },
+    },
+
+    -- all dap.ui windows filetypes - source code window is not included
+    ui_filetypes = {
+        'dapui_scopes', 'dapui_breakpoints', 'dapui_stacks',
+        'dapui_watches', 'dap-repl', 'dapui_console'
+    },
+}
