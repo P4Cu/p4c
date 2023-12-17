@@ -8,6 +8,18 @@ local function get_lldb_adapter()
     return require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
 end
 
+local function map(mode, key, action, desc)
+    vim.keymap.set(mode, key, action, { desc = desc })
+end
+
+local function nmap(key, action, desc)
+    map("n", key, action, desc)
+end
+
+local function nvmap(key, action, desc)
+    map({ "n", "v" }, key, action, desc)
+end
+
 local function dap_config()
     local dap = require("dap")
 
@@ -80,41 +92,35 @@ function dapui_config()
         } }
     }
 
-
     -- TODO: if we don't set a breakpoint and start a debug it will quit so fast that we don't close UI
+
+    local keymap = require('keymap').dapui
+
+    -- keys to set always
+    nmap(keymap.toggle_breakpoint, dap.toggle_breakpoint, 'Toggle breakpoint')
+    nmap(keymap.set_logpoint,
+        function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+        'Set logpoint')
+    nmap(keymap.set_conditional_breakpoint,
+        function() dap.set_breakpoint(vim.fn.input('Condition: '), nil, nil) end,
+        'Set conditional')
+    nmap(keymap.run_last, dap.run_last, 'Run last')
+    nmap(keymap.terminate, dap.terminate, 'Terminate')
+    nmap(keymap.continue, dap.continue, 'Continue')
+
+    local widgets = require('dap.ui.widgets')
 
     -- Open/Close UI on dap events
     dap.listeners.after.event_initialized["dapui_config"] = function()
-        -- TODO: add key description
-        -- use <F5> <F10> <F11> <F23>
-        -- where <F5> could be remaped to local leader
-        -- also most of these could be buffer local bindings for specific windows
-        -- nevertheless they should be done from mappings.lua
         dapui.open()
-        vim.keymap.set('n', '<LocalLeader>dc', function() require('dap').continue() end)
-        vim.keymap.set('n', '<LocalLeader>dso', function() require('dap').step_over() end)
-        vim.keymap.set('n', '<LocalLeader>dsi', function() require('dap').step_into() end)
-        vim.keymap.set('n', '<LocalLeader>dsO', function() require('dap').step_out() end)
-        vim.keymap.set('n', '<LocalLeader>db', function() require('dap').toggle_breakpoint() end)
-        vim.keymap.set('n', '<LocalLeader>dB', function() require('dap').set_breakpoint() end)
-        vim.keymap.set('n', '<LocalLeader>dBB',
-            function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
-        vim.keymap.set('n', '<LocalLeader>dr', function() require('dap').repl.open() end)
-        vim.keymap.set('n', '<LocalLeader>dl', function() require('dap').run_last() end)
-        vim.keymap.set({ 'n', 'v' }, '<LocalLeader>dh', function()
-            require('dap.ui.widgets').hover()
-        end)
-        vim.keymap.set({ 'n', 'v' }, '<LocalLeader>dp', function()
-            require('dap.ui.widgets').preview()
-        end)
-        vim.keymap.set('n', '<LocalLeader>df', function()
-            local widgets = require('dap.ui.widgets')
-            widgets.centered_float(widgets.frames)
-        end)
-        vim.keymap.set('n', '<LocalLeader>ds', function()
-            local widgets = require('dap.ui.widgets')
-            widgets.centered_float(widgets.scopes)
-        end)
+        nmap(keymap.step_over, dap.step_over, 'Step over')
+        nmap(keymap.step_into, dap.step_into, 'Step into')
+        nmap(keymap.step_out, dap.step_out, 'step out')
+        nmap(keymap.repl, dap.repl.toggle, 'Repl toggle')
+        nvmap(keymap.hover, widgets.hover, 'Hover')
+        nvmap(keymap.preview, widgets.preview, 'Preview')
+        nmap(keymap.frames_float, function() widgets.centered_float(widgets.frames) end, 'Frames float')
+        nmap(keymap.scopes_float, function() widgets.centered_float(widgets.scopes) end, 'Scopes float')
     end
     dap.listeners.before.event_terminated["dapui_config"] = function()
         dapui.close()

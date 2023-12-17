@@ -37,7 +37,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup('plugins')
 
 require('options')
-require('mappings')
+require('keymap').setup()
 
 vim.diagnostic.config {
     virtual_text = false,
