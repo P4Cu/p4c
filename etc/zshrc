@@ -100,5 +100,10 @@ fi
 alias gbr=gbranch.py
 alias gfp="git fetch --prune"
 
+# Config in ~/.config/LazyVim
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+# Config in ~/.config/AstroNvim
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
