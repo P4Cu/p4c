@@ -8,6 +8,16 @@ local function get_lldb_adapter()
     return require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
 end
 
+local function get_cppdbg_adapter()
+    local install_path = require("mason-registry").get_package("cpptools"):get_install_path()
+    local exec_path = install_path .. '/extension/debugAdapters/bin/OpenDebugAD7'
+    return {
+        id = 'cppdbg',
+        type = 'executable',
+        command = exec_path,
+    }
+end
+
 local function map(mode, key, action, desc)
     vim.keymap.set(mode, key, action, { desc = desc })
 end
@@ -24,16 +34,26 @@ local function dap_config()
     local dap = require("dap")
 
     -- first map available debugging adapters which later are mapped to filetypes
-    dap.adapters.lldb = get_lldb_adapter()
+    dap.adapters.lldb = get_lldb_adapter()   -- TODO: mason codelldb
     dap.adapters.rt_lldb = dap.adapters.lldb -- alternative name required by rust-tools
     dap.adapters.rust = dap.adapters.lldb
+    dap.adapters.gdb = {
+        type = "executable",
+        command = "gdb",
+        args = { "-i", "dap" }
+    }
+    dap.adapters.cppdbg = get_cppdbg_adapter() -- TODO: mason cpptools
 
     -- set better json parser and load .vscode/launch.js
     require("dap.ext.vscode").json_decode = require("overseer.json").decode
     require("dap.ext.vscode").load_launchjs(
         nil, -- default .vscode/launch.json
         -- map configurations 'lldb' from launch.json to filetype
-        { lldb = { 'c', 'cpp', 'rust' } }
+        {
+            lldb = { 'c', 'cpp', 'rust' },
+            cppdbg = { 'c', 'cpp', 'rust' },
+            gdb = { 'c', 'cpp', 'rust' }
+        }
     )
     -- And set always stopOnEntry for everything loaded from launch.json
     -- for _, lang_config in pairs(dap.configurations) do
@@ -143,7 +163,6 @@ return {
             "williamboman/mason.nvim"
         },
     },
-
     -- all dap.ui windows filetypes - source code window is not included
     ui_filetypes = {
         'dapui_scopes', 'dapui_breakpoints', 'dapui_stacks',
