@@ -1,7 +1,7 @@
 local function setup()
     -- delete to black hole
-    vim.keymap.set('n', 'X', '"_x')
-    vim.keymap.set('v', 'X', '"_x')
+    vim.keymap.set({'n', 'v'},  '<BS>',  '"_x')
+    vim.keymap.set({'n', 'v'},  '<Del>',  '"_x')
 
     -- " to have nice command search
     vim.keymap.set('c', '<c-p>', '<up>')
@@ -18,7 +18,7 @@ local function setup()
     vim.keymap.set('', '<F15>', '<cmd>Telescope lsp_workspace_symbols<CR>')
     vim.keymap.set('', '<F7>', '<cmd>OverseerToggle<CR>')
     vim.keymap.set('', '<F19>', '<cmd>OverseerLoadBundle<CR>')
-    vim.keymap.set('', '<F31>', '<cmd>OverseerQuickAction open<CR>')
+    vim.keymap.set('', '<F31>', '<cmd>OverseerQuickAction open float<CR>')
 
     vim.keymap.set('n', '[g', '<cmd>echo "use [c"<CR>')
     vim.keymap.set('n', ']g', '<cmd>echo "use ]c"<CR>')
