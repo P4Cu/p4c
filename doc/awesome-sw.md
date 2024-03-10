@@ -16,6 +16,7 @@
 # CMD
 
 * wezterm - seems better than alacritty
+* kitty - even better than wezterm `kitty sh -c "tmux -u new-session -A"`
 * ranger
 * fd (cargo install fd-find) - find alternative
 * lsd
@@ -36,6 +37,7 @@
 
 # Gnome extensions
 * AppIndicator and KStatusNotifierItem Support
+* Unite
 * Current screen only on window switcher 
 * Dash to Dock
 * Espresso
