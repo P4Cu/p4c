@@ -6,6 +6,7 @@
 * massif-visualizer
 * https://www.poirrier.ca/hperf/
 * clangd + a script that captures all parameters and executes `compdb -p folder1 -p folder2 list > compile_commands.json`
+* fauxpilot - copilot locally
 
 # GIT
 
