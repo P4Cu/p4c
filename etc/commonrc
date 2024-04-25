@@ -31,6 +31,7 @@ alias cdr='cd-reporoot'
 alias o='xdg-open'
 lt='ls -laht'
 alias ctag='clear ; tag'
+alias GCO='git branch --format="%(refname:short)" --sort=-committerdate 2>/dev/null | fzf --height=30 --header "Checkout Recent Branch" --preview "git log -30 --oneline --decorate --abbrev --graph {1} --color=always" --pointer="" | xargs git checkout'
 
 # --------------------------------------------------------------------------------------------------
 # PATHS
