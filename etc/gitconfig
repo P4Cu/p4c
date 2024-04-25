@@ -30,6 +30,8 @@
     hide = update-index --skip-worktree
     hide-stop = update-index --no-skip-worktree
     hide-ls = ! git ls-files -v "$(git rev-parse --show-toplevel)" | grep "^S"
+    ; branches-description = config --get-regexp 'branch.*.description'
+    branches-description= ! "git for-each-ref --sort='-authordate' --format='%(refname:short)' refs/heads/ | xargs -I _ sh -c 'echo -n \"_ \\033[0;31m\" && git config --get branch._.description | tr -d \"\n\" ; echo \"\\033[0m\"'"
 [color]
     ui = auto
 [core]
