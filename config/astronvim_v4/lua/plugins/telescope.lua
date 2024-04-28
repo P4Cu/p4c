@@ -39,6 +39,9 @@ return {
               ["<c-f>"] = actions.to_fuzzy_refine,
             },
             n = {
+              ["<esc>"] = actions.nop,
+              ["<c-c>"] = actions.close,
+              ["<c-f>"] = actions.to_fuzzy_refine,
               ["?"] = actions_generate.which_key {
                 only_show_current_mode = false,
                 max_height = 0.8,
