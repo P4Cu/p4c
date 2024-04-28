@@ -2,8 +2,6 @@
 -- things like custom filetypes. This just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
-require "autocmd"
-
 -- vim.cmd [[ source ~/.config/nvim/vimrc ]]
 
 -- -- -- Set up custom filetypes
@@ -18,3 +16,17 @@ require "autocmd"
 --     ["~/%.config/foo/.*"] = "fooscript",
 --   },
 -- }
+
+-- vim.api.nvim_create_augroup("DiagnosticMode", { clear = true })
+-- vim.api.nvim_create_autocmd("ModeChanged", {
+--   desc = "Show diagnostics in normal mode",
+--   pattern = "*:n",
+--   group = "DiagnosticMode",
+--   callback = function(_) vim.diagnostic.show() end,
+-- })
+-- vim.api.nvim_create_autocmd("ModeChanged", {
+--   desc = "Hide diagnostics in non-normal mode",
+--   pattern = "n:*",
+--   group = "DiagnosticMode",
+--   callback = function(_) vim.diagnostic.hide() end,
+-- })
