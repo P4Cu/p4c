@@ -77,7 +77,7 @@ return {
         },
 
         -- TODO: these could be set by autocommands with name maching file
-        ["<Leader><Leader>a"] = { function() require("harpoon"):list():append() end, desc = "Harpoon add" },
+        ["<Leader><Leader>a"] = { function() require("harpoon"):list():add() end, desc = "Harpoon add" },
         ["<Leader><Leader>e"] = {
           function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end,
           desc = "Harpoon menu",
