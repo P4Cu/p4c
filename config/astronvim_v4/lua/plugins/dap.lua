@@ -1,7 +1,9 @@
 return {
   {
     "mfussenegger/nvim-dap",
+
     config = function()
+      -- require "plugins.configs.nvim-dap"(plugin, opts) - not existing as of yet
       local dap = require "dap"
 
       -- TODO: this will not work when running in docker as then it won't be able to run
