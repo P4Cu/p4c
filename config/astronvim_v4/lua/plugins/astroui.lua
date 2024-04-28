@@ -32,6 +32,12 @@ return {
       LSPLoading8 = "⠧",
       LSPLoading9 = "⠇",
       LSPLoading10 = "⠏",
+
+      Find = "",
+      Pencil = "",
+      Gear = "",
+      Run = "",
+      Debug = "",
     },
   },
 }
