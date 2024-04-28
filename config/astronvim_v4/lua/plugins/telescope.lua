@@ -1,8 +1,10 @@
+-- TODO: path_display now supports higlight groups as second params so no need to add autocommand
+-- https://github.com/nvim-telescope/telescope.nvim/pull/3074
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "TelescopeResults",
   callback = function(ctx)
     vim.api.nvim_buf_call(ctx.buf, function()
-      vim.fn.matchadd("TelescopeParent", "\t\t.*$")
+      vim.fn.matchadd("TelescopeParent", "\t\t.*\t\t")
       vim.api.nvim_set_hl(0, "TelescopeParent", { link = "Comment" })
     end)
   end,
@@ -12,7 +14,8 @@ local function filenameFirst(_, path)
   local tail = vim.fs.basename(path)
   local parent = vim.fs.dirname(path)
   if parent == "." then return tail end
-  return string.format("%s\t\t%s", tail, parent)
+  -- TODO: improve so we don't need to search for \t\t
+  return string.format("%s\t\t%s\t\t", tail, parent)
 end
 
 return {
@@ -22,10 +25,14 @@ return {
     opts = function(_, opts)
       local actions = require "telescope.actions"
       local actions_generate = require "telescope.actions.generate"
-      local new_config = vim.tbl_deep_extend("force", opts, {
+      return vim.tbl_deep_extend("force", opts, {
         defaults = {
           layout_strategy = "vertical",
-          layout_config = { height = 0.98, width = 0.98, preview_cutoff = 40 },
+          layout_config = {
+            height = 0.98,
+            width = 0.98,
+            preview_cutoff = 20, -- disable preview when height less than
+          },
           results_title = "Results - [?] for help in normal-mode",
           mappings = {
             i = {
@@ -38,8 +45,8 @@ return {
               },
             },
           },
-          -- path_display = filenameFirst,
-          path_display = { shorten = 5 },
+          path_display = filenameFirst,
+          -- path_display = { shorten = 5 },
           -- path_display = { "smart" },
         },
         pickers = {
@@ -74,7 +81,6 @@ return {
           },
         },
       })
-      return new_config
     end,
   },
 }
