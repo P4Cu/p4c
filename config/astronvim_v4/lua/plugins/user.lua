@@ -12,6 +12,11 @@ return {
     config = function() require("lsp_signature").setup() end,
   },
 
+  -- best way to :Git blame -CCC
+  -- or better via: https://github.com/AstroNvim/astrocommunity/tree/c24f6b608d61fca19057d0785f49042ebea451ba/lua/astrocommunity/git/blame-nvim
+  -- but does it support -CCC ?
+  { "tpope/vim-fugitive", lazy = false },
+
   -- == Examples of Overriding Plugins ==
 
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call

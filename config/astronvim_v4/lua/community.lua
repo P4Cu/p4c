@@ -28,6 +28,7 @@ return {
   { import = "astrocommunity.debugging.nvim-dap-virtual-text" },
 
   { import = "astrocommunity.code-runner.overseer-nvim" },
+  { import = "astrocommunity.lsp.lspsaga-nvim" },
   -- { import = "astrocommunity.bars-and-lines.vim-illuminate" }, -- TODO: this was enabled, is it needed?
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
 
