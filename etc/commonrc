@@ -97,3 +97,7 @@ gloga() {
 alias glogb='glog -- --branches'
 
 alias skf='sk -c "rg --color=always --line-number \"{}\"" --ansi --delimiter=":" --nth="3.." --preview "bat {1} --color=always --line-range {2}:+100"'
+
+if [[ $- == *i* ]]; then
+    alias rm='echo "use trash (cargo install trashy)"'
+fi
