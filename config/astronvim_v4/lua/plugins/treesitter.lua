@@ -33,6 +33,13 @@ return {
     }
     return opts2
   end,
+  config = function(_, opts)
+    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    if vim.fn.has "win32" == 1 then require("nvim-treesitter.install").compilers = { "zig", "clang", "gcc" } end
+
+    ---@diagnostic disable-next-line: missing-fields
+    require("nvim-treesitter.configs").setup(opts)
+  end,
   dependencies = {
     { "HiPhish/rainbow-delimiters.nvim" },
     {
