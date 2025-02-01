@@ -1,0 +1,11 @@
+
+https://github.com/Superdanby/Grub-Nvidia-Entry.git
+
+/etc/gdm/custom.conf
+#WaylandEnable=false
+
+/usr/lib/udev/rules.d/61-gdm.rules
+DRIVER=="nvidia", RUN+="/usr/libexec/gdm-runtime-config set daemon WaylandEnable false"
+
+
+gsettings set org.gnome.mutter experimental-features [\"kms-modifiers\"]

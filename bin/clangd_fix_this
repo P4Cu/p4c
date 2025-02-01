@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+"""
+Short script to merge compilation results from child folders.
+Utilizes module compdb eg:
+> compdb -p folder1/ -p folder2/ list > compile_commands.json
+
+Requires clangd.toml paralel to script.
+    [project1]
+    clangd = "/usr/bin/clangd"
+    path = "/home/p4c/repo/project1"
+    compile_commands_paths = [
+        "/home/p4c/repo/project1/build_folder_1",
+        "/home/p4c/repo/project1/build_folder_2"
+    ]
+
+    [project2]
+    clangd = "/ust/bin/clangd"
+    path = "/home/p4c/repo/project2"
+    compile_commands_paths = [
+        "/home/p4c/repo/project2/build_folder_1",
+        "/home/p4c/repo/project2/build_folder_2"
+    ]
+"""
+
+import sys
+from contextlib import redirect_stdout
+import io
+from pathlib import Path
+import compdb.cli
+import tomli
+import subprocess
+
+
+PARAM_MATCH='-compile-commands-dir'
+
+
+def get_matching_config(path):
+    filepath = Path(__file__).resolve().parent.joinpath('clangd.toml')
+    config = tomli.loads(filepath.read_text(encoding='utf8'))
+    for group in config.values():
+        if group['path'] == path:
+            return group
+
+def get_clangd_path_param():
+    args = [arg.startswith(PARAM_MATCH) for arg in sys.argv]
+    assert sum(args) == 1, f"Args: {args}"
+    index = args.index(True)
+    arg = sys.argv[index]
+
+    try:
+        if arg[len(PARAM_MATCH)] == '=':
+            return arg[len(PARAM_MATCH)+1:]
+    except IndexError: # take next argument
+        return sys.argv[index+1]
+
+def generate_compile_commands(paths):
+    command = compdb.cli.ListCommand()
+    config = compdb.cli.Config()
+    config.build_directory_patterns.extend(paths)
+    f = io.StringIO()
+    with redirect_stdout(f):
+        command.execute(config, argv=[])
+    s = f.getvalue()
+    with open('compile_commands.json', 'w', encoding='utf8') as fw:
+        fw.writelines(s)
+
+path = get_clangd_path_param()
+cfg = get_matching_config(path)
+generate_compile_commands(cfg['compile_commands_paths'])
+
+clangd = cfg['clangd']
+subprocess.check_call([clangd, *sys.argv[1:]])

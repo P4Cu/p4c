@@ -65,6 +65,9 @@ bindsym $mod+Shift+q kill
 # start a program launcher
 bindsym $mod+d exec --no-startup-id "rofi -show drun -modi drun,window,run -location 1 -width 50 -columns 4"
 
+# window switcher
+bindsym $mod+Tab exec rofi -show window
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -200,6 +203,7 @@ bar {
     position top
     status_command i3status-rs ~/.config/i3/status.toml
     tray_padding 1 px
+    tray_output primary
 
     # mode hide
     # hidden_state hide
@@ -233,6 +237,8 @@ for_window [window_role="task_dialog"] floating enable
 for_window [class="Yad"] floating enable
 for_window [title="Microsoft Teams Notification"] floating enable
 for_window [class="evolution-alarm-notify"] floating enable
+for_window [class="*pavucontrol*" title="Volume Control"] floating enable, resize set 640 640, move position mouse
+for_window [class="*keepassxc*" title=".*KeePassXC"] floating enable, resize set 1200 640, move position mouse
 
 workspace 1 output DP-0
 workspace 4 output HDMI-1-1
@@ -241,6 +247,7 @@ workspace 0 output eDP-1-1
 
 # bind shutdown menu
 bindsym Control+$alt+Delete exec ~/.config/i3blocks/shutdown_menu/shutdown_menu
+bindsym $mod+Escape exec ~/.config/i3blocks/shutdown_menu/shutdown_menu
 
 # change volume or toggle mute
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+
@@ -310,4 +317,17 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 # Password manager
 exec --no-startup-id keepassxc
 # Simple yet awesome microphone tray icon
-exec --no-startup-id mictray
+# exec --no-startup-id mictray
+# Manage pulse from tray
+exec --no-startup-id pasystray
+
+# # Make the currently focused window a scratchpad
+# bindsym $mod+Shift+minus move scratchpad
+# # Show the first scratchpad window
+# bindsym $mod+minus scratchpad show
+
+set $workspace_communication 
+bindsym $mod+Shift+minus move workspace $workspace_communication
+bindsym $mod+minus workspace $workspace_communication
+assign [class="^Telegram"] $workspace_communication
+assign [class="^Microsoft Teams"] $workspace_communication

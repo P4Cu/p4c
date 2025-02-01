@@ -1,0 +1,2 @@
+# requires qt5ct and allows to set style for apps
+export QT_QPA_PLATFORMTHEME=qt5ct

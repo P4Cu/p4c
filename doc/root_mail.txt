@@ -1,0 +1,12 @@
+postfix
+sudo systemctl enable postfix
+/etc/hosts
+/etc/aliases
+newaliases
+
+
+in Evolution:
+new account
+mail info
+local delivery
+no outgoing

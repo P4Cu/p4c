@@ -3,11 +3,12 @@
 ##    path = ~/p4c/etc/gitconfig
 
 [merge]
-    tool = mymeld
-[mergetool "mymeld"]
-    cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $MERGED $REMOTE
+    tool = vimdiff
+    conflictstyle = diff3
 [diff]
-    tool = meld
+    tool = vimdiff
+    algorithm = patience
+    colorMoved = default
 [alias]
     st = status
     lg = !"git lgg"
@@ -24,12 +25,29 @@
     amend = commit --amend
     br = branch
     a = add
-    dirdiff = difftool --dir-diff
+    dirdiff = difftool --gui --dir-diff # --no-symlinks
+    # hide local changes via skip-worktree
+    hide = update-index --skip-worktree
+    hide-stop = update-index --no-skip-worktree
+    hide-ls = ! git ls-files -v "$(git rev-parse --show-toplevel)" | grep "^S"
+    ; branches-description = config --get-regexp 'branch.*.description'
+    branches-description= ! "git for-each-ref --sort='-authordate' --format='%(refname:short)' refs/heads/ | xargs -I _ sh -c 'echo -n \"_ \\033[0;31m\" && git config --get branch._.description | tr -d \"\n\" ; echo \"\\033[0m\"'"
+    blames = blame -CCC
 [color]
     ui = auto
 [core]
     editor = nvim
+    excludesfile = ~/.gitignore
+    pager = delta --paging always
 [rerere]
     enabled = true
 [color "diff"]
     meta = blue
+[mergetool]
+    keepBackup = false
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    side-by-side = true

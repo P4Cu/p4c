@@ -17,9 +17,9 @@ max_width = 81
 [[block]]
 block = "music"
 # player = "spotify"
-# buttons = ["prev", "play", "next"]
-buttons = ["play"]
-max_width = 26
+buttons = ["prev", "play", "next"]
+# buttons = ["play"]
+max_width = 36
 
 [[block]]
 block = "net"
@@ -27,6 +27,8 @@ device = "eno1"
 ip = true
 hide_inactive = true
 hide_missing = true
+speed_up = false
+graph_up = true
 
 [[block]]
 block = "net"
@@ -34,15 +36,17 @@ device = "enp2s0"
 ip = true
 hide_inactive = true
 hide_missing = true
+speed_up = false
+speed_down = false
 
 [[block]]
 block = "net"
 device = "wlp3s0"
 ssid = true
-bitrate = true
+# bitrate = true
 ip = true
-hide_inactive = true
-hide_missing = true
+speed_up = false
+speed_down = false
 
 [[block]]
 # requires lm-sensors
@@ -102,9 +106,13 @@ device = "intel_backlight"
 
 [[block]]
 block = "sound"
-# name = "@DEFAULT_SOURCE@"
-# see for MIC: https://github.com/greshake/i3status-rust/pull/371
-on_click = "pavucontrol" # make it only one instance
+device_kind = "sink"
+on_click = "pavucontrol --tab=3"
+
+[[block]]
+block = "sound"
+device_kind = "source"
+on_click = "pavucontrol --tab=4"
 
 [[block]]
 block = "battery"
@@ -115,3 +123,15 @@ block = "time"
 interval = 60
 format = "%a %d/%m %R"
 on_click = "gnome-calendar" # TODO: some calendar
+
+[[block]]
+block = "custom"
+on_click = "~/.config/i3blocks/shutdown_menu/shutdown_menu"
+command = "echo "
+interval = "once"
+
+[[block]]
+block = "custom"
+on_click = "rofi -show drun -modi drun,window,run -location 1 -width 50 -columns 4"
+command = "echo "
+interval = "once"

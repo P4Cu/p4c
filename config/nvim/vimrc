@@ -1,0 +1,25 @@
+
+
+" ##################################################################################################
+
+command Format lua = vim.lsp.buf.format { async = true }
+
+
+" Project specific {{{
+" write something like: `autocmd BufRead,BufNewFile /home/p4c/repo/* call P4C_repo()`
+" and do customizations in that function
+if filereadable(glob("~/.vimrc_custom"))
+    source ~/.vimrc_custom
+endif
+" }}} ##############################################################################################
+
+
+
+let g:autoswap_detect_tmux = 1
+
+
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+
+let g:vim_markdown_folding_style_pythonic = 1
+
+let g:netrw_fastbrowse=0

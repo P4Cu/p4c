@@ -2,7 +2,7 @@ rofi.show-icons:            true
 rofi.modi:                  drun,run,window,ssh
 rofi.lines:                 10
 rofi.line-padding:          10
-rofi.matching:              fuzzy
+rofi.matching:              normal
 rofi.bw:                    0
 rofi.padding:               0
 rofi.separator-style:       none

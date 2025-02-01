@@ -1,8 +1,0 @@
-" gvim -u ~/p4c/config/vim/vimrc_vimperator --noplugin
-
-set guioptions-=T " no toolbar!
-set guifont=DroidSansMonoForPowerline\ Nerd\ Font\ 11
-set guiheadroom=0
-set guioptions+=M
-set guioptions+=m
-set guioptions-=T

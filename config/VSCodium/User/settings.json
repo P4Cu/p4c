@@ -16,6 +16,20 @@
     "vim.visualstar": true,
     "vim.scroll": 10,
     "vim.foldfix": true,
+    "vim.normalModeKeyBindings": [
+        {
+            "before":["]", "c"],
+            "commands": [
+                "workbench.action.editor.nextChange",
+            ]
+        },
+        {
+            "before":["[", "c"],
+            "commands": [
+                "workbench.action.editor.previousChange",
+            ]
+        }
+    ],
 
     // nice feature to not bloat tab bar
     "workbench.editor.limit.enabled": true,
@@ -24,7 +38,7 @@
     // misc
     "debug.console.closeOnEnd": true,
     "terminal.integrated.rendererType": "experimentalWebgl",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "todo-tree.highlights.enabled": true,
     "cmake.configureOnOpen": false,
     "window.menuBarVisibility": "toggle",
@@ -35,5 +49,6 @@
     "code-runner.enableAppInsights": false,
     "gitlens.advanced.telemetry.enabled": false,
     "todo-tree.tree.showScanModeButton": false,
-    "workbench.colorTheme": "Nord"
+    "workbench.colorTheme": "Nord",
+    "editor.minimap.enabled": false
 }
