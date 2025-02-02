@@ -95,6 +95,7 @@ return {
 
         ["<F1>"] = { "<cmd>Telescope builtin include_extensions=true<CR>", desc = "Telescope" },
         ["<F13>"] = { "<cmd>Telescope resume<CR>", desc = "Telescope resume" },
+        ["<S-F1>"] = { "<cmd>Telescope resume<CR>", desc = "Telescope resume" },
 
         ["<Leader>fg"] = {
           function() require("telescope").extensions.live_grep_args.live_grep_args() end,
