@@ -112,13 +112,13 @@ return {
         ["<Leader>tmn"] = { "<cmd>+tabmove<CR>", desc = "move tab forward" },
         -- unmap toggleterm <Leader>t
         -- THIS unmapping does not work well
-        ["<Leader>tl"] = false,
-        ["<Leader>tu"] = false,
-        ["<Leader>tt"] = false,
-        ["<Leader>tp"] = false,
-        ["<Leader>tf"] = false,
-        ["<Leader>th"] = false,
-        ["<Leader>tv"] = false,
+        -- ["<Leader>tl"] = false,
+        -- ["<Leader>tu"] = false,
+        -- ["<Leader>tt"] = false,
+        -- ["<Leader>tp"] = false,
+        -- ["<Leader>tf"] = false,
+        -- ["<Leader>th"] = false,
+        -- ["<Leader>tv"] = false,
 
         ["<LocalLeader>o"] = { name = "Overseer" },
         ["<LocalLeader>oo"] = { "<cmd>OverseerToggle<CR>", desc = "Overseer toggle" },
