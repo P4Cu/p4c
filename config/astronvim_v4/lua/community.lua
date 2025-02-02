@@ -20,6 +20,7 @@ return {
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.cs" },
+  { import = "astrocommunity.pack.ps1" },
 
   { import = "astrocommunity.git.neogit" },
   { import = "astrocommunity.git.diffview-nvim" },
@@ -35,5 +36,5 @@ return {
 
   -- TODO: astrocommunity.diagnostics.trouble-nvim consider the dependency edgy-windows which looks promising
 
-  -- TODO: neotest, though astrocommunity.test.neotest seems bad for my usecase, maybe on my own?
+  { import = "astrocommunity.test.neotest" },
 }
