@@ -7,3 +7,6 @@ bin/clangd.toml
 etc/zshrc.zwc
 config/nvim/lua/.luarc.json
 config/vim/spell
+
+config_win/WindowsPowerShell/Modules/
+config_win/WindowsPowerShell/vs_envfile.ps1
