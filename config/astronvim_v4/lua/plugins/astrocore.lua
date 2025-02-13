@@ -32,7 +32,12 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false, -- sets vim.opt.wrap
-        listchars = "trail:·,tab:»· ,nbsp:+",
+        list = true,
+        listchars = {
+          trail = "·",
+          tab = "» ",
+          nbsp = "+",
+        },
         clipboard = "unnamedplus",
 
         wrapscan = false, -- do not wrap search
