@@ -120,5 +120,5 @@ return {
     },
   },
 
-  -- { "akinsho/toggleterm.nvim", opts = { shade_terminals = false } },
+  { "akinsho/toggleterm.nvim", opts = { direction = "float", shell = "nu" } },
 }
