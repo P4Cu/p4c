@@ -177,6 +177,9 @@ return {
       t = {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
+        -- As <Esc> is used for internal nushell swap to `normal mode`.
+        -- <Esc><Esc> should escape to outer normal mode so a copy can be done.
+        ["<Esc><Esc>"] = "<C-\\><C-n>",
       },
       x = {
         il = { "g_o_", desc = "inside line" },
