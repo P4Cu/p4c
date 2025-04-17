@@ -32,7 +32,7 @@ return {
   { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.lsp.lspsaga-nvim" },
   -- { import = "astrocommunity.bars-and-lines.vim-illuminate" }, -- TODO: this was enabled, is it needed?
-  -- { import = "astrocommunity.completion.copilot-lua-cmp" },
+  { import = "astrocommunity.completion.copilot-vim" },
 
   -- TODO: astrocommunity.diagnostics.trouble-nvim consider the dependency edgy-windows which looks promising
 
