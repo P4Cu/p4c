@@ -1,53 +1,85 @@
-## Use include to get it
-## [include]
-##    path = ~/p4c/etc/gitconfig
+[core]
+    editor = nvim
+    excludesFile = C:\\Users\\PaAn320\\.gitignore_global
+    pager = delta --paging always
+    symlinks = true
+
+[user]
+    name = Andrzej Pacanowski
+
+[interactive]
+    diffFilter = delta --color-only
 
 [merge]
-    tool = vimdiff
+    tool = nvimdiff
     conflictstyle = diff3
+    guitool = bc
+
 [diff]
-    tool = vimdiff
+    tool = nvimdiff
     algorithm = patience
     colorMoved = default
+
 [alias]
+    # ================= short aliases
     st = status
-    lg = !"git lgg"
-    lgmaster = !"git lgg origin/master.."
-    lgdevel = !"git lgg origin/devel.."
-    lg-all = !"git lgg --all"
-    l = !"git lgg --all"
-    lg-noremote = !"git lgg --branches='*'"
-    lg-remote = !"git lgg --remotes='*'"
-    lgg = !"git lgg2"
-    lgg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%<(103,trunc)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
-    lgg2 = log --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%aN, %ar)'
-    lgg3 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
     amend = commit --amend
+    fp = fetch --prune
+    d = diff
+    dca = diff --cached
+    upa = pull --autostash --rebase
+    co = checkout
     br = branch
     a = add
+    rb = rebase
+    rba = rebase --abort
+    rbi = rebase --interactive
+    rbc = rebase --continue
+    m = merge
+    ma = merge --abort
+    # ================= long aliases
     dirdiff = difftool --gui --dir-diff # --no-symlinks
-    # hide local changes via skip-worktree
+    # ================= logging
+    lg = !"git lg2"
+    lg0 = !git lg @ @{upstream} "^$(git merge-base @ @{upstream})^@"
+    lg00 = !git lg @ origin/HEAD "^$(git merge-base @ origin/HEAD)^@"
+    lgmaster = !"git lg origin/master.."
+    lgdevel = !"git lg origin/devel.."
+    lg-noremote = !"git lg --branches='*'"
+    lg-remote = !"git lg --remotes='*'"
+    lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%<(103,trunc)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    lg2 = log --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%aN, %ar)'
+    lg3 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+    # ================= hide local changes via skip-worktree
     hide = update-index --skip-worktree
     hide-stop = update-index --no-skip-worktree
     hide-ls = ! git ls-files -v "$(git rev-parse --show-toplevel)" | grep "^S"
     ; branches-description = config --get-regexp 'branch.*.description'
     branches-description= ! "git for-each-ref --sort='-authordate' --format='%(refname:short)' refs/heads/ | xargs -I _ sh -c 'echo -n \"_ \\033[0;31m\" && git config --get branch._.description | tr -d \"\n\" ; echo \"\\033[0m\"'"
     blames = blame -CCC
+
 [color]
     ui = auto
-[core]
-    editor = nvim
-    excludesfile = ~/.gitignore
-    pager = delta --paging always
+
 [rerere]
     enabled = true
+
 [color "diff"]
     meta = blue
-[mergetool]
-    keepBackup = false
-[interactive]
-    diffFilter = delta --color-only
+
 [delta]
     navigate = true    # use n and N to move between diff sections
     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
     side-by-side = true
+
+[mergetool]
+    keepBackup = false
+
+[difftool "bc"]
+    path = C:/Program\\ Files/Beyond\\ Compare\\ 4/bcompare.exe
+    cmd = "C:/Program\\ Files/Beyond\\ Compare\\ 4/bcompare.exe" -solo "$LOCAL" "$REMOTE"
+
+[mergetool "bc"]
+    path = "C:/Program\\ Files/Beyond\\ Compare\\ 4/bcompare.exe"
+    cmd = "C:/Program\\ Files/Beyond\\ Compare\\ 4/bcompare.exe" -solo "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+    keepBackup = false
