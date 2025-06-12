@@ -1,0 +1,123 @@
+
+let mapleader = ' '
+let maplocalleader = ' '
+
+set vsvim_useeditordefaults
+
+set clipboard=unnamed
+set timeoutlen=600     " Reduce timeout for key mappings
+set hlsearch      " Highlight search matches
+set incsearch     " Incremental search (show matches as you type)
+" smartcase is already set, which is good with ignorecase
+set ignorecase    " Make search case-insensitive (unless smartcase overrides)
+set number         " Show absolute number for current line
+set scrolloff=8
+set list          " Show invisible characters (tabs, trailing spaces)
+
+
+nnoremap <C-S> :w<CR>
+nnoremap <C-O> :vsc View.NavigateBackward<CR>
+nnoremap <C-I> :vsc View.NavigateForward<CR>
+nnoremap <C-p> :vsc View.CommandPalette<CR>
+nnoremap <Leader>ff :vsc Edit.GoToFile<CR>
+nnoremap <leader>fg :vsc Edit.FindinFiles<CR>
+nnoremap <Leader>c :vsc File.Close<CR>
+nnoremap <Leader>v :so C:/Users/PaAn320/.vsvimrc<CR>
+nnoremap <Leader>? :e C:/Users/PaAn320/.vsvimrc<CR>
+
+nnoremap K :vsc Edit.QuickInfo<CR>
+
+nnoremap gd :vsc Edit.GoToDefinition<CR>
+nnoremap gp :vsc Edit.PeekDefinition<CR>
+nnoremap grr :vsc Edit.FindAllReferences<CR>
+nnoremap grn :vsc Refactor.Rename<CR>
+" TODO: map actions!
+" nnoremap gra :vsc Refactor.Rename<CR>
+nnoremap <leader>la :vsc View.QuickActionsandRefactorings<CR>
+
+nnoremap gb :vsc Window.NextTab<CR>
+nnoremap gB :vsc Window.PreviousTab<CR>
+
+nnoremap <Leader>\ :vsc View.SolutionExplorer<CR>
+
+
+nnoremap <Leader>b :vsc Build.BuildSolution<CR>
+nnoremap <Leader>B :vsc Build.Cancel<CR>
+
+nnoremap <Leader>ds :vsc Debug.Start<CR>
+nnoremap <Leader>dC :vsc Debug.RunToCursor<CR>
+nnoremap <Leader>ds :vsc Debug.StartWithoutDebugging<CR>
+nnoremap <Leader>dx :vsc Debug.StopDebugging<CR>
+nnoremap <Leader>dr :vsc Debug.Restart<CR>j
+nnoremap <Leader>do :vsc Debug.StepOver<CR>
+nnoremap <Leader>di :vsc Debug.StepInto<CR>
+nnoremap <Leader>du :vsc Debug.StepOut<CR>
+nnoremap <Leader>bt :vsc Debug.ToggleBreakpoint<CR>
+nnoremap <Leader>dL :vsc Debug.CallStack<CR>
+nnoremap <Leader>bd :vsc Debug.DisableAllBreakpoints<CR>
+nnoremap <Leader>be :vsc Debug.EnableAllBreakpoints<CR>
+
+vnoremap <C-/> :vsc Edit.ToggleLineComment<CR>
+nnoremap <C-/> :vsc Edit.ToggleLineComment<CR>
+vnoremap gc :vsc Edit.ToggleLineComment<CR>
+nnoremap gc :vsc Edit.ToggleLineComment<CR>
+
+
+nnoremap [m :vsc Edit.PreviousMethod<CR>
+nnoremap ]m :vsc Edit.NextMethod<CR>
+nnoremap [e :vsc View.PreviousError<CR>
+nnoremap ]e :vsc View.NextError<CR>
+nnoremap ]b :vsc Window.NextTab<CR>
+nnoremap [b :vsc Window.PreviousTab<CR>j
+
+vnoremap <Leader>gs :vsc Git.StageLines<CR>
+nnoremap <Leader>gs :vsc Git.StageLines<CR>
+vnoremap <Leader>gr :vsc Git.UnstageLines<CR>
+nnoremap <Leader>gr :vsc Git.UnstageLines<CR>
+nnoremap <Leader>gh :vsc Git.ViewHistory<CR>
+
+nnoremap <F4> :vsc EditorContextMenus.CodeWindow.GoToHeaderFile<CR>
+
+
+" inoremap <C-L> <Cmd>vsc Copilot.AcceptInLineCompletion<CR>
+"" Map Ctrl+L in Insert Mode to accept the current inline code suggestion (simulates pressing Tab)
+" inoremap <C-L> <Tab>
+"
+
+
+
+
+
+
+
+
+
+" Window / View (<Leader>w..., <Leader>v...)
+"
+"nnoremap <Leader>wv :vsc Window.NewVerticalTabGroup<CR> " New Vertical Split/Group
+" nnoremap <Leader>ws :vsc Window.NewHorizontalTabGroup<CR> " New Horizontal Split/Group
+nnoremap <C-w>q :vsc Window.CloseDocumentWindow<CR> " Close current document tab (if last in group, closes group)
+"     nnoremap <Leader>wm :vsc Window.MoveToMainDocumentGroup<CR> " Move Tab to Main Group
+"     nnoremap <Leader>wf :vsc Window.Float<CR> " Float Current Window
+"     nnoremap <Leader>wd :vsc Window.Dock<CR> " Dock Current Window
+"     nnoremap <Leader>wh :vsc Window.AutoHide<CR> " Toggle Auto Hide Current Window
+"     nnoremap <Leader>wF :vsc View.FullScreen<CR> " Toggle Full Screen (Alt+Shift+Enter)
+"     nnoremap <Leader>vc :vsc View.ClassView<CR> " View Class View
+"     nnoremap <Leader>vr :vsc View.ResourceView<CR> " View Resource View (C++)
+"     nnoremap <Leader>vp :vsc View.PropertiesWindow<CR> " View Properties Window (F4)
+"     nnoremap <Leader>vT :vsc View.TaskList<CR> " View Task List
+"     nnoremap <Leader>wR :vsc Window.ResetWindowLayout<CR> " Reset Window Layout
+"
+" Testing (<Leader>t...)
+"
+"     nnoremap <Leader>ta :vsc Test.RunAllTestsInSolution<CR> " Run All Tests in Solution
+"     nnoremap <Leader>tf :vsc Test.RunFailedTests<CR> " Run Failed Tests
+
+" Repeat Last Test Run
+nnoremap <Leader>tl :vsc Test.RepeatLastRun<CR>
+"     nnoremap <Leader>td :vsc Test.DebugAllTestsInSolution<CR> " Debug All Tests
+" Debug Last Test Run
+nnoremap <Leader>tD :vsc Test.DebugLastRun<CR>
+"     nnoremap <Leader>tv :vsc View.CodeCoverageResults<CR> " View Code Coverage Results
+"     nnoremap <Leader>tA :vsc Analyze.AnalyzeCodeCoverage<CR> " Analyze Code Coverage
+
