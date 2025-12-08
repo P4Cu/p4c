@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Options
+option_sleep="sleep"
+option_reboot="reboot"
+option_shutdown="shutdown"
+option_btop="btop"
+
+# Pass options to rofi
+selected=$(echo -e "$option_sleep\n$option_reboot\n$option_shutdown\n$option_btop" | wofi --dmenu -i --width=200 --height=200)
+
+confirm_action() {
+  local choice
+  choice=$(echo -e "Yes\nNo" | wofi --dmenu -i -p "Confirm $1?" --width=200 --height=200 )
+  [[ "$choice" == "Yes" ]]
+}
+
+case "$selected" in
+"$option_sleep")
+  systemctl suspend
+  ;;
+"$option_reboot")
+  if confirm_action "Reboot"; then
+    systemctl reboot
+  fi
+  ;;
+"$option_shutdown")
+  if confirm_action "Shutdown"; then
+    shutdown 0
+  fi
+  ;;
+"$option_btop")
+  # Usesetsid to detach if necessary, or just launch
+  kitty btop
+  ;;
+esac
