@@ -8,6 +8,7 @@ return {
     local opts2 = vim.tbl_deep_extend("force", opts, {
       -- Automatically install missing parsers when entering buffer
       auto_install = true,
+      ensure_installed = { "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore" },
       highlight = {
         enable = true,
       },
