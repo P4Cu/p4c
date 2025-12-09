@@ -49,7 +49,7 @@ alias GCO='git branch --format="%(refname:short)" --sort=-committerdate 2>/dev/n
 complete -c command type which-edit
 
 ## requires source-higlight
-export LESSOPEN="| ${$(command -v src-hilite-lesspipe.sh):-/usr/share/source-highlight/src-hilite-lesspipe.sh} %s" ; export LESS=' -R '
+#export LESSOPEN="| ${$(command -v src-hilite-lesspipe.sh):-/usr/share/source-highlight/src-hilite-lesspipe.sh} %s" ; export LESS=' -R '
 
 command -v thefuck &> /dev/null && eval $(thefuck --alias) || true
 
