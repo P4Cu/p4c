@@ -26,6 +26,7 @@
     amend = commit --amend
     fp = fetch --prune
     d = diff
+    cp = cherry-pick
     dca = diff --cached
     upa = pull --autostash --rebase
     co = checkout
@@ -39,6 +40,7 @@
     ma = merge --abort
     # ================= long aliases
     dirdiff = difftool --gui --dir-diff # --no-symlinks
+    dirdiff-base = !git dirdiff $(git merge-base @ origin/HEAD)
     # ================= logging
     lg = !"git lg2"
     lg0 = !git lg @ @{upstream} "^$(git merge-base @ @{upstream})^@"
