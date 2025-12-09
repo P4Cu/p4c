@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+from subprocess import check_output, check_call, CalledProcessError, DEVNULL
+import argparse
+
+parser = argparse.ArgumentParser(
+    description="git lg @ @{upstream} origin/HEAD ^merge_base^@")
+parser.add_argument("for_branch", nargs='?', default="HEAD")
+parser.add_argument("--no-repo-head", default=False, action='store_true')
+parser.add_argument("--no-tracked", default=False, action='store_true')
+ARGS = parser.parse_args()
+
+
+def is_valid_object(o):
+    try:
+        check_call(['git', 'rev-parse', o], stdout=DEVNULL, stderr=DEVNULL)
+        return o
+    except CalledProcessError:
+        return False
+
+
+def merge_base(refs):
+    return check_output([
+                'git',
+                'merge-base',
+                '--octopus',
+                *refs
+            ], universal_newlines=True
+        ).strip()
+
+
+if not is_valid_object(ARGS.for_branch):
+    print(f"Invalid branch: {ARGS.for_branch}")
+    exit(1)
+
+repo_head = None if ARGS.no_repo_head else is_valid_object("origin/HEAD")
+tracked_branch = None if ARGS.no_tracked else is_valid_object("@{upstream}")
+
+refs = list(filter(None, [ARGS.for_branch, repo_head, tracked_branch]))
+base = merge_base(refs)
+check_call(['git', 'lg', *refs, f"^{base}^@"])
