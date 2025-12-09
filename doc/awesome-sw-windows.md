@@ -1,0 +1,22 @@
+
+- [Scoop](https://scoop.sh/) - A command-line package manager for Windows.
+- Just - `scoop install main/just` - A command runner similar to Make. See my [Justfiles](./NCE/justfile).
+  - there are a lot of useful receipes there
+- zoxide - `scoop install main/zoxide` - A smarter cd command. I use it to quickly navigate my file system.
+  - Requires `scoop install main/fzf`
+  - Needs `Invoke-Expression (& { (zoxide init powershell | Out-String) })` in powershell `$PROFILE`
+  - Also makes sense to add `$env:PATH += ";$HOME\bin"` in $PROFILE so you can drop binaries there.
+- [lnav](https://lnav.org/) - great log viewer. See my [Justfiles](./NCE/justfile).
+- bat - `scoop install main/bat` - A cat clone with syntax highlighting and Git integration.
+- fd - `scoop install main/fd` - A simple, fast and user-friendly alternative to 'find'.
+- ripgrep `rg` - `scoop install main/ripgrep` - A line-oriented search tool that recursively searches your current directory for a regex pattern.
+- lazygit - `scoop install main/lazygit` - A simple terminal UI for git commands.
+- systeminformer - `scoop install extras/systeminformer` - A system monitoring tool for Windows - better Task Manager.
+- windirstat - `scoop install main/windirstat` - A disk usage statistics viewer and cleanup tool for Windows.
+- netron - `scoop install main/netron` - A viewer for neural network models.
+- nu - `scoop install main/nu` - NuShell - Better than powershell.
+- delta - `scoop install main/delta` - A syntax-highlighting pager for git and diff output.
+  - requires setup
+- sysinternals - `scoop install extras/sysinternals` - A suite of advanced system utilities from Microsoft.
+- powertools - `scoop install extras/powertools` - A collection of useful tools for Windows.
+- FreeCommanderXE - `scoop install extras/freecommanderxe` - A dual-pane file manager for Windows.
