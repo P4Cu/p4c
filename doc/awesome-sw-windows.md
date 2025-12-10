@@ -1,4 +1,3 @@
-
 - [Scoop](https://scoop.sh/) - A command-line package manager for Windows.
 - Just - `scoop install main/just` - A command runner similar to Make. See my [Justfiles](./NCE/justfile).
   - there are a lot of useful receipes there
@@ -20,3 +19,7 @@
 - sysinternals - `scoop install extras/sysinternals` - A suite of advanced system utilities from Microsoft.
 - powertools - `scoop install extras/powertools` - A collection of useful tools for Windows.
 - FreeCommanderXE - `scoop install extras/freecommanderxe` - A dual-pane file manager for Windows.
+
+- keepassxc
+  - Enable open-ssh service and set the agent socket to: `\\.\pipe\openssh-ssh-agent`
+  - `git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe`
