@@ -78,10 +78,16 @@
     keepBackup = false
 
 [difftool "bc"]
-    path = C:/Program\\ Files/Beyond\\ Compare\\ 4/bcompare.exe
-    cmd = "C:/Program\\ Files/Beyond\\ Compare\\ 4/bcompare.exe" -solo "$LOCAL" "$REMOTE"
+    path = bcompare.exe
+    cmd = bcompare.exe -solo "$LOCAL" "$REMOTE"
 
 [mergetool "bc"]
-    path = "C:/Program\\ Files/Beyond\\ Compare\\ 4/bcompare.exe"
-    cmd = "C:/Program\\ Files/Beyond\\ Compare\\ 4/bcompare.exe" -solo "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+    path = bcompare.exe
+    cmd = bcompare.exe -solo "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
     keepBackup = false
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
