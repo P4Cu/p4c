@@ -1,0 +1,462 @@
+{
+  "$help": "https://aka.ms/terminal-documentation",
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "actions": [
+    {
+      "command": "paste",
+      "id": "User.paste"
+    },
+    {
+      "command": {
+        "action": "moveFocus",
+        "direction": "right"
+      },
+      "id": "User.moveFocus.87C324ED"
+    },
+    {
+      "command": "scrollUpPage",
+      "id": "User.scrollUpPage"
+    },
+    {
+      "command": "scrollDownPage",
+      "id": "User.scrollDownPage"
+    },
+    {
+      "command": {
+        "action": "moveFocus",
+        "direction": "up"
+      },
+      "id": "User.moveFocus.6CD791B"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "right",
+        "splitMode": "duplicate"
+      },
+      "id": "User.splitPane.864CD510"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "down",
+        "splitMode": "duplicate"
+      },
+      "id": "User.splitPane.D5151347"
+    },
+    {
+      "command": {
+        "action": "resizePane",
+        "direction": "up"
+      },
+      "id": "User.resizePane.6CD791B"
+    },
+    {
+      "command": {
+        "action": "resizePane",
+        "direction": "left"
+      },
+      "id": "User.resizePane.2A0DA8E0"
+    },
+    {
+      "command": {
+        "action": "moveFocus",
+        "direction": "down"
+      },
+      "id": "User.moveFocus.F747588A"
+    },
+    {
+      "command": {
+        "action": "resizePane",
+        "direction": "down"
+      },
+      "id": "User.resizePane.F747588A"
+    },
+    {
+      "command": {
+        "action": "moveFocus",
+        "direction": "left"
+      },
+      "id": "User.moveFocus.2A0DA8E0"
+    },
+    {
+      "command": "find",
+      "id": "User.find"
+    },
+    {
+      "command": {
+        "action": "scrollUp"
+      },
+      "id": "User.scrollUp.0"
+    },
+    {
+      "command": {
+        "action": "resizePane",
+        "direction": "right"
+      },
+      "id": "User.resizePane.87C324ED"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "auto",
+        "splitMode": "duplicate"
+      },
+      "id": "User.splitPane.A6751878"
+    },
+    {
+      "command": "scrollToTop",
+      "id": "User.scrollToTop"
+    },
+    {
+      "command": "scrollToBottom",
+      "id": "User.scrollToBottom"
+    }
+  ],
+  "copyFormatting": "none",
+  "copyOnSelect": false,
+  "defaultProfile": "{27de7459-2196-4fd9-9d0a-c3543c449739}",
+  "initialRows": 40,
+  "keybindings": [
+    {
+      "id": "User.scrollUpPage",
+      "keys": "pgup"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+4"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+7"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+n"
+    },
+    {
+      "id": "User.scrollDownPage",
+      "keys": "pgdn"
+    },
+    {
+      "id": "User.moveFocus.87C324ED",
+      "keys": "ctrl+l"
+    },
+    {
+      "id": "User.splitPane.864CD510",
+      "keys": "ctrl+\\"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+space"
+    },
+    {
+      "id": "Terminal.CopyToClipboard",
+      "keys": "ctrl+shift+y"
+    },
+    {
+      "id": "Terminal.CopyToClipboard",
+      "keys": "ctrl+shift+c"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+5"
+    },
+    {
+      "id": "User.paste",
+      "keys": "ctrl+shift+v"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+8"
+    },
+    {
+      "id": "User.moveFocus.6CD791B",
+      "keys": "ctrl+k"
+    },
+    {
+      "id": "User.moveFocus.F747588A",
+      "keys": "ctrl+j"
+    },
+    {
+      "id": "User.moveFocus.2A0DA8E0",
+      "keys": "ctrl+h"
+    },
+    {
+      "id": null,
+      "keys": "shift+h"
+    },
+    {
+      "id": "User.resizePane.F747588A",
+      "keys": "alt+j"
+    },
+    {
+      "id": "User.resizePane.6CD791B",
+      "keys": "alt+k"
+    },
+    {
+      "id": "User.find",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+v"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+comma"
+    },
+    {
+      "id": "User.resizePane.2A0DA8E0",
+      "keys": "alt+h"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+2"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+5"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+comma"
+    },
+    {
+      "id": "User.resizePane.87C324ED",
+      "keys": "alt+l"
+    },
+    {
+      "id": "User.scrollToBottom",
+      "keys": "end"
+    },
+    {
+      "id": null,
+      "keys": "shift+k"
+    },
+    {
+      "id": null,
+      "keys": "shift+j"
+    },
+    {
+      "id": null,
+      "keys": "shift+l"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+c"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+d"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+f"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+pgdn"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+pgup"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+end"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+home"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+7"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+b"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+up"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+1"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+2"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+9"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+3"
+    },
+    {
+      "id": "User.scrollToTop",
+      "keys": "home"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+6"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+5"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+w"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+1"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+3"
+    },
+    {
+      "id": null,
+      "keys": "alt+shift+d"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+4"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+6"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+8"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+9"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+alt+comma"
+    }
+  ],
+  "launchMode": "maximized",
+  "newTabMenu": [
+    {
+      "type": "remainingProfiles"
+    }
+  ],
+  "profiles": {
+    "defaults": {
+      "closeOnExit": "graceful",
+      "font": {
+        "face": "MesloLGM Nerd Font"
+      },
+      "showMarksOnScrollbar": true
+    },
+    "list": [
+      {
+        "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "font": {
+          "size": 10
+        },
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "hidden": false,
+        "name": "Windows PowerShell"
+      },
+      {
+        "closeOnExit": "never",
+        "commandline": "%SystemRoot%\\System32\\cmd.exe",
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "hidden": false,
+        "name": "Command Prompt"
+      },
+      {
+        "altGrAliasing": true,
+        "antialiasingMode": "grayscale",
+        "colorScheme": "Campbell",
+        "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "cursorShape": "bar",
+        "elevate": true,
+        "font": {
+          "face": "Cascadia Mono",
+          "size": 12
+        },
+        "guid": "{82245ce5-15c9-496e-84e2-f70c6fb669af}",
+        "hidden": false,
+        "historySize": 9001,
+        "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+        "name": "Windows PowerShell (admin)",
+        "padding": "8, 8, 8, 8",
+        "snapOnInput": true,
+        "startingDirectory": "%USERPROFILE%",
+        "useAcrylic": false
+      },
+      {
+        "altGrAliasing": true,
+        "antialiasingMode": "grayscale",
+        "colorScheme": "Campbell",
+        "commandline": "nu.exe",
+        "cursorShape": "bar",
+        "font": {
+          "size": 10
+        },
+        "guid": "{27de7459-2196-4fd9-9d0a-c3543c449739}",
+        "hidden": false,
+        "historySize": 9001,
+        "icon": "nu.exe",
+        "name": "nushell",
+        "padding": "8, 8, 8, 8",
+        "snapOnInput": true,
+        "startingDirectory": "%USERPROFILE%/repo",
+        "useAcrylic": false
+      },
+      {
+        "guid": "{232479e0-0c40-5d12-b91c-1c4cba817a9e}",
+        "hidden": false,
+        "name": "Developer Command Prompt for VS 18 [Preview]",
+        "source": "Windows.Terminal.VisualStudio"
+      },
+      {
+        "guid": "{51e87f57-138a-5353-bf60-114be5c5cc5f}",
+        "hidden": false,
+        "name": "Developer PowerShell for VS 18 [Preview]",
+        "source": "Windows.Terminal.VisualStudio"
+      }
+    ]
+  },
+  "schemes": [
+    {
+      "background": "#2B3339",
+      "black": "#323D43",
+      "blue": "#7FBBB3",
+      "brightBlack": "#4A555B",
+      "brightBlue": "#7FBBB3",
+      "brightCyan": "#83C092",
+      "brightGreen": "#A7C080",
+      "brightPurple": "#D699B6",
+      "brightRed": "#E67E80",
+      "brightWhite": "#D3C6AA",
+      "brightYellow": "#DBBC7F",
+      "cursorColor": "#FFFFFF",
+      "cyan": "#83C092",
+      "foreground": "#D3C6AA",
+      "green": "#A7C080",
+      "name": "Everforest",
+      "purple": "#D699B6",
+      "red": "#E67E80",
+      "selectionBackground": "#FFFFFF",
+      "white": "#D3C6AA",
+      "yellow": "#DBBC7F"
+    }
+  ],
+  "themes": [],
+  "windowingBehavior": "useExisting"
+}
