@@ -1,4 +1,3 @@
-
 let mapleader = ' '
 let maplocalleader = ' '
 
@@ -68,7 +67,7 @@ nnoremap ]m :vsc Edit.NextMethod<CR>
 nnoremap [e :vsc View.PreviousError<CR>
 nnoremap ]e :vsc View.NextError<CR>
 nnoremap ]b :vsc Window.NextTab<CR>
-nnoremap [b :vsc Window.PreviousTab<CR>j
+nnoremap [b :vsc Window.PreviousTab<CR>
 
 vnoremap <Leader>gs :vsc Git.StageLines<CR>
 nnoremap <Leader>gs :vsc Git.StageLines<CR>

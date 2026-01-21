@@ -1,3 +1,7 @@
 {
-  "WindowsPowerShell": "$HOME/Documents/WindowsPowerShell"
+  "WindowsPowerShell": "$HOME/Documents/WindowsPowerShell",
+  "nvim": "~/AppData/Local/nvim",
+  "nushell": "~/AppData/Roaming/nushell",
+  "vsvimrc": "~/.vsvimrc",
+  "gitconfig": "~/.gitconfig"
 }
