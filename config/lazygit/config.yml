@@ -1,2 +1,8 @@
 gui:
-  nerdFontsVersion: "3"
+  nerdFontsVersion: 3
+  expandFocusedSidePanel: false
+  expandedSidePanelWeight: 2
+  showDivergenceFromBaseBranch: onlyArrow
+keybinding:
+  universal:
+    quit: Q
