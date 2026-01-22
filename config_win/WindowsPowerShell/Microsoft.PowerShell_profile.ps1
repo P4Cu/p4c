@@ -13,11 +13,11 @@ Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineKeyHandler -Key "Ctrl+p" -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Chord "Ctrl+Enter" -Function AcceptSuggestion
+#Set-PSReadLineKeyHandler -Chord "Ctrl+Enter" -Function AcceptSuggestion
 
 
 # ---------- Load cached VS2022 env ----------------------------------------------------------------
-. "$PSScriptRoot\vs_envfile.ps1"
+#. "$PSScriptRoot\vs_envfile.ps1"
 
 
 # ---------- Set PATH-------------- ----------------------------------------------------------------
@@ -32,7 +32,7 @@ $env:PATH = "C:\ProgramData\anaconda3\;${env:PATH}"
 # ---------- Configure posh ------------------------------------------------------------------------
 # Install-Module posh-git -Scope CurrentUser -Force
 Import-Module posh-git -NoClobber
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/wholespace.omp.json" | Invoke-Expression
+oh-my-posh init powershell --config wholespace | Invoke-Expression
 
 
 # ---------- Configure misc ------------------------------------------------------------------------
