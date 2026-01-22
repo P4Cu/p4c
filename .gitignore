@@ -10,3 +10,4 @@ config/vim/spell
 
 config_win/WindowsPowerShell/Modules/
 config_win/WindowsPowerShell/vs_envfile.ps1
+config/lazygit/state.yml

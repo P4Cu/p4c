@@ -4,5 +4,6 @@
   "nushell": "~/AppData/Roaming/nushell",
   "vsvimrc": "~/.vsvimrc",
   "gitconfig": "~/.gitconfig",
-  "WindowsTerminal": "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+  "WindowsTerminal": "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json",
+  "lazygit": "~/AppData/Local/lazygit/config.yml"
 }
